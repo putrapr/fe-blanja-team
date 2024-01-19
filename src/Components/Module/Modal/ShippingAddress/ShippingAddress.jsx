@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import AddANewModal from "../modal/AddANewAddress/AddANewAddress";
+import AddANewModal from "../AddANewAddress/AddANewAddress";
 import PropTypes from "prop-types";
 import { useState } from "react";
 const ModalShippingAddress = (props) => {
