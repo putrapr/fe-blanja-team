@@ -2,6 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../Page/Main/Home";
 import Login from "../Page/Auth/Login";
 import Register from "../Page/Auth/Register";
+import Mybag from "../Page/Main/MyBag";
+import Product from "../Page/Main/Product";
+import Profile from "../Page/Main/Profile";
 
 const Router = () => {
   return (
@@ -10,6 +13,9 @@ const Router = () => {
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/mybag" element={<Mybag />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
