@@ -5,6 +5,7 @@ import Register from "../Page/Auth/Register";
 import Mybag from "../Page/Main/MyBag";
 import Product from "../Page/Main/Product";
 import Profile from "../Page/Main/Profile";
+import Checkout from "../Page/Main/Checkout";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/mybag" element={<Mybag />} />
         <Route path="/product" element={<Product />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

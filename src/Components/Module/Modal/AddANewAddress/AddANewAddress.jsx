@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Input from "../../../Base/Input/Input";
 import PropTypes from "prop-types";
+import Button from "../../../Base/button";
 
 const AddANewModal = (props) => {
   const { showMe, onHideMe } = props;
@@ -12,33 +13,29 @@ const AddANewModal = (props) => {
         <Modal.Body>
           <h1 className="text-center">Add New Address</h1>
           <div className="container" style={{ marginTop: "10px" }}>
-            <Input label="Save address as (ex : home address, office address)" id="1" type="text" className="form-control-lg" />
+            <Input label="Save address as (ex : home address, office address)" classNameLabel="text-secondary" id="1" type="text" className="form-control-lg" />
             <div className="row row-cols-sm-1 row-cols-md-2">
               <div className="col">
-                <Input label="Recipient’s name" id="2" type="text" className="form-control-lg" />
+                <Input label="Recipient’s name" classNameLabel="text-secondary" id="2" type="text" className="form-control-lg" />
               </div>
               <div className="col">
-                <Input label="Recipient's telephone number" id="3" type="number" className="form-control-lg" />
+                <Input label="Recipient's telephone number" classNameLabel="text-secondary" id="3" type="number" className="form-control-lg" />
               </div>
               <div className="col">
-                <Input label="Address" id="4" type="text" className="form-control-lg" />
+                <Input label="Address" classNameLabel="text-secondary" id="4" type="text" className="form-control-lg" />
               </div>
               <div className="col">
-                <Input label="Postal code" id="5" type="number" className="form-control-lg" />
+                <Input label="Postal code" classNameLabel="text-secondary" id="5" type="number" className="form-control-lg" />
               </div>
               <div className="col">
-                <Input label="City or Subdistrict" id="6" type="text" className="form-control-lg" />
+                <Input label="City or Subdistrict" classNameLabel="text-secondary" id="6" type="text" className="form-control-lg" />
               </div>
             </div>
           </div>
           <div className="container" style={{ marginTop: "40px", display: "flex", justifyContent: "end" }}>
-            <button className="btn bg-light " onClick={onHideMe}>
-              cancel
-            </button>
+            <Button className="btn btn-outline-secondary mx-2" onClick={onHideMe} child="Cancel" style={{ width: "150px" }}></Button>
 
-            <button className="btn bg-danger" onClick={handleSave}>
-              save
-            </button>
+            <Button className="btn bg-danger text-light" onClick={handleSave} child="Save" style={{ width: "150px" }}></Button>
           </div>
         </Modal.Body>
       </Modal>
