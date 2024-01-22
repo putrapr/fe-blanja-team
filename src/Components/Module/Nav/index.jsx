@@ -7,12 +7,23 @@ const Nav = () => {
         <nav>
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to="/">Home</Link>
+              <Link to="/" style={{ textDecoration: "none", color: "#9B9B9B" }}>
+                Home
+              </Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to="/category">Category</Link>
+              <Link
+                to="/category"
+                style={{ textDecoration: "none", color: "#9B9B9B" }}
+              >
+                Category
+              </Link>
             </li>
-            <li className="breadcrumb-item active" aria-current="page">
+            <li
+              className="breadcrumb-item active"
+              aria-current="page"
+              style={{ color: "#9B9B9B" }}
+            >
               T-Shirt
             </li>
           </ol>
