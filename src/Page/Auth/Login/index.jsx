@@ -14,12 +14,12 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const Login = () => {
   return (
-    <Container>
+    <Container id="login">
       <Row>
         <Col className="my-5">
           <Row>
-            <Col className="text-center mt-3">
-              <h4 className="logo-title">
+            <Col className="mt-3"> 
+              <h4 className="d-flex justify-content-center logo-title">
                 <Image src={Logo} />
                 <span>Blanja</span>
               </h4>
