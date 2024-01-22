@@ -4,10 +4,14 @@ import Login from "../Page/Auth/Login";
 import Register from "../Page/Auth/Register";
 import Mybag from "../Page/Main/MyBag";
 import Product from "../Page/Main/Product";
-import Profile from "../Page/Main/Profile";
+import Profile from "../Page/Main/Profile/SidebarSeller";
 import Checkout from "../Page/Main/Checkout";
+<<<<<<< Updated upstream
 import LoginCustomer from "../Page/Auth/Login/customer";
 import RegisterCustomer from "../Page/Auth/Register/customer";
+=======
+
+>>>>>>> Stashed changes
 
 const Router = () => {
   return (
