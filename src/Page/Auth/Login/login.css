@@ -1,0 +1,41 @@
+.acc {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400; 
+    color: #222222;
+    
+}
+
+.forgot {
+    text-decoration: none;
+    color: #DB3022;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 290px;
+}
+
+#id {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#input {
+    width: 400px;
+    margin-left: 430px;
+}
+
+.logo-title {
+    color: #DB3022;
+}
+
+.text-login {
+    color: #222222;
+    font-weight: 700;
+}
+
+
+
+
+
+
+

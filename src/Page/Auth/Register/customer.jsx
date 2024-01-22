@@ -12,7 +12,7 @@ import Buttons from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-const Register = () => {
+const RegisterCustomer = () => {
   return (
     <Container>
     <Row style={{ height: "100vh" }}>
@@ -31,15 +31,13 @@ const Register = () => {
               </p>
               <div>
                 <ButtonGroup className="mt-4 mb-3">
-                  <Buttons style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "4px 0px 0px 4px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
-                  <Buttons style={{ backgroundColor: "#DB3022", borderRadius: "0px 4px 4px 0px",  width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
+                  <Buttons style={{ backgroundColor: "#DB3022", borderRadius: "4px 0px 0px 4px",  width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
+                  <Buttons style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "0px 4px 4px 0px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
                 </ButtonGroup>
               </div>
               <div>
                 <Input id="input" placeholder="Name"></Input>
                 <Input id="input" placeholder="Email"></Input>
-                <Input id="input" placeholder="Phone number"></Input>
-                <Input id="input" placeholder="Store name"></Input>
                 <Input id="input" placeholder="Password"></Input>
               </div>
               <Button
@@ -52,7 +50,7 @@ const Register = () => {
                 }}
               ></Button>
               <p className="mt-4">
-                <Link to="/login" className="acc">
+                <Link to="/login-customer" className="acc">
                 Already have a Tokopedia account?
                   <span style={{ color: "#DB3022" }}> Login</span>
                 </Link>
@@ -66,4 +64,4 @@ const Register = () => {
   )
 };
 
-export default Register;
+export default RegisterCustomer;

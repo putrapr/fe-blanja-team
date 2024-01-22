@@ -10,6 +10,7 @@ const Button = (props) => {
 };
 Button.propTypes = {
   className: PropTypes.string,
+  style: PropTypes.string,
   child: PropTypes.string,
   onClick: PropTypes.func,
 };
