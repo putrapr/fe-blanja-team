@@ -14,19 +14,19 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const Register = () => {
   return (
-    <Container>
+    <Container id="register">
     <Row style={{ height: "100vh" }}>
       <Col className="my-5">
         <Row>
-          <Col className="text-center mt-3">
-            <h4 className="logo-title">
+          <Col className="mt-3">
+            <h4 className="d-flex justify-content-center logo-title">
               <Image src={Logo} />
               <span>Blanja</span>
             </h4>
           </Col>
           <Row className="text-center">
             <Col>
-              <p className="mt-3 text-login">
+              <p className="mt-3 text-register">
                 Please sign up with your account
               </p>
               <div>
