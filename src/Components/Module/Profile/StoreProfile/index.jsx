@@ -1,20 +1,22 @@
-import Navbar from "../../Navbar";
-import SidebarSeller from "../Sidebar";
+import propTypes from "prop-types";
+import "./storeProfile.css";
+import defaultPhoto from "../../../../assets/profile.png";
+// import { useSelector } from "react-redux";
 
 const StoreProfile = () => {
+  const loading = "";
+  const seller = "";
   return (
-    <body id="sidebar">
-      <Navbar />
-      <div className="container-fluid p-0 d-flex align-items-start vh-100">
-        <div className="sidebar vh-100 w-25 d-flex">
-          <SidebarSeller />
-        </div>
-        <div className="main-content vh-100">
-          <div className="container">
-            <div className="wrapper-card">
-              <h3 className="title mb-0">My Store Profile</h3>
-              <span className="sub-title">Manage your profile information</span>
-              <hr className="mb-4" />
+    <section id="main-content">
+      <div className="main-content hv-50 bg-grey">
+        <div className="container bg-white">
+          <div className="wrapper-card">
+            <h3 className="title mb-0">My Store Profile</h3>
+            <span className="sub-title">Manage your profile information</span>
+            <hr className="mb-4" />
+            {loading ? (
+              "loading..."
+            ) : (
               <div className="row">
                 <div className="col-lg-8">
                   <form>
@@ -29,9 +31,10 @@ const StoreProfile = () => {
                         <input
                           type="name"
                           className="form-control"
+                          placeholder="Store Name"
                           id="name"
-                          disabled
-                          value={store_name}
+                          // disabled
+                          value={seller?.store_name}
                         />
                       </div>
                     </div>
@@ -46,9 +49,10 @@ const StoreProfile = () => {
                         <input
                           type="email"
                           className="form-control"
+                          placeholder="Email"
                           id="email"
-                          disabled
-                          value={email}
+                          // disabled
+                          value={seller?.email}
                         />
                       </div>
                     </div>
@@ -63,41 +67,65 @@ const StoreProfile = () => {
                         <input
                           type="phone-number"
                           className="form-control"
+                          placeholder="Phone Number"
                           id="phone-number"
-                          disabled
-                          value={phone}
+                          // disabled
+                          value={seller?.phone}
                         />
                       </div>
                     </div>
-
-                    <textarea
-                      className="form-control"
-                      placeholder="Store Description"
-                      id="floatingTextarea2"
-                      style={{ height: 200 }}
-                      disabled
-                      value={store_description}
-                    />
+                    <div className="row mb-3">
+                      <label className="col-sm-3 col-form-label text-end">
+                        Store Description
+                      </label>
+                      <div className="col-sm-7">
+                        <textarea
+                          className="form-control"
+                          placeholder="Store Description"
+                          id="floatingTextarea2"
+                          style={{ height: 200 }}
+                          // disabled
+                          value={seller?.store_description}
+                        />
+                      </div>
+                    </div>
+                    <div className="row mb-3">
+                      <div className="col-sm-7 text-center">
+                        <button className="btn btn-danger">Save</button>
+                      </div>
+                    </div>
                   </form>
                 </div>
 
                 <div className="col-lg-4 text-center">
                   <img
                     className="preview-profile-img"
-                    src={image}
+                    src={defaultPhoto}
                     alt="profile"
                   />
-                  <div className="mb-3 upload-img mt-4">
-                    <h5>Seller Name</h5>
+                  <div className="mb-3 upload-img mt-4 text-dark">
+                    <h5>Toko pak edi</h5>
+                  </div>
+                  <div className="mb-3 button-upload mt-4 text-dark">
+                    <button className="btn btn-secondary">Upload file</button>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
-    </body>
+    </section>
   );
 };
 
+StoreProfile.propTypes = {
+  data: propTypes.any,
+  showImage: propTypes.any,
+  handleChangeImage: propTypes.any,
+  handleChange: propTypes.any,
+  handleSubmit: propTypes.any,
+  isLoading: propTypes.any,
+  image: propTypes.any,
+};
 export default StoreProfile;
