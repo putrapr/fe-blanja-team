@@ -8,11 +8,7 @@ import Mybag from "../Page/Main/MyBag";
 import Product from "../Page/Main/Product";
 import Profile from "../Page/Main/Profile";
 import Checkout from "../Page/Main/Checkout";
-<<<<<<< Updated upstream
 import Category from "../Page/Main/Category";
-
-=======
->>>>>>> Stashed changes
 
 const Router = () => {
   return (
