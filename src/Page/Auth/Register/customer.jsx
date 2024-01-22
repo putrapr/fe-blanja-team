@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import Logo from "../../../../src/assets/shopping-bag 1.svg";
+import Logo from "../../../../src/assets/icons/shopping-bag 1.svg";
 import Input from "../../../Components/Base/Input/Input";
 import "./register.css";
 import Button from "../../../Components/Base/button";
@@ -14,19 +14,19 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const RegisterCustomer = () => {
   return (
-    <Container>
+    <Container id="register">
     <Row style={{ height: "100vh" }}>
       <Col className="my-5">
         <Row>
-          <Col className="text-center mt-3">
-            <h4 className="logo-title">
+          <Col className="mt-3">
+            <h4 className="d-flex justify-content-center logo-title">
               <Image src={Logo} />
-              <span style={{ marginTop: "50px"  }}>Blanja</span>
+              <span>Blanja</span>
             </h4>
           </Col>
           <Row className="text-center">
             <Col>
-              <p className="mt-3 text-login">
+              <p className="mt-3 text-register">
                 Please sign up with your account
               </p>
               <div>
@@ -35,9 +35,13 @@ const RegisterCustomer = () => {
                   <Buttons style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "0px 4px 4px 0px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
                 </ButtonGroup>
               </div>
-              <div>
+              <div className="d-flex justify-content-center">
                 <Input id="input" placeholder="Name"></Input>
+              </div>
+              <div className="d-flex justify-content-center">
                 <Input id="input" placeholder="Email"></Input>
+              </div>
+              <div className="d-flex justify-content-center">
                 <Input id="input" placeholder="Password"></Input>
               </div>
               <Button
