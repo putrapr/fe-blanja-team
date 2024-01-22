@@ -8,6 +8,7 @@ import Profile from "../Page/Main/Profile";
 import Checkout from "../Page/Main/Checkout";
 import LoginCustomer from "../Page/Auth/Login/customer";
 import RegisterCustomer from "../Page/Auth/Register/customer";
+import Category from "../Page/Main/Category";
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/register-customer" element={<RegisterCustomer />} />
         <Route path="/mybag" element={<Mybag />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/category" element={<Category />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>

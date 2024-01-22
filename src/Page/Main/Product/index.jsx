@@ -1,8 +1,8 @@
 import Navbar from "../../../Components/Module/Navbar";
-import { Link } from "react-router-dom";
 import Image from "../../../assets/img/bajukoko.png";
 import Card from "../../../Components/Module/Card";
 import Iconstar from "../../../assets/icons/icon-start.svg";
+import Nav from "../../../Components/Module/Nav";
 
 const Product = () => {
   return (
@@ -10,19 +10,7 @@ const Product = () => {
       <Navbar />
       <main id="product-page">
         <div className="container mt-5">
-          <nav>
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="#">Category</Link>
-              </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                T-Shirt
-              </li>
-            </ol>
-          </nav>
+          <Nav />
           <div className="product mt-5">
             <div className="row">
               <section className="col-lg-4">
