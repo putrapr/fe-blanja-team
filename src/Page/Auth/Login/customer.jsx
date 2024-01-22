@@ -12,7 +12,7 @@ import Buttons from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-const Login = () => {
+const LoginCustomer = () => {
   return (
     <Container>
       <Row>
@@ -30,9 +30,10 @@ const Login = () => {
                   Please login with your account
                 </p>
                 <div>
+                
                   <ButtonGroup className="mt-4 mb-3">
-                    <Buttons style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "4px 0px 0px 4px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
-                    <Buttons style={{ backgroundColor: "#DB3022", borderRadius: "0px 4px 4px 0px",  width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
+                    <Buttons style={{ backgroundColor: "#DB3022", borderRadius: "4px 0px 0px 4px",  width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
+                    <Buttons style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "0px 4px 4px 0px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
                   </ButtonGroup>
                 </div>
                 <div>
@@ -52,7 +53,7 @@ const Login = () => {
                   }}
                 ></Button>
                 <p className="mt-4">
-                  <Link to="/register" className="acc">
+                  <Link to="/register-customer" className="acc">
                     Don't have a Tokopedia account?
                     <span style={{ color: "#DB3022" }}> Register</span>
                   </Link>
@@ -66,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginCustomer;
