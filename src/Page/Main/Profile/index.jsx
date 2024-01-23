@@ -1,5 +1,7 @@
-const Profile = () => {
-  return <div>Profile</div>;
+import SidebarSeller from "../../../Components/Module/Profile/Sidebar";
+
+const index = () => {
+  return <SidebarSeller />;
 };
 
-export default Profile;
+export default index;
