@@ -1,7 +1,10 @@
-import SidebarSeller from "../../../Components/Module/Profile/Sidebar";
+import SidebarCustomer from "../../../Components/Module/Profile/Customer/SidebarCustomer";
+import SidebarSeller from "../../../Components/Module/Profile/Seller/SidebarSeller";
 
-const index = () => {
-  return <SidebarSeller />;
+const Profile = () => {
+  return <SidebarCustomer />;
+
+  // <SidebarSeller />;
 };
 
-export default index;
+export default Profile;

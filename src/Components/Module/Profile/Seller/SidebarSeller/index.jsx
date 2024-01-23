@@ -1,14 +1,14 @@
-import defaultPhoto from "../../../../assets/profile.png";
+import defaultPhoto from "../../../../../assets/profile.png";
 import { FaPencilAlt } from "react-icons/fa";
-import iconStore from "../../../../assets/icon/profile/icon-store.svg";
-import iconProduct from "../../../../assets/icon/profile/icon-product.svg";
-import iconOrder from "../../../../assets/icon/profile/icon-order.svg";
-import "../Sidebar/sidebarSeller.module.css";
+import iconStore from "../../../../../assets/icons/profile/icon-store.svg";
+import iconProduct from "../../../../../assets/icons/profile/icon-product.svg";
+import iconOrder from "../../../../../assets/icons/profile/icon-order.svg";
 import { useState } from "react";
 import propTypes from "prop-types";
 import StoreProfile from "../StoreProfile";
 import MyProduct from "../MyProduct";
 import SellingProduct from "../SellingProduct";
+import MyOrder from "../MyOrder";
 
 const SidebarSeller = ({ sellerUser }) => {
   const [openTab, setOpenTab] = useState("");
@@ -19,7 +19,7 @@ const SidebarSeller = ({ sellerUser }) => {
       <div className="container-fluid" id="sidebar-seller">
         <div className="row flex-nowrap">
           <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 mt-4 bg-white">
-            <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-hv-100">
               <div className="profile-head d-flex align-items-center">
                 <div className="position-relative">
                   {sellerUser?.photo ? (
@@ -133,18 +133,21 @@ const SidebarSeller = ({ sellerUser }) => {
                       data-bs-parent="#menu"
                     >
                       <li className="w-100">
-                        <a href="#" className="nav-link px-0">
+                        <button
+                          className="nav-link px-0"
+                          onClick={() => setOpenTab("myOrder")}
+                        >
                           <span className="d-none d-sm-inline text-dark">
                             My Order
                           </span>
-                        </a>
+                        </button>
                       </li>
                       <li>
-                        <a href="#" className="nav-link px-0">
+                        <button className="nav-link px-0">
                           <span className="d-none d-sm-inline text-dark">
                             Order Cancel
                           </span>
-                        </a>
+                        </button>
                       </li>
                     </ul>
                   </li>
@@ -155,6 +158,7 @@ const SidebarSeller = ({ sellerUser }) => {
           {openTab === "storeProfile" && <StoreProfile />}
           {openTab === "myProduct" && <MyProduct />}
           {openTab === "sellingProduct" && <SellingProduct />}
+          {openTab === "myOrder" && <MyOrder />}
         </div>
       </div>
     </>
