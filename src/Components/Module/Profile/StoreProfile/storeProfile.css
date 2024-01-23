@@ -1,0 +1,143 @@
+#main-content {
+  overflow-y: scroll;
+  padding: 50px 30px 30px 45px;
+  flex-grow: 1;
+  background-color: #f5f5f5;
+}
+
+#main-content .wrapper-card {
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+
+  padding: 30px;
+  background-color: var(--white);
+  box-sizing: border-box;
+}
+
+#main-content .form-control {
+  width: 100%;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#main-content .col-form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+#main-content .btn-save {
+  height: 36px;
+  width: 100px;
+  border-radius: 25px;
+  background-color: var(--primary);
+  color: var(--white);
+  margin-left: 85px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#main-content .btn-save:hover {
+  background-color: var(--hover-red-item);
+  color: var(--white);
+}
+
+#main-content .form-select {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+}
+#main-content .upload-img input {
+  display: none;
+}
+
+#main-content .btn-upload {
+  height: 36px !important;
+  width: 140px !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(155, 155, 155, 1) !important;
+
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  padding: 8px 27px !important;
+
+  color: var(--grey) !important;
+}
+
+#main-content .preview-profile-img {
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#main-content .btn-upload:hover {
+  background-color: var(--grey) !important;
+  color: var(--white) !important;
+  border: none !important;
+}
+
+/* #main-content input[type='text'] {
+  width: 220px;
+  height: auto;
+} */
+
+/* shipping address */
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#main-content .wrapper-content {
+  padding: 0 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#main-content .wrapper-content-address {
+  box-sizing: border-box;
+  width: 710px;
+  height: 86px;
+  border: 1px dashed var(--grey);
+  border-radius: 8px;
+}
+
+#main-content .wrapper-content-exist {
+  width: 710px;
+  height: 170px;
+
+  padding: 25px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+}
+
+#main-content .aliasname {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#main-content .btn-change-address {
+  list-style: none;
+  font-size: 16px;
+  font-weight: 600;
+
+  text-decoration: none;
+  color: var(--primary);
+}
+
+#main-content th {
+  font-size: 16px;
+  font-weight: 400;
+
+  color: var(--grey);
+}
+
+#main-content .th-active {
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+}

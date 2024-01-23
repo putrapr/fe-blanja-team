@@ -1,0 +1,171 @@
+#myProduct {
+  overflow-y: scroll;
+  padding: 50px 30px 30px 45px;
+  flex-grow: 1;
+  background-color: #f5f5f5;
+}
+
+#myProduct .main-content .search {
+  display: flex;
+  max-width: 400px;
+  margin-left: 22px;
+}
+
+#myProduct .main-content .search .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e4e436;
+  border: none;
+}
+
+#myProduct .main-content .search .icon:hover {
+  cursor: pointer;
+}
+
+#myProduct .main-content .search input {
+  background-color: #e4e4e436;
+  border: none;
+}
+
+#myProduct .main-content .search input:focus {
+  border-color: #db3022 !important;
+  box-shadow: 0px 0px 5px 1px #db3022;
+}
+
+#myProduct .wrapper-card {
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+
+  padding: 30px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+#myProduct .form-control {
+  width: 100%;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#myProduct .col-form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+#myProduct .btn-save {
+  height: 36px;
+  width: 100px;
+  border-radius: 25px;
+  background-color: var(--primary);
+  color: var(--white);
+  margin-left: 85px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#myProduct .btn-save:hover {
+  background-color: var(--hover-red-item);
+  color: var(--white);
+}
+
+#myProduct .form-select {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+}
+#myProduct .upload-img input {
+  display: none;
+}
+
+#myProduct .btn-upload {
+  height: 36px !important;
+  width: 140px !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(155, 155, 155, 1) !important;
+
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  padding: 8px 27px !important;
+
+  color: var(--grey) !important;
+}
+
+#myProduct .preview-profile-img {
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#myProduct .btn-upload:hover {
+  background-color: var(--grey) !important;
+  color: var(--white) !important;
+  border: none !important;
+}
+
+/* #myProduct input[type='text'] {
+    width: 220px;
+    height: auto;
+  } */
+
+/* shipping address */
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#myProduct .wrapper-content {
+  padding: 0 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#myProduct .wrapper-content-address {
+  box-sizing: border-box;
+  width: 710px;
+  height: 86px;
+  border: 1px dashed var(--grey);
+  border-radius: 8px;
+}
+
+#myProduct .wrapper-content-exist {
+  width: 710px;
+  height: 170px;
+
+  padding: 25px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+}
+
+#myProduct .aliasname {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#myProduct .btn-change-address {
+  list-style: none;
+  font-size: 16px;
+  font-weight: 600;
+
+  text-decoration: none;
+  color: var(--primary);
+}
+
+#myProduct th {
+  font-size: 16px;
+  font-weight: 400;
+
+  color: var(--grey);
+}
+
+#myProduct .th-active {
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+}
