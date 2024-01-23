@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalUpdateProduct from "../../Modal/ModalUpdateProduct";
+import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
 import "./myproduct.css";
 import { FaSearch } from "react-icons/fa";
 

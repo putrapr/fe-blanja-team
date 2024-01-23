@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 import "./storeProfile.css";
-import defaultPhoto from "../../../../assets/profile.png";
+import defaultPhoto from "../../../../../assets/profile.png";
 // import { useSelector } from "react-redux";
 
 const StoreProfile = () => {
