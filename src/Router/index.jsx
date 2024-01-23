@@ -8,7 +8,7 @@ import Mybag from "../Page/Main/MyBag";
 import Product from "../Page/Main/Product";
 import Profile from "../Page/Main/Profile";
 import Checkout from "../Page/Main/Checkout";
-import Category from "../Page/Main/Category";
+// import Category from "../Page/Main/Category";
 
 const Router = () => {
   return (
@@ -16,9 +16,9 @@ const Router = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/login-customer" element={<LoginCustomer />} /> */}
+        <Route path="/login-customer" element={<LoginCustomer />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/register-customer" element={<RegisterCustomer />} /> */}
+        <Route path="/register-customer" element={<RegisterCustomer />} />
         <Route path="/mybag" element={<Mybag />} />
         <Route path="/product" element={<Product />} />
         {/* <Route path="/category" element={<Category />} /> */}
