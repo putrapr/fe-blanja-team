@@ -1,0 +1,44 @@
+#bag .box {
+    width: 850px;
+    height: 126px;
+    background-color: #fff;
+    box-shadow: 0px 0px 8px 0px rgba(115, 115, 115, 0.25);
+    border-radius: 4px;
+}
+
+#bag img {
+    border-radius: 8px;
+}
+
+#bag .wrapper {
+    left: 17%;
+}
+
+#bag .prod {
+    color: #000;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#bag .desc {
+    color: #9B9B9B;
+    font-size: 12px;
+    font-weight: 500;
+    padding-bottom: 0;
+}
+
+#bag .count-button {
+    left: 40%;
+}
+
+#bag .cost {
+    left: 54%;
+    transform: translateY(15%);
+}
+
+/* #bag .counts {
+    left: 100px;
+    transform: translateY(50%);
+
+} */
+
