@@ -1,13 +1,19 @@
 import Modal from "react-bootstrap/Modal";
 import AddANewModal from "../AddANewAddress/AddANewAddress";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { myAddress } from "../../../../config/redux/action/AddressAction";
 const ModalShippingAddress = (props) => {
   const { show, onHide } = props;
   const [showSecondModal, setShowSecondModal] = useState(false);
   const handleShowSecondModal = () => setShowSecondModal(true);
   const handleCloseSecondModal = () => setShowSecondModal(false);
-
+  const { address } = useSelector((state) => state.address);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(myAddress(address));
+  }, [dispatch]);
   return (
     <>
       <Modal show={show} onHide={onHide} size="lg">
@@ -20,8 +26,12 @@ const ModalShippingAddress = (props) => {
             <p style={{ verticalAlign: "middle", display: "inline-block", cursor: "pointer" }}>Add new address</p>
           </div>
           <div className="container" style={{ width: "80%", border: "1px solid #DB3022", boxSizing: "border-box", marginBottom: "100px" }}>
-            <h3>Andreas Jane</h3>
-            <p>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p>
+            <h3>{address.name_recipient}</h3>
+            <p>
+              {`${address.street}, ${address.city}`}
+              <br />
+              {address.postal_code}
+            </p>
             <h4 style={{ color: "#DB3022", cursor: "pointer" }} onClick={handleShowSecondModal}>
               Change address
             </h4>
