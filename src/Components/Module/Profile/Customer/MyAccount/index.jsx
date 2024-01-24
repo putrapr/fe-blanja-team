@@ -75,7 +75,7 @@ const MyAccount = () => {
                       <label className="col-sm-3 col-form-label text-end">
                         Gender
                       </label>
-                      <div className="col-sm-7 p-1">
+                      <div className="col-sm-7 pt-1">
                         <div className="form-check form-check-inline">
                           <input
                             className="form-check-input"
@@ -108,58 +108,53 @@ const MyAccount = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="row mb-5">
+                    <div className="row mb-3">
                       {/* Text */}
-                      <div className="d-flex flex-row justify-content-end align-items-center flex-shrink-0 p-0 w-25">
                       <label className="col-sm-3 col-form-label text-end">
                         Date of Birth
                       </label>
-                    </div>
-                    <div className="date-of-birth" style={{ width: "3%" }} />
-                    {/* Field */}
-                    <div className="col-sm-7 p-1 w-50">
-                      <div className="d-flex flex-row gap-3">
-                        <select
-                          defaultValue={1}
-                          className="form-select fs-6 py-2"
-                        >
-                          <option value={1}>1</option>
-                          <option value={2}>2</option>
-                          <option value={3}>3</option>
-                          <option value={31}>31</option>
-                        </select>
+                      {/* Field */}
+                      <div className="col-sm-7">
+                        <div className="d-flex flex-row gap-3">
+                          <select
+                            defaultValue={1}
+                            className="form-select fs-6 py-2"
+                          >
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={31}>31</option>
+                          </select>
 
-                        <select
-                          defaultValue="Januari"
-                          className="form-select fs-6 py-2"
-                        >
-                          <option value="Januari">Januari</option>
-                          <option value="Februari">Februari</option>
-                          <option value="Maret">Maret</option>
-                          <option value="April">April</option>
-                        </select>
+                          <select
+                            defaultValue="Januari"
+                            className="form-select fs-6 py-2"
+                          >
+                            <option value="Januari">Januari</option>
+                            <option value="Februari">Februari</option>
+                            <option value="Maret">Maret</option>
+                            <option value="April">April</option>
+                          </select>
 
-                        <select
-                          defaultValue={1990}
-                          className="form-select fs-6 py-2"
-                        >
-                          <option value={1990}>1990</option>
-                          <option value={1991}>1991</option>
-                          <option value={1992}>1992</option>
-                          <option value={1993}>1993</option>
-                        </select>
+                          <select
+                            defaultValue={1990}
+                            className="form-select fs-6 py-2"
+                          >
+                            <option value={1990}>1990</option>
+                            <option value={1991}>1991</option>
+                            <option value={1992}>1992</option>
+                            <option value={1993}>1993</option>
+                          </select>
+                        </div>
                       </div>
-                      {/* </div> */}
-                      <div className="flex-shrink-0" style={{ width: "6%" }} />
                     </div>
-                    <div className="row mb-3">
+                    <div className="row mt-3 mb-5">
                       <div className="col-sm-7 text-center">
                         <button className="btn btn-danger">Save</button>
                       </div>
                     </div>
                   </form>
                 </div>
-
                 <div className="col-lg-4 text-start">
                   <img
                     className="preview-profile-img"
@@ -169,7 +164,7 @@ const MyAccount = () => {
                   <div className="mb-3 upload-img mt-4 text-dark">
                     <h5>Toko pak edi</h5>
                   </div>
-                  <div className="mb-3 button-upload mt-4 text-dark">
+                  <div className="mb-3 button-upload mt-4 p-1 text-dark">
                     <button className="btn btn-secondary">Upload file</button>
                   </div>
                 </div>
