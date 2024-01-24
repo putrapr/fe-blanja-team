@@ -18,19 +18,23 @@ const MybagCard = (props) => {
               id="flexCheckDefault"
             />
           </div>
-          <div className="row d-flex align-items-center">
-            <div className="col-1 ms-3">
-              <img src={image || src} alt={alt} />
-            </div>
-            <div className="position-absolute col-8 mt-3 wrapper">
-              <p className="prod">{prodTitle}</p>
-              <p className="desc">{descProduct}</p>
-            </div>
-            <div className="col-2 position-absolute count-button">
-              <CountButton />
-            </div>
-            <div className="col-1 position-absolute cost">
-              <p>Rp {cost}</p>
+          <div className="container">
+            <div className="row d-flex align-items-center">
+              <div className="col-1 ms-3">
+                <img src={image || src} alt={alt} />
+              </div>
+              <div className="col-6 mt-3 wrapper">
+                <div className="container">
+                  <p className="prod">{prodTitle}</p>
+                  <p className="desc">{descProduct}</p>
+                </div>
+              </div>
+              <div className="col-3 count-button">
+                <CountButton />
+              </div>
+              <div className="col-1 cost">
+                <p>Rp{cost}</p>
+              </div>
             </div>
           </div>
         </div>
