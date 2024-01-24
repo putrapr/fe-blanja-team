@@ -3,7 +3,7 @@ import AddANewModal from "../AddANewAddress/AddANewAddress";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import { changeAddress, deleteAddress, myAddress } from "../../../../config/redux/action/AddressAction";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
@@ -22,7 +22,6 @@ const ModalShippingAddress = (props) => {
 
   const { addressList } = useSelector((state) => state.address);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(myAddress());
   }, [dispatch]);
