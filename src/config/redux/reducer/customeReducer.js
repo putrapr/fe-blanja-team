@@ -39,6 +39,23 @@ const customerReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case "GET_MY_PROFILE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_MY_PROFILE_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        customer: action.payload,
+      };
+    case "GET_MY_PROFILE_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;
