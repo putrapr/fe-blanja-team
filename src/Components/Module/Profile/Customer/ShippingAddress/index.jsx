@@ -1,29 +1,47 @@
 import { Link } from "react-router-dom";
 import AddANewModal from "../../../Modal/AddANewAddress/AddANewAddress";
 import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
 
 const ShippingAddress = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <section id="shippingAddress">
-      <div className="main-content vh-100">
-        <div className="container bg-white h-100">
-          <div className="text-start px-3 py-3">
-            <h4>Choose Another Address</h4>
-            <p>Manage your Shipping Address</p>
-          </div>
-          <div className="container px-5">
+      <div className="main-content hv-100 bg-light">
+        <div className="container mt-5">
+          <div className="wrapper-card ">
+            <h3 className="title mb-0">Choose Another Address</h3>
+            <span className="sub-title">Manage your Shipping Address</span>
+            <hr className="mb-4" />
+
             <div className="row mt-5 d-grid">
-              <AddANewModal modalName="Add Another Address" />
+              <div className="content-address">
+                {/* Button Add new address */}
+                <button
+                  className="btn-add-address mt-4"
+                  data-bs-toggle="modal"
+                  data-bs-target="#newAddressModal"
+                >
+                  <p className="fw-bold mt-3">Add new address</p>
+                </button>
+              </div>
+              {/* <button className="btn btn-danger" onClick={handleShow}>
+                <AddANewModal showMe={show} onHideMe={handleClose} />
+                {"Add new Address"}
+              </button> */}
             </div>
             <div className="row mt-3">
               <div className="card">
                 <div className="card-body">
-                  <h5>Joko</h5>
+                  <h5>Pak Jokowi</h5>
                   <p>
-                    <span>Jalan cinta </span>
-                    <span>Jalan jalan</span>
+                    <span>jalan jalan </span>
+                    <span>Jalan jalan </span>
                     <span>jakarta </span>
-                    <span>12340</span>
+                    <span>12654</span>
                     <button
                       style={{
                         position: "absolute",
@@ -32,7 +50,8 @@ const ShippingAddress = () => {
                       }}
                       onClick=""
                     >
-                      <FaTrash size={14} />
+                      {" "}
+                      <FaTrash size={12} />
                     </button>
                   </p>
                   <Link>Change Address</Link>

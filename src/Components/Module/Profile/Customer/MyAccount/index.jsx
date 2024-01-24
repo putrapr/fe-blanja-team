@@ -5,7 +5,7 @@ const MyAccount = () => {
   const customer = "";
   return (
     <section id="main-content">
-      <div className="main-content hv-50 bg-grey">
+      <div className="main-content bg-grey">
         <div className="container bg-white">
           <div className="wrapper-card">
             <h3 className="title mb-0">My Profile</h3>
@@ -108,6 +108,50 @@ const MyAccount = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="row mb-5">
+                      {/* Text */}
+                      <div className="d-flex flex-row justify-content-end align-items-center flex-shrink-0 p-0 w-25">
+                      <label className="col-sm-3 col-form-label text-end">
+                        Date of Birth
+                      </label>
+                    </div>
+                    <div className="date-of-birth" style={{ width: "3%" }} />
+                    {/* Field */}
+                    <div className="col-sm-7 p-1 w-50">
+                      <div className="d-flex flex-row gap-3">
+                        <select
+                          defaultValue={1}
+                          className="form-select fs-6 py-2"
+                        >
+                          <option value={1}>1</option>
+                          <option value={2}>2</option>
+                          <option value={3}>3</option>
+                          <option value={31}>31</option>
+                        </select>
+
+                        <select
+                          defaultValue="Januari"
+                          className="form-select fs-6 py-2"
+                        >
+                          <option value="Januari">Januari</option>
+                          <option value="Februari">Februari</option>
+                          <option value="Maret">Maret</option>
+                          <option value="April">April</option>
+                        </select>
+
+                        <select
+                          defaultValue={1990}
+                          className="form-select fs-6 py-2"
+                        >
+                          <option value={1990}>1990</option>
+                          <option value={1991}>1991</option>
+                          <option value={1992}>1992</option>
+                          <option value={1993}>1993</option>
+                        </select>
+                      </div>
+                      {/* </div> */}
+                      <div className="flex-shrink-0" style={{ width: "6%" }} />
+                    </div>
                     <div className="row mb-3">
                       <div className="col-sm-7 text-center">
                         <button className="btn btn-danger">Save</button>
@@ -116,7 +160,7 @@ const MyAccount = () => {
                   </form>
                 </div>
 
-                <div className="col-lg-4 text-center">
+                <div className="col-lg-4 text-start">
                   <img
                     className="preview-profile-img"
                     src={defaultPhoto}
