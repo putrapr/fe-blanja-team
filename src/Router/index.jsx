@@ -9,6 +9,7 @@ import Product from "../Page/Main/Product";
 import Profile from "../Page/Main/Profile";
 import Checkout from "../Page/Main/Checkout";
 import Category from "../Page/Main/Category";
+import Search from "../Page/Main/Search";
 
 const Router = () => {
   return (
@@ -20,10 +21,11 @@ const Router = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/register-customer" element={<RegisterCustomer />} />
         <Route path="/mybag" element={<Mybag />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="/category" element={<Category />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/search" element={<Search/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,53 +1,49 @@
 import Navbar from "../../../Components/Module/Navbar";
-import Image from "../../../assets/img/bajukoko.png";
 import Card from "../../../Components/Module/Card";
 import Iconstar from "../../../assets/icons/icon-start.svg";
 import Nav from "../../../Components/Module/Nav";
 import CountButton from "../../../Components/Base/Count";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState("");
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/product/${id}`
+        );
+        console.log(response.data);
+        setProduct(response.data.data[0]);
+      } catch (error) {
+        console.error("Failed to fetch Product:", error);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+
+  
   return (
     <>
       <Navbar />
-      <main id="product-page">
+      <main id="product-page" key={product?.id}>
         <div className="container mt-5">
           <Nav />
-          <div className="product mt-5">
+          <div className="product mt-5" >
             <div className="row">
               <section className="col-lg-4">
                 <div className="model container ">
-                  <img src={Image} className="rounded img-fluid" alt="" />
-                </div>
-                <div className="col-auto mt-4">
-                  <img
-                    src={Image}
-                    className="rounded mx-2 img-fluid"
-                    style={{ width: "65px" }}
-                    alt=""
-                  />
-                  <img
-                    src={Image}
-                    className="rounded mx-2"
-                    style={{ width: "65px" }}
-                    alt=""
-                  />
-                  <img
-                    src={Image}
-                    className="rounded mx-2"
-                    style={{ width: "65px" }}
-                    alt=""
-                  />
-                  <img
-                    src={Image}
-                    className="rounded mx-2"
-                    style={{ width: "65px" }}
-                    alt=""
-                  />
+                  <img src={product?.image} className="rounded img-fluid" alt={product?.name} />
                 </div>
               </section>
               <section className="col-lg-6">
                 <div className="title">
-                  <h1>Baju muslim pira</h1>
+                  <h1>{product?.name}</h1>
                   <p>Zalora Cloth</p>
                 </div>
                 <div className="d-flex align-items-center">
@@ -61,7 +57,7 @@ const Product = () => {
 
                 <div className="price mt-4">
                   <p className="my-0">Price</p>
-                  <h1>Rp. 500.000</h1>
+                  <h1>Rp. {product?.price}</h1>
                 </div>
 
                 <div className="color mt-4">
@@ -131,20 +127,7 @@ const Product = () => {
               <div className="description mt-5">
                 <h2>Description</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  non magna rutrum, pellentesque augue eu, sagittis velit.
-                  Phasellus quis laoreet dolor. Fusce nec pharetra quam.
-                  Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                  Praesent sed enim vel turpis blandit imperdiet ac ac felis.
-                  Etiam tincidunt tristique placerat. Pellentesque a consequat
-                  mauris, vel suscipit ipsum. Donec ac mauris vitae diam commodo
-                  vehicula. Donec quam elit, sollicitudin eu nisl at, ornare
-                  suscipit magna. Donec non magna rutrum, pellentesque augue eu,
-                  sagittis velit. Phasellus quis laoreet dolor. Fusce nec
-                  pharetra quam. Interdum et malesuada fames ac ante ipsum
-                  primis in faucibus. Praesent sed enim vel turpis blandit
-                  imperdiet ac ac felis. In ultricies rutrum tempus. Mauris vel
-                  molestie orci.
+                {product?.description}
                 </p>
               </div>
               <div className="mt-5">
@@ -152,7 +135,7 @@ const Product = () => {
                 <div className="row mt-5">
                   <div className="col-lg-2">
                     <h1>
-                      5.0<span>/10</span>
+                      5.0<span>/5.0</span>
                     </h1>
                     <img src={Iconstar} alt="Star" />
                     <img src={Iconstar} alt="Star" />
@@ -171,8 +154,8 @@ const Product = () => {
             </div>
           </div>
           <div
-            className="content row mt-5 mb-5"
-            style={{ marginRight: "20%", width: 250 }}
+            className="d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3"
+            style={{ height: "136px" }}
           >
             <Card />
           </div>

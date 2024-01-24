@@ -18,6 +18,14 @@ const Navbar = () => {
     }
   }, []);
 
+  const handleSearchClick = () => {
+    navigate("/search");
+  };
+
+  const handleMybagClick = () => {
+    navigate("/mybag");
+  };
+
   return (
     <div id="nav">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -51,6 +59,7 @@ const Navbar = () => {
                     marginLeft: "50px",
                   }}
                   aria-describedby="search-icon"
+                  onClick={handleSearchClick}
                 />
                 <FaSearch
                   style={{
@@ -60,6 +69,7 @@ const Navbar = () => {
                     right: "15px",
                     zIndex: "1",
                   }}
+                 
                 />
               </li>
               <li className="nav-item ms-2">
@@ -77,7 +87,7 @@ const Navbar = () => {
               </li>
               {isLoggedIn ? (
                 <div className="d-flex">
-                  <li className="nav-item" style={{ marginLeft: "70px" }}>
+                  <li className="nav-item" style={{ marginLeft: "70px" }}  onClick={handleMybagClick}>
                     <FiShoppingCart style={{ width: "100%", height: "25px", color: "#9B9B9B", marginLeft: "170px" }} />
                   </li>
                   <li className="nav-item">
