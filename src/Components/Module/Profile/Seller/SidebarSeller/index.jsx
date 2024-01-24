@@ -3,16 +3,24 @@ import { FaPencilAlt } from "react-icons/fa";
 import iconStore from "../../../../../assets/icons/profile/icon-store.svg";
 import iconProduct from "../../../../../assets/icons/profile/icon-product.svg";
 import iconOrder from "../../../../../assets/icons/profile/icon-order.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import StoreProfile from "../StoreProfile";
 import MyProduct from "../MyProduct";
 import SellingProduct from "../SellingProduct";
 import MyOrder from "../MyOrder";
+import { useDispatch, useSelector } from "react-redux";
+import { myProfileSeller } from "../../../../../config/redux/action/sellerAction";
 
-const SidebarSeller = ({ sellerUser }) => {
-  const [openTab, setOpenTab] = useState("");
+const SidebarSeller = () => {
+  const dispatch = useDispatch();
+  const [openTab, setOpenTab] = useState("storeProfile");
 
+  const { seller } = useSelector((state) => state.seller);
+
+  useEffect(() => {
+    dispatch(myProfileSeller(seller));
+  }, [dispatch, seller]);
   return (
     <>
       {/* <Navbar /> */}
@@ -22,9 +30,9 @@ const SidebarSeller = ({ sellerUser }) => {
             <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-hv-100">
               <div className="profile-head d-flex align-items-center">
                 <div className="position-relative">
-                  {sellerUser?.photo ? (
+                  {seller?.photo ? (
                     <img
-                      src={sellerUser?.photo}
+                      src={seller?.photo}
                       alt=""
                       className="picture rounded-circle"
                     />

@@ -2,9 +2,8 @@ import SidebarCustomer from "../../../Components/Module/Profile/Customer/Sidebar
 import SidebarSeller from "../../../Components/Module/Profile/Seller/SidebarSeller";
 
 const Profile = () => {
-  return <SidebarCustomer />;
-
-  // <SidebarSeller />;
+  const role = localStorage.getItem("role");
+  return <>{role ? <SidebarCustomer /> : <SidebarSeller />}</>;
 };
 
 export default Profile;
