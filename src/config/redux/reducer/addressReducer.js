@@ -1,5 +1,6 @@
 const initialState = {
   address: {},
+
   loading: false,
   error: "",
 };
