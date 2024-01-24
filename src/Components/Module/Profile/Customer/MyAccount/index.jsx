@@ -114,6 +114,7 @@ const MyAccount = () => {
                       <label className="col-sm-3 col-form-label text-end">
                         Date of Birth
                       </label>
+                      </div>
                     </div>
                     <div className="date-of-birth" style={{ width: "3%" }} />
                     {/* Field */}

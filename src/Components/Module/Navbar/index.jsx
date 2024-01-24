@@ -2,11 +2,10 @@ import Logo from "../../../assets/icons/shopping-bag 1.svg";
 import { Link } from "react-router-dom";
 import {
   FaSearch,
-  FaFilter,
-  FaShoppingCart,
   FaRegBell,
   FaUser,
 } from "react-icons/fa";
+import { FiShoppingCart, FiFilter } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import "./Navbar.css";
 
@@ -73,13 +72,13 @@ const Navbar = () => {
                   backgroundColor: "transparent"
                 }}
               >
-                <FaFilter
+                <FiFilter
                   style={{ width: "100%", height: "18px", color: "#9B9B9B" }}
                 />
               </button>
             </li>
             <li className="nav-item" style={{ marginLeft: "70px" }}>
-              <FaShoppingCart
+              <FiShoppingCart
                 style={{ width: "100%", height: "25px", color: "#9B9B9B", marginLeft: "170px" }}
               />
             </li>
