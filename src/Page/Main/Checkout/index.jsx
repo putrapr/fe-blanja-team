@@ -2,12 +2,19 @@ import CheckoutCard from "../../../Components/Base/CheckoutCard/CheckoutCard";
 import Button from "../../../Components/Base/button";
 import ModalShippingAddress from "../../../Components/Module/Modal/ShippingAddress/ShippingAddress";
 import Navbar from "../../../Components/Module/Navbar/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./checkout.css";
+import { useDispatch, useSelector } from "react-redux";
+import { myAddress } from "../../../config/redux/action/AddressAction";
 const Checkout = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const { loading, address } = useSelector((state) => state.address);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(myAddress(address));
+  }, [dispatch]);
   return (
     <div>
       <Navbar />
@@ -17,8 +24,12 @@ const Checkout = () => {
         <div className="container addressWrapper">
           <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
             <div className="col-lg-8">
-              <h5>Andreas Jane</h5>
-              <p>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p>
+              <h5>{address.name_recipient}</h5>
+              <p>
+                {`${address.street}, ${address.city}`}
+                <br />
+                {address.postal_code}
+              </p>
 
               <Button className=" btn-outline-secondary" child="Choose another address" style={{ borderRadius: "50px", marginBottom: "20px" }} onClick={handleShow} />
               <ModalShippingAddress show={show} onHide={handleClose} />
