@@ -3,6 +3,7 @@ import Image from "../../../assets/img/bajukoko.png";
 import Card from "../../../Components/Module/Card";
 import Iconstar from "../../../assets/icons/icon-start.svg";
 import Nav from "../../../Components/Module/Nav";
+import CountButton from "../../../Components/Base/Count";
 
 const Product = () => {
   return (
@@ -82,36 +83,12 @@ const Product = () => {
                     style={{ marginRight: "80px" }}
                   >
                     <p>Size</p>
-                    <div>
-                      <button type="button" className="btn btn-dark">
-                        -
-                      </button>
-                      <span className="num px-2">0</span>
-                      <button type="button" className="btn btn-outline-dark">
-                        +
-                      </button>
-                    </div>
+                    <CountButton/>
+                    
                   </div>
                   <div className="d-flex flex-column">
                     <p>Jumlah</p>
-                    <div>
-                      <button
-                        // onClick={() => handleMinusQuantity()}
-                        type="button"
-                        className="btn btn-dark"
-                      >
-                        -
-                      </button>
-                      {/* <span className="num px-2">{quantity}</span> */}
-                      <span className="num px-2">0</span>
-                      <button
-                        // onClick={() => handlePlusQuantity()}
-                        type="button"
-                        className="btn btn-outline-dark"
-                      >
-                        +
-                      </button>
-                    </div>
+                    <CountButton/>
                   </div>
                 </div>
                 <div className="button d-flex mt-4">

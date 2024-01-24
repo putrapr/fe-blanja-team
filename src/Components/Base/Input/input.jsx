@@ -18,6 +18,6 @@ Input.propTypes = {
   classNameLabel: PropTypes.string,
   errorMessage: PropTypes.string,
   onChange: PropTypes.func,
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 export default Input;

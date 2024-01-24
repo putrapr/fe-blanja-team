@@ -2,17 +2,17 @@ import Logo from "../../../assets/icons/shopping-bag 1.svg";
 import { Link } from "react-router-dom";
 import {
   FaSearch,
-  FaFilter,
-  FaShoppingCart,
   FaRegBell,
   FaUser,
 } from "react-icons/fa";
+import { FiShoppingCart, FiFilter } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div id="nav">
+      <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
           <img src={Logo} alt="Logo" />
@@ -48,6 +48,7 @@ const Navbar = () => {
                   borderRadius: "50px",
                   width: "500px",
                   paddingRight: "40px",
+                  marginLeft: "50px"
                 }}
                 aria-describedby="search-icon"
               />
@@ -67,27 +68,28 @@ const Navbar = () => {
                   width: "40px",
                   height: "40px",
                   border: "1px solid #8E8E93",
-                  borderRadius: "15%",
+                  borderRadius: "30%",
+                  backgroundColor: "transparent"
                 }}
               >
-                <FaFilter
-                  style={{ width: "100%", height: "auto", color: "#9B9B9B" }}
+                <FiFilter
+                  style={{ width: "100%", height: "18px", color: "#9B9B9B" }}
                 />
               </button>
             </li>
-            <li className="nav-item">
-              <FaShoppingCart
-                style={{ width: "100%", height: "25px", color: "#9B9B9B" }}
+            <li className="nav-item" style={{ marginLeft: "70px" }}>
+              <FiShoppingCart
+                style={{ width: "100%", height: "25px", color: "#9B9B9B", marginLeft: "170px" }}
               />
             </li>
             <li className="nav-item">
               <FaRegBell
-                style={{ width: "100%", height: "25px", color: "#9B9B9B" }}
+                style={{ width: "100%", height: "25px", color: "#9B9B9B", marginLeft: "90px" }}
               />
             </li>
             <li className="nav-item">
               <MdOutlineMailOutline
-                style={{ width: "100%", height: "25px", color: "#9B9B9B" }}
+                style={{ width: "100%", height: "25px", color: "#9B9B9B", marginLeft: "60px" }}
               />
             </li>
             <li className="nav-item">
@@ -97,6 +99,7 @@ const Navbar = () => {
                   height: "25px",
                   color: "#9B9B9B",
                   borderRadius: "50%",
+                  marginLeft: "50px"
                 }}
               />
             </li>
@@ -104,6 +107,8 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </div>
+    
   );
 };
 
