@@ -13,23 +13,7 @@ import Navbar from "../../../Components/Module/Navbar";
 // import Button from "../../../Components/Base/button";
 
 const Home = () => {
-  // const [show, setShow] = useState(false);
-  // const handleShow = () => {
-  //   setShow(true);
-  // };
-  // const handleClose = () => {
-  //   setShow(false);
-  // };
   return (
-    // <div>
-    //   <Button
-    //     className=" btn-outline-secondary"
-    //     child="Filter"
-    //     style={{ borderRadius: "50px" }}
-    //     onClick={handleShow}
-    //   />
-    //   <Filter show={show} onHide={handleClose} />
-    // </div>
     <>
       <Navbar />
       <section style={{ paddingTop: 30 }}>
@@ -139,11 +123,11 @@ const Home = () => {
       </section>
 
       <section id="page-home">
-        <div className="title-category">
+        <div className="title-category px-5 mx-2 mt-5">
           <h1>Category</h1>
           <p>What are you currently looking for</p>
         </div>
-        <div className="category d-flex justify-content-center flex-wrap">
+        <div className="category d-flex justify-content-center flex-wrap d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3">
           <div
             className=" d-flex rounded-3 "
             style={{

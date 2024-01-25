@@ -21,19 +21,22 @@ const Router = () => {
           </PublicRoute>
         } 
         />
-        <Route path="/register" element={
+        <Route path="/login-customer" element={<LoginCustomer />} />
+         <Route path="/register" element={
           <PublicRoute>
             <Register/>
           </PublicRoute>
         } 
         />
+        <Route path="/register-customer" element={<RegisterCustomer />} />
         <Route path="/mybag" element={
           <ProtectedRoute>
             <Mybag />
           </ProtectedRoute>
         } 
         />
-        <Route path="/product" element={<Product />} />
+         <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="/category" element={<Category />} />
         <Route path="/profile" element={
           <ProtectedRoute>
@@ -47,6 +50,7 @@ const Router = () => {
           </ProtectedRoute>
         } 
         />
+        <Route path="/search" element={<Search/>}/>
       </Routes>
     </BrowserRouter>
   );
