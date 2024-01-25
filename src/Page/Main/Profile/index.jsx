@@ -3,7 +3,7 @@ import SidebarSeller from "../../../Components/Module/Profile/Seller/SidebarSell
 
 const Profile = () => {
   const role = localStorage.getItem("role");
-  return <>{role ? <SidebarCustomer /> : <SidebarSeller />}</>;
+  return <>{role === "customer" ? <SidebarCustomer /> : <SidebarSeller />}</>;
 };
 
 export default Profile;

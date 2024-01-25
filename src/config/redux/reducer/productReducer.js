@@ -23,6 +23,57 @@ const productReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case "GET_MY_PRODUCT_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_MY_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        productList: action.payload,
+      };
+    case "GET_MY_PRODUCT_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case "UPDATE_PRODUCT_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "UPDATE_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        productList: [...state.productList, action.payload],
+      };
+    case "UPDATE_PRODUCT_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case "DELETE_PRODUCT_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "DELETE_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        productList: action.payload,
+      };
+    case "DELETE_PRODUCT_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

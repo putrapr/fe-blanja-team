@@ -1,14 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
 import "./myproduct.css";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTrash } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteProduct,
+  getMyProduct,
+} from "../../../../../config/redux/action/productAction";
 
 const MyProduct = () => {
-  const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
+
   const [searchQuery, setSearchQuery] = useState("");
+
+  const { productList } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    dispatch(getMyProduct(productList));
+  }, []);
+
   const handleSearch = () => {};
 
-  const handleDelete = () => {};
+  const handleDelete = async (id) => {
+    try {
+      dispatch(deleteProduct(id));
+    } catch (error) {
+      alert(error.data.message);
+    }
+  };
   return (
     <section id="myProduct">
       <div className="main-content hv-50 bg-grey">
@@ -73,7 +92,7 @@ const MyProduct = () => {
                 className="form-control p-2"
                 id="search"
                 placeholder="Search"
-                value=""
+                value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
@@ -98,11 +117,10 @@ const MyProduct = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {product?.map((item, index) => {
+                          {productList?.map((item, index) => {
                             return (
                               <tr key={index}>
-                                <td>{item?.name_product}</td>
-                                <td className="text-center">{item?.size}</td>
+                                <td className="text-center">{item?.name}</td>
                                 <td className="text-center">{item?.price}</td>
                                 <td className="text-center">{item?.stock}</td>
 
@@ -111,12 +129,10 @@ const MyProduct = () => {
 
                                   <button
                                     type="button"
-                                    onClick={() =>
-                                      handleDelete(item?.product_id)
-                                    }
+                                    onClick={() => handleDelete(item?.id)}
                                     className="btn btn-danger"
                                   >
-                                    <i className="bi bi-trash3-fill"></i>
+                                    <FaTrash />
                                   </button>
                                 </td>
                               </tr>

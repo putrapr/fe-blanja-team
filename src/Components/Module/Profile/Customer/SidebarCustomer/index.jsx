@@ -19,7 +19,7 @@ const SidebarCustomer = () => {
 
   useEffect(() => {
     dispatch(myProfileCustomer(customer));
-  }, [dispatch, customer]);
+  }, []);
 
   return (
     <>

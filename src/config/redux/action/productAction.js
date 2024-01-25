@@ -22,7 +22,8 @@ export const getAllProduct = (data) => async (dispatch) => {
 export const getMyProduct = () => async (dispatch) => {
   try {
     dispatch({ type: "GET_MY_PRODUCT_REQUEST" });
-    const response = await api.get(``);
+    const seller_id = localStorage.getItem("seller_id");
+    const response = await api.get(`/product/seller/${seller_id}`);
     const product = response.data.data;
     dispatch({
       type: "GET_MY_PRODUCT_SUCCESS",
@@ -85,10 +86,10 @@ export const createProduct = (data) => async (dispatch) => {
   }
 };
 
-export const deleteRecipe = (id, data) => async (dispatch) => {
+export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETE_PRODUCT_REQUEST" });
-    const response = await api.delete(`${id}`, data);
+    const response = await api.delete(`${id}`);
     const product = response.data.data;
     dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: product });
   } catch (error) {

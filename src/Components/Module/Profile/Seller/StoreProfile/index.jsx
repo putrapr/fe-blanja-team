@@ -1,11 +1,20 @@
 import propTypes from "prop-types";
 import "./storeProfile.css";
 import defaultPhoto from "../../../../../assets/profile.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { myProfileSeller } from "../../../../../config/redux/action/sellerAction";
 // import { useSelector } from "react-redux";
 
 const StoreProfile = () => {
-  const loading = "";
-  const seller = "";
+  const dispatch = useDispatch();
+
+  const { loading, seller } = useSelector((state) => state.seller);
+
+  useEffect(() => {
+    dispatch(myProfileSeller(seller));
+  }, []);
+
   return (
     <section id="main-content">
       <div className="main-content hv-50 bg-grey">
@@ -33,8 +42,9 @@ const StoreProfile = () => {
                           className="form-control"
                           placeholder="Store Name"
                           id="name"
-                          // disabled
+                          disabled
                           value={seller?.store_name}
+                          // onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -51,7 +61,8 @@ const StoreProfile = () => {
                           className="form-control"
                           placeholder="Email"
                           id="email"
-                          // disabled
+                          disabled
+                          // onChange={handleChange}
                           value={seller?.email}
                         />
                       </div>
@@ -69,7 +80,8 @@ const StoreProfile = () => {
                           className="form-control"
                           placeholder="Phone Number"
                           id="phone-number"
-                          // disabled
+                          disabled
+                          // onChange={handleChange}
                           value={seller?.phone}
                         />
                       </div>
@@ -84,31 +96,54 @@ const StoreProfile = () => {
                           placeholder="Store Description"
                           id="floatingTextarea2"
                           style={{ height: 200 }}
-                          // disabled
+                          disabled
+                          // onChange={handleChange}
                           value={seller?.store_description}
                         />
                       </div>
                     </div>
-                    <div className="row mb-3">
+                    {/* <div className="row mb-3">
                       <div className="col-sm-7 text-center">
-                        <button className="btn btn-danger">Save</button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={handleSubmit}
+                        >
+                          Save
+                        </button>
                       </div>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
 
                 <div className="col-lg-4 text-center">
-                  <img
-                    className="preview-profile-img"
-                    src={defaultPhoto}
-                    alt="profile"
-                  />
+                  {seller?.image ? (
+                    <img
+                      width="110px"
+                      height="110px"
+                      style={{ borderRadius: 9999, objectFit: "cover" }}
+                      src={seller?.image}
+                      alt="my_image"
+                    />
+                  ) : (
+                    <img
+                      width="110px"
+                      height="110px"
+                      style={{ borderRadius: 9999, objectFit: "cover" }}
+                      src={defaultPhoto}
+                      alt="blank_picture"
+                    />
+                  )}
                   <div className="mb-3 upload-img mt-4 text-dark">
-                    <h5>Toko pak edi</h5>
+                    <h5>{seller?.name}</h5>
                   </div>
-                  <div className="mb-3 button-upload mt-4 text-dark">
-                    <button className="btn btn-secondary">Upload file</button>
-                  </div>
+                  {/* <div className="mb-3 button-upload mt-4 text-dark">
+                    <button
+                      className="btn btn-secondary"
+                      onChange={handleChangeImage}
+                    >
+                      Upload file
+                    </button>
+                  </div> */}
                 </div>
               </div>
             )}
@@ -120,12 +155,12 @@ const StoreProfile = () => {
 };
 
 StoreProfile.propTypes = {
-  data: propTypes.any,
+  seller: propTypes.any,
   showImage: propTypes.any,
   handleChangeImage: propTypes.any,
   handleChange: propTypes.any,
   handleSubmit: propTypes.any,
-  isLoading: propTypes.any,
+  loading: propTypes.any,
   image: propTypes.any,
 };
 export default StoreProfile;

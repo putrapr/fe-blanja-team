@@ -36,3 +36,21 @@ export const addAddress = (data) => async (dispatch) => {
     });
   }
 };
+export const deleteAddress = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "DELETE_ADDRESS_REQUEST",
+    });
+    const response = await api.delete(`/address/${id}`);
+    const address = response.data.data;
+    dispatch({
+      type: "DELETE_ADDRESS_SUCCESS",
+      payload: address,
+    });
+  } catch (error) {
+    dispatch({
+      type: "DELETE_ADDRESS_FAILURE",
+      payload: error.response,
+    });
+  }
+};

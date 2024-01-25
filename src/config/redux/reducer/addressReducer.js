@@ -40,6 +40,23 @@ const addressReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case "DELETE_ADDRESS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "DELETE_ADDRESS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        address: action.payload,
+      };
+    case "DELETE_ADDRESS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

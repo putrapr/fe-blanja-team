@@ -1,24 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import propTypes from "prop-types";
+import { FaPen } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getMyProduct,
+  updateProduct,
+} from "../../../../config/redux/action/productAction";
 
 const ModalUpdateProduct = ({ item }) => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   //   console.log(item?.recipes_id);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [saveImage, setSaveImage] = useState("");
+
   const [data, setData] = useState({
-    name_product: item?.name_product,
+    name: item?.name,
     price: item?.price,
     color: item?.color,
     size: item?.size,
     stock: item?.stock,
+    rating: item?.rating,
+    condition: item?.condition,
     description: item?.description,
+    image: saveImage,
   });
 
+  const { recipeList } = useSelector((state) => state.recipe);
+
+  const getProduct = async () => {
+    try {
+      dispatch(getMyProduct(recipeList));
+    } catch (error) {
+      alert(error.data.message);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  });
   const handleChange = (e) => {
     setData({
       ...data,
@@ -37,13 +61,27 @@ const ModalUpdateProduct = ({ item }) => {
     event.preventDefault();
 
     const formDataToSend = new FormData();
-    formDataToSend.append("image_product", saveImage);
-    formDataToSend.append("name_product", data?.name_product);
+    formDataToSend.append("image", saveImage);
+    formDataToSend.append("name", data?.name);
     formDataToSend.append("price", data?.price);
     formDataToSend.append("color", data?.color);
     formDataToSend.append("size", data?.size);
     formDataToSend.append("stock", data?.stock);
+    formDataToSend.append("rating", data?.rating);
+    formDataToSend.append("condition", data?.condition);
     formDataToSend.append("description", data?.description);
+
+    try {
+      updateProduct({
+        id: item.id,
+        data: formDataToSend,
+      });
+      getProduct();
+      setShow(false);
+      alert("Recipe Updated");
+    } catch (error) {
+      alert(error.data.message);
+    }
   };
   return (
     <>
@@ -53,11 +91,11 @@ const ModalUpdateProduct = ({ item }) => {
         style={{ marginRight: 8 }}
         onClick={handleShow}
       >
-        <i className="bi bi-pen" style={{ color: "white" }}></i>
+        <FaPen color="white" />
       </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>mau Update Product?</Modal.Title>
+          <Modal.Title>Update Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Control type="file" onChange={handleUpload} name="image" />
@@ -65,8 +103,8 @@ const ModalUpdateProduct = ({ item }) => {
             type="text"
             placeholder="name recipes"
             className="my-3"
-            name="name_product"
-            value={data?.name_product}
+            name="name"
+            value={data?.name}
             onChange={handleChange}
           />
           <Form.Control
@@ -99,6 +137,22 @@ const ModalUpdateProduct = ({ item }) => {
             className="my-3"
             name="stock"
             value={data?.stock}
+            onChange={handleChange}
+          />
+          <Form.Control
+            type="text"
+            placeholder="rating"
+            className="my-3"
+            name="stock"
+            value={data?.rating}
+            onChange={handleChange}
+          />
+          <Form.Control
+            type="text"
+            placeholder="condition"
+            className="my-3"
+            name="stock"
+            value={data?.condition}
             onChange={handleChange}
           />
           <Form.Control
