@@ -1,5 +1,55 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./sellingProduct.css";
+import { createProduct } from "../../../../../config/redux/action/productAction";
+
 const SellingProduct = () => {
+  const [data, setData] = useState("");
+  const [saveImage, setSaveImage] = useState("");
+  const [showImage, setShowImage] = useState("");
+
+  const dispatch = useDispatch();
+  const id = localStorage.getItem("id");
+
+  const formData = new FormData();
+  formData.append("name", data?.name);
+  formData.append("price", data?.price);
+  formData.append("stock", data?.stock);
+  formData.append("condition", data?.condition);
+  formData.append("image", saveImage);
+  formData.append("description", data?.description);
+  formData.append("seller_id", id);
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleUpload = (e) => {
+    const uploader = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      setShowImage(reader.result);
+    };
+    reader.readAsDataURL(uploader);
+    setSaveImage(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(
+        createProduct({
+          formData,
+        })
+      );
+    } catch (error) {
+      alert(error.data.message);
+    }
+  };
+
   return (
     <section id="selling-product">
       <div className="main-content vh-50 bg-grey">
@@ -21,9 +71,9 @@ const SellingProduct = () => {
                 className="form-control"
                 id="input1"
                 style={{ width: "20.5vw" }}
-                value=""
-                onChange=""
-                name="name_product"
+                value={data?.name}
+                onChange={handleChange}
+                name="name"
               />
             </div>
           </div>
@@ -43,8 +93,8 @@ const SellingProduct = () => {
                 className="form-control"
                 id="input1"
                 style={{ width: "20.5vw" }}
-                value=""
-                onChange=""
+                value={data?.price}
+                onChange={handleChange}
                 name="price"
               />
             </div>
@@ -61,8 +111,10 @@ const SellingProduct = () => {
                   className="form-check-input"
                   type="radio"
                   name="inlineRadioOptions"
-                  id="inlineRadio1"
-                  value="option1"
+                  id="new"
+                  value="new"
+                  onChange={handleChange}
+                  checked={data.condition === "new"}
                 />
                 <label className="form-check-label" htmlFor="inlineRadio1">
                   Baru
@@ -73,8 +125,10 @@ const SellingProduct = () => {
                   className="form-check-input"
                   type="radio"
                   name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="option2"
+                  id="second"
+                  value="second"
+                  onChange={handleChange}
+                  checked={data.condition === "second"}
                 />
                 <label className="form-check-label" htmlFor="inlineRadio2">
                   Bekas
@@ -93,8 +147,8 @@ const SellingProduct = () => {
                 className="form-control"
                 id="input1"
                 style={{ width: "20.5vw" }}
-                value=""
-                onChange=""
+                value={data?.stock}
+                onChange={handleChange}
                 name="stock"
               />
             </div>
@@ -113,18 +167,20 @@ const SellingProduct = () => {
                       type="file"
                       className="form-control"
                       id="image"
-                      name="image_product"
-                      onChange=""
+                      name="image"
+                      onChange={handleUpload}
                     />
-                    <img
-                      src=""
-                      style={{
-                        width: "20vh",
-                        height: "13vh",
-                        objectFit: "contain",
-                      }}
-                      alt="Uploaded"
-                    />
+                    {showImage && (
+                      <img
+                        src={showImage}
+                        style={{
+                          width: "20vh",
+                          height: "13vh",
+                          objectFit: "contain",
+                        }}
+                        alt="Uploaded"
+                      />
+                    )}
                   </div>
                 </form>
               </div>
@@ -145,9 +201,9 @@ const SellingProduct = () => {
                   className="form-control"
                   id="form6Example7"
                   rows="4"
-                  value=""
+                  value={data?.description}
                   name="description"
-                  onChange=""
+                  onChange={handleChange}
                 >
                   {" "}
                 </textarea>
@@ -159,7 +215,7 @@ const SellingProduct = () => {
             <button
               className="btn btn-danger rounded-pill"
               type="button"
-              onClick=""
+              onClick={handleSubmit}
             >
               Jual
             </button>

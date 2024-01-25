@@ -57,24 +57,27 @@ const addressReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-    case "CHANGE_ADDRESS_REQUEST":
-      return {
-        ...state,
-        loading: true,
-      };
-    case "CHANGE_ADDRESS_SUCCESS":
-      return {
-        ...state,
-        loading: false,
-        address: action.payload,
-      };
-    case "CHANGE_ADDRESS_FAILURE":
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+// <<<<<<< master
+// =======
+//     case "CHANGE_ADDRESS_REQUEST":
+//       return {
+//         ...state,
+//         loading: true,
+//       };
+//     case "CHANGE_ADDRESS_SUCCESS":
+//       return {
+//         ...state,
+//         loading: false,
+//         address: action.payload,
+//       };
+//     case "CHANGE_ADDRESS_FAILURE":
+//       return {
+//         ...state,
+//         loading: false,
+//         error: action.payload,
+//       };
 
+// >>>>>>> master
     case "DELETE_ADDRESS_REQUEST":
       return {
         ...state,

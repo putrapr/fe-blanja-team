@@ -1,13 +1,29 @@
-import { Link } from "react-router-dom";
 import AddANewModal from "../../../Modal/AddANewAddress/AddANewAddress";
 import { FaTrash } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteAddress,
+  myAddress,
+} from "../../../../../config/redux/action/AddressAction";
+import ChangeAddress from "../../../Modal/changeAddress/ChangeAddress";
 
 const ShippingAddress = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const dispatch = useDispatch();
+
+  const { loading, address } = useSelector((state) => state.address);
+
+  useEffect(() => {
+    dispatch(myAddress(address));
+  }, []);
+
+  const handleDeleteAddres = async () => {
+    dispatch(deleteAddress(address.id));
+  };
   return (
     <section id="shippingAddress">
       <div className="main-content hv-100 bg-light">
@@ -18,44 +34,44 @@ const ShippingAddress = () => {
             <hr className="mb-4" />
 
             <div className="row mt-5 d-grid">
-              <div className="content-address">
-                {/* Button Add new address */}
-                <button
-                  className="btn-add-address mt-4"
-                  data-bs-toggle="modal"
-                  data-bs-target="#newAddressModal"
-                >
-                  <p className="fw-bold mt-3">Add new address</p>
-                </button>
-              </div>
-              {/* <button className="btn btn-danger" onClick={handleShow}>
+              <button
+                className="btn btn-warning"
+                type="button"
+                style={{ marginRight: 8 }}
+                onClick={handleShow}
+              >
                 <AddANewModal showMe={show} onHideMe={handleClose} />
-                {"Add new Address"}
-              </button> */}
+              </button>
             </div>
             <div className="row mt-3">
               <div className="card">
-                <div className="card-body">
-                  <h5>Pak Jokowi</h5>
-                  <p>
-                    <span>jalan jalan </span>
-                    <span>Jalan jalan </span>
-                    <span>jakarta </span>
-                    <span>12654</span>
-                    <button
-                      style={{
-                        position: "absolute",
-                        right: 15,
-                        top: "40%",
-                      }}
-                      onClick=""
-                    >
-                      {" "}
-                      <FaTrash size={12} />
-                    </button>
-                  </p>
-                  <Link>Change Address</Link>
-                </div>
+                {loading
+                  ? "Loading..."
+                  : address?.map((item, index) => (
+                      <div className="card-body" key={index}>
+                        <h5>{item?.recipients_name}</h5>
+                        <p>
+                          <span>{item?.addres} </span>
+                          <span>{item?.home_addres} </span>
+                          <span>{item?.city} </span>
+                          <span>{item?.postal_code}</span>
+                          <button
+                            style={{
+                              position: "absolute",
+                              right: 15,
+                              top: "40%",
+                            }}
+                            onClick={handleDeleteAddres}
+                          >
+                            {" "}
+                            <FaTrash size={15} />
+                          </button>
+                        </p>
+                        <a>
+                          <ChangeAddress showMe={show} onHideMe={handleClose} />
+                        </a>
+                      </div>
+                    ))}
               </div>
             </div>
           </div>

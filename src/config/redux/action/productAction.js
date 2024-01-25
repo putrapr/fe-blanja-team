@@ -20,6 +20,33 @@ export const getAllProduct = ({keyword, sort}) => async (dispatch) => {
     });
   }
 };
+// <<<<<<< master
+// export const getMyProduct = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: "GET_MY_PRODUCT_REQUEST" });
+//     const seller_id = localStorage.getItem("seller_id");
+//     const response = await api.get(`/product/seller/${seller_id}`);
+//     const product = response.data.data;
+//     dispatch({
+//       type: "GET_MY_PRODUCT_SUCCESS",
+//       payload: product,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: "GET_MY_PRODUCT_FAILURE",
+//       payload: error.response,
+//     });
+//   }
+// };
+// export const getProductById = (id) => async (dispatch) => {
+//   try {
+//     dispatch({
+//       type: "DETAIL_PRODUCT_BY_ID_REQUEST",
+//     });
+//     const response = await api.get(`/${id}`);
+//     const product = response.data.data;
+// =======
+// >>>>>>> master
 
 
 export const getProductById = (id) => async (dispatch) => {
@@ -89,3 +116,16 @@ export const getProductById = (id) => async (dispatch) => {
 //   }
 // };
 
+// <<<<<<< master
+// export const deleteProduct = (id) => async (dispatch) => {
+//   try {
+//     dispatch({ type: "DELETE_PRODUCT_REQUEST" });
+//     const response = await api.delete(`${id}`);
+//     const product = response.data.data;
+//     dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: product });
+//   } catch (error) {
+//     dispatch({ type: "DELETE_PRODUCT_FAILURE", payload: error.response });
+//   }
+// };
+// =======
+// >>>>>>> master

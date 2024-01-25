@@ -20,7 +20,7 @@ const SidebarSeller = () => {
 
   useEffect(() => {
     dispatch(myProfileSeller(seller));
-  }, [dispatch, seller]);
+  }, []);
   return (
     <>
       {/* <Navbar /> */}
