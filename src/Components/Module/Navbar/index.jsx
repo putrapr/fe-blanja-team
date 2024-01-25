@@ -17,6 +17,10 @@ const Navbar = () => {
       setLoggedIn(true);
     }
   }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+  };
 
   return (
     <div id="nav">
@@ -76,7 +80,7 @@ const Navbar = () => {
                 </button>
               </li>
               {isLoggedIn ? (
-                <div className="d-flex">
+                <div className="d-flex align-items-center">
                   <li className="nav-item" style={{ marginLeft: "70px" }}>
                     <FiShoppingCart style={{ width: "100%", height: "25px", color: "#9B9B9B", marginLeft: "170px" }} />
                   </li>
@@ -96,6 +100,9 @@ const Navbar = () => {
                         marginLeft: "50px",
                       }}
                     />
+                  </li>
+                  <li>
+                    <Button child="log out" className="btn bg-danger text-light ms-5" style={{ width: "80px" }} onClick={handleLogout} />
                   </li>
                 </div>
               ) : (
