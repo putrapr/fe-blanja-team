@@ -2,19 +2,22 @@ import CheckoutCard from "../../../Components/Base/CheckoutCard/CheckoutCard";
 import Button from "../../../Components/Base/button";
 import ModalShippingAddress from "../../../Components/Module/Modal/ShippingAddress/ShippingAddress";
 import Navbar from "../../../Components/Module/Navbar/index";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./checkout.css";
 import { useDispatch, useSelector } from "react-redux";
-import { myAddress } from "../../../config/redux/action/AddressAction";
+import { selectedAddress } from "../../../config/redux/action/AddressAction";
 const Checkout = () => {
+  const dispatch = useDispatch();
+  const { address } = useSelector((state) => state.address);
+  console.log(address);
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const { loading, address } = useSelector((state) => state.address);
-  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(myAddress(address));
+    dispatch(selectedAddress());
   }, [dispatch]);
+
   return (
     <div>
       <Navbar />
@@ -24,11 +27,11 @@ const Checkout = () => {
         <div className="container addressWrapper">
           <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
             <div className="col-lg-8">
-              <h5>{address.name_recipient}</h5>
+              <h5>{address && address.name_recipient}</h5>
               <p>
-                {`${address.street}, ${address.city}`}
+                {address && address.street}, {address && address.city}
                 <br />
-                {address.postal_code}
+                {address && address.postal_code}
               </p>
 
               <Button className=" btn-outline-secondary" child="Choose another address" style={{ borderRadius: "50px", marginBottom: "20px" }} onClick={handleShow} />

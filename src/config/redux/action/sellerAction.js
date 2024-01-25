@@ -1,13 +1,13 @@
 import api from "../../api";
-export const login = (data) => async (dispatch) => {
+export const loginSeller = (data) => async (dispatch) => {
   try {
     dispatch({
       type: "LOGIN_REQUEST",
     });
     const response = await api.post(`/seller/login`, data);
-    const seller = response.data.data;
-    localStorage.setItem("token", seller.token);
-    console.log("response", seller.token);
+    const seller = response.data.data.token;
+    localStorage.setItem("token", seller)
+    console.log("response", seller);
     dispatch({
       type: "LOGIN_SUCCESS",
       payload: {
@@ -21,7 +21,7 @@ export const login = (data) => async (dispatch) => {
     });
   }
 };
-export const register = (data) => async (dispatch) => {
+export const registerSeller = (data) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_REQUEST" });
     const response = await api.post(`/seller/register`, data);

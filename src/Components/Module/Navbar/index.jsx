@@ -17,6 +17,10 @@ const Navbar = () => {
       setLoggedIn(true);
     }
   }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+  };
 
   const handleSearchClick = () => {
     navigate("/search");
@@ -106,6 +110,9 @@ const Navbar = () => {
                         marginLeft: "50px",
                       }}
                     />
+                  </li>
+                  <li>
+                    <Button child="log out" className="btn bg-danger text-light ms-5" style={{ width: "80px" }} onClick={handleLogout} />
                   </li>
                 </div>
               ) : (
