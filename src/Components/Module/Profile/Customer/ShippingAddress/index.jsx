@@ -6,7 +6,7 @@ import {
   deleteAddress,
   myAddress,
 } from "../../../../../config/redux/action/AddressAction";
-import ChangeAddress from "../../../Modal/changeAddress/ChangeAddress";
+import ShippingAddressModal from "../../../Modal/ShippingAddressModal/ShippingAddressModal";
 
 const ShippingAddress = () => {
   const [show, setShow] = useState(false);
@@ -68,7 +68,10 @@ const ShippingAddress = () => {
                           </button>
                         </p>
                         <a>
-                          <ChangeAddress showMe={show} onHideMe={handleClose} />
+                          <ShippingAddressModal
+                            showMe={show}
+                            onHideMe={handleClose}
+                          />
                         </a>
                       </div>
                     ))}
