@@ -14,6 +14,7 @@ import { login } from "../../../../config/redux/action/customerAction";
 import Buttons from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import LoginSeller from "../Seller";
+import Swal from "sweetalert2";
 // import Tabs from "../../../Base/Tabs";
 
 const LoginCustomer = () => {
@@ -43,9 +44,32 @@ const LoginCustomer = () => {
     try {
       const customer = await dispatch(login(values));
       console.log("customer data ", customer);
-      navigate("/");
+      const Toast = Swal.mixin({
+        icon: "success",
+        title: "Login Success",
+        text: "Login Success",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Log in successfully"
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Login Failed",
+      });
     }
   };
 
@@ -74,9 +98,34 @@ const LoginCustomer = () => {
                   Please login with your account
                 </p>
                 <div>
-                <ButtonGroup className="mt-4 mb-3">
-                    <Buttons onClick={() => setTab("")} style={{ backgroundColor: "#DB3022", borderRadius: "4px 0px 0px 4px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
-                    <Buttons onClick={() => setTab("loginSeller")} style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "0px 4px 4px 0px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
+                  <ButtonGroup className="mt-4 mb-3">
+                    <Buttons
+                      onClick={() => setTab("")}
+                      style={{
+                        backgroundColor: "#DB3022",
+                        borderRadius: "4px 0px 0px 4px",
+                        width: "103px",
+                        height: "40px",
+                        fontSize: "12px",
+                        border: "1px solid #9B9B9B",
+                      }}
+                    >
+                      Customer
+                    </Buttons>
+                    <Buttons
+                      onClick={() => setTab("loginSeller")}
+                      style={{
+                        backgroundColor: "#fff",
+                        color: "#9B9B9B",
+                        borderRadius: "0px 4px 4px 0px",
+                        width: "103px",
+                        height: "40px",
+                        fontSize: "12px",
+                        border: "1px solid #9B9B9B",
+                      }}
+                    >
+                      Seller
+                    </Buttons>
                   </ButtonGroup>
                   {/* <ButtonGroup className="mt-4 mb-3">
                     <Buttons

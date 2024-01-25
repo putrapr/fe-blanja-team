@@ -14,6 +14,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../../../../config/redux/action/customerAction";
 import RegisterSeller from "../Seller";
+import Swal from "sweetalert2";
 
 const RegisterCustomer = () => {
   const navigate = useNavigate();
@@ -36,9 +37,23 @@ const RegisterCustomer = () => {
     try {
       const customer = await dispatch(register(values));
       console.log(customer);
-      navigate("/login");
+      Swal.fire({
+        icon: "success",
+        title: "Register Success",
+        text: "Register Success",
+        showConfirmButton: false,
+        timer: 1000,
+      })
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Register Failed",
+        text: "Register Failed"
+      })
     }
   };
 

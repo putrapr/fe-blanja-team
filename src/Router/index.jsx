@@ -9,6 +9,8 @@ import PublicRoute from "../Components/Module/PublicRoute";
 import ProtectedRoute from "../Components/Module/ProtectRoute";
 import Login from "../Page/Auth/Login";
 import Register from "../Page/Auth/Register";
+import Search from "../Page/Main/Search";
+
 
 const Router = () => {
   return (
@@ -21,14 +23,14 @@ const Router = () => {
           </PublicRoute>
         } 
         />
-        <Route path="/login-customer" element={<LoginCustomer />} />
+        {/* <Route path="/login-customer" element={<LoginCustomer />} /> */}
          <Route path="/register" element={
           <PublicRoute>
             <Register/>
           </PublicRoute>
         } 
         />
-        <Route path="/register-customer" element={<RegisterCustomer />} />
+        {/* <Route path="/register-customer" element={<RegisterCustomer />} /> */}
         <Route path="/mybag" element={
           <ProtectedRoute>
             <Mybag />
