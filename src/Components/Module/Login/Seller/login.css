@@ -1,0 +1,32 @@
+#login .acc {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400; 
+    color: #222222;
+    
+}
+
+#login .forgot {
+    text-decoration: none;
+    color: #DB3022;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 290px;
+}
+
+#login #input {
+    width: 400px;
+}
+
+#login .logo-title {
+    color: #DB3022;
+}
+
+#login .text-login {
+    color: #222222;
+    font-weight: 700;
+}
+
+#login .logo-title span {
+    padding-top: 11px;
+}
