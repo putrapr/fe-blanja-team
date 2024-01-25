@@ -1,6 +1,6 @@
 import CheckoutCard from "../../../Components/Base/CheckoutCard/CheckoutCard";
 import Button from "../../../Components/Base/button";
-import ModalShippingAddress from "../../../Components/Module/Modal/ShippingAddress/ShippingAddress";
+import ShippingAddressModal from "../../../Components/Module/Modal/ShippingAddressModal/ShippingAddressModal";
 import Navbar from "../../../Components/Module/Navbar/index";
 import { useState, useEffect } from "react";
 import "./checkout.css";
@@ -34,11 +34,24 @@ const Checkout = () => {
                 {address && address.postal_code}
               </p>
 
-              <Button className=" btn-outline-secondary" child="Choose another address" style={{ borderRadius: "50px", marginBottom: "20px" }} onClick={handleShow} />
-              <ModalShippingAddress show={show} onHide={handleClose} />
+              <Button
+                className=" btn-outline-secondary"
+                child="Choose another address"
+                style={{ borderRadius: "50px", marginBottom: "20px" }}
+                onClick={handleShow}
+              />
+              <ShippingAddressModal show={show} onHide={handleClose} />
               <div className="container">
-                <CheckoutCard title="Men's formal suit - Black" productDesc="Zalora Cloth" price="200.000" />
-                <CheckoutCard title="Men's Jacket jeans" productDesc="Zalora Cloth" price="200.000" />
+                <CheckoutCard
+                  title="Men's formal suit - Black"
+                  productDesc="Zalora Cloth"
+                  price="200.000"
+                />
+                <CheckoutCard
+                  title="Men's Jacket jeans"
+                  productDesc="Zalora Cloth"
+                  price="200.000"
+                />
               </div>
             </div>
             <div className="col-lg-4">
@@ -64,7 +77,10 @@ const Checkout = () => {
                     </h6>
                   </div>
                 </div>
-                <div className="row " style={{ marginTop: "10px", marginBottom: "15px" }}>
+                <div
+                  className="row "
+                  style={{ marginTop: "10px", marginBottom: "15px" }}
+                >
                   <div className="col-8">
                     <h5> Shopping Summary </h5>
                   </div>
@@ -74,7 +90,15 @@ const Checkout = () => {
                     </h6>
                   </div>
                 </div>
-                <Button className="mx-auto" child="Select Payment" style={{ width: "100%", backgroundColor: "#DB3022", color: "#fff" }} />
+                <Button
+                  className="mx-auto"
+                  child="Select Payment"
+                  style={{
+                    width: "100%",
+                    backgroundColor: "#DB3022",
+                    color: "#fff",
+                  }}
+                />
               </div>
             </div>
           </div>
