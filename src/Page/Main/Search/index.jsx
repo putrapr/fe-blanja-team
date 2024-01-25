@@ -32,16 +32,13 @@ const Search = () => {
           <input
             type="text"
             className="form-control form-control-md"
-            placeholder="Search Restaurant Food"
+            placeholder="Search"
             aria-label=".form-control-lg example"
             name="searchQuery"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <span
-            className="input-group-text px-3"
-            onClick={handleSearch}
-          >
+          <span className="input-group-text px-3" onClick={handleSearch}>
             <AiOutlineSearch />
           </span>
         </div>
@@ -57,12 +54,15 @@ const Search = () => {
       </div>
 
       <div className="d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3 ">
-      {loading && <h3>Loading....</h3>}
+        {loading && <h3>Loading....</h3>}
         {productList.map((product) => (
           <div key={product.id} id="card">
             <div className="content" style={{ marginLeft: "6%" }}>
-              <div className="card h-100" style={{width: "200px"}}>
-                <Link to={`/product/${product.id}`} className="stretched-link"></Link>
+              <div className="card h-100" style={{ width: "200px" }}>
+                <Link
+                  to={`/product/${product.id}`}
+                  className="stretched-link"
+                ></Link>
                 <img
                   crossOrigin="anonymous"
                   src={product.image}
@@ -71,13 +71,18 @@ const Search = () => {
                   style={{ height: "136px" }}
                 />
                 <div className="card-body d-flex flex-column justify-content-between">
-                  <h4 className="card-title text-dark" style={{ fontSize: "16px" }}>
+                  <h4
+                    className="card-title text-dark"
+                    style={{ fontSize: "16px" }}
+                  >
                     {product.name}
                   </h4>
                   <div>
-                    <h5 className="text-danger metropolis-b">Rp. {product.price}</h5>
+                    <h5 className="text-danger metropolis-b">
+                      Rp. {product.price}
+                    </h5>
                     <span className="card-text text-secondary text-break">
-                    Store
+                      Store
                     </span>
                     <div>
                       <img src={iconStar} alt="Star" />
