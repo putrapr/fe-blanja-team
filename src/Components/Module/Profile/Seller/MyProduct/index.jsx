@@ -5,7 +5,7 @@ import { FaSearch, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
-  getMyProduct,
+  getMyProductBySellerId,
 } from "../../../../../config/redux/action/productAction";
 
 const MyProduct = () => {
@@ -16,7 +16,7 @@ const MyProduct = () => {
   const { productList } = useSelector((state) => state.product);
 
   useEffect(() => {
-    dispatch(getMyProduct(productList));
+    dispatch(getMyProductBySellerId(productList));
   }, []);
 
   const handleSearch = () => {};

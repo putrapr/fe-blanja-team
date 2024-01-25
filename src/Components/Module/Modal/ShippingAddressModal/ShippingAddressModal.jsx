@@ -4,11 +4,15 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { changeAddress, deleteAddress, myAddress } from "../../../../config/redux/action/AddressAction";
+import {
+  changeAddress,
+  deleteAddress,
+  myAddress,
+} from "../../../../config/redux/action/AddressAction";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import "./ShippingAddress.css";
+import "./ShippingAddressModal.css";
 
 const MySwal = withReactContent(Swal);
 
@@ -54,12 +58,44 @@ const ModalShippingAddress = (props) => {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <h1 className="text-center">Choose another address</h1>
-          <div className="container" onClick={handleShowSecondModal} style={{ width: "80%", border: "1px dashed grey", height: "100px", lineHeight: "100px", textAlign: "center", marginBottom: "40px" }}>
-            <p style={{ verticalAlign: "middle", display: "inline-block", cursor: "pointer" }}>Add new address</p>
+          <div
+            className="container"
+            onClick={handleShowSecondModal}
+            style={{
+              width: "80%",
+              border: "1px dashed grey",
+              height: "100px",
+              lineHeight: "100px",
+              textAlign: "center",
+              marginBottom: "40px",
+            }}
+          >
+            <p
+              style={{
+                verticalAlign: "middle",
+                display: "inline-block",
+                cursor: "pointer",
+              }}
+            >
+              Add new address
+            </p>
           </div>
-          <AddANewModal showMe={showSecondModal} onHideMe={handleCloseSecondModal} />
+          <AddANewModal
+            showMe={showSecondModal}
+            onHideMe={handleCloseSecondModal}
+          />
           {addressList.map((item) => (
-            <div key={item.id} className="container" style={{ width: "80%", border: "1px solid #DB3022", boxSizing: "border-box", marginBottom: "20px", position: "relative" }}>
+            <div
+              key={item.id}
+              className="container"
+              style={{
+                width: "80%",
+                border: "1px solid #DB3022",
+                boxSizing: "border-box",
+                marginBottom: "20px",
+                position: "relative",
+              }}
+            >
               <h3>{item.name_recipient}</h3>
               <p>
                 {`${item.street}, ${item.city}`}
