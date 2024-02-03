@@ -1,31 +1,33 @@
 import iconStar from "../../../assets/icons/icon-start.svg";
 import { Link } from "react-router-dom";
-import img from "../../../assets/img/jasnew.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../../../config/redux/action/productAction";
 import { useEffect, useState } from "react";
+import { FidgetSpinner } from "react-loader-spinner";
 
 const Card = () => {
   const { loading, productList } = useSelector((state) => state.product);
   const dispatch = useDispatch();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sort, setSort] = useState("ASC");
+  const [searchQuery] = useState("");
+  const [sort] = useState("ASC");
 
-  const handleSearch = () => {
-    dispatch(getAllProduct({ sort, keyword: searchQuery }));
-  };
+  // const handleSearch = () => {
+  //   dispatch(getAllProduct({ sort, keyword: searchQuery }));
+  // };
 
-  const handleSort = () => {
-    setSort((prevSort) => (prevSort === "ASC" ? "DESC" : "ASC"));
-  };
+  // const handleSort = () => {
+  //   setSort((prevSort) => (prevSort === "ASC" ? "DESC" : "ASC"));
+  // };
 
   useEffect(() => {
     dispatch(getAllProduct({ sort, keyword: searchQuery }));
   }, [dispatch, sort, searchQuery]);
 
   return (
+    <>
+    <div>
+    {loading && <div className="d-flex align-items-center justify-content-center"><FidgetSpinner/></div>}
     <div className="d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3 ">
-      {loading && <h3>Loading....</h3>}
       {productList.map((product) => (
     <div id="card" key={product.id}>
       <div className="content " style={{ marginLeft: "6%" }}>
@@ -63,6 +65,8 @@ const Card = () => {
     </div>
     ))}
     </div>
+    </div>
+    </>
   );
 };
 
