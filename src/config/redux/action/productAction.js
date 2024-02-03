@@ -1,14 +1,14 @@
 import api from "../../api";
 
 export const getAllProduct =
-  ({ keyword, sort }) =>
+  ({ keyword, sort, page, pageSize }) =>
   async (dispatch) => {
     try {
       dispatch({
         type: "GET_ALL_PRODUCT_REQUEST",
       });
       const response = await api.get(
-        `/product?keyword=${keyword}&sort=${sort}`
+        `/product?keyword=${keyword}&sort=${sort}=&page=${page}=&pageSize${pageSize}`
       );
       const product = response.data;
       dispatch({
