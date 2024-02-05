@@ -1,6 +1,6 @@
 import CheckoutCard from "../../../Components/Base/CheckoutCard/CheckoutCard";
 import Button from "../../../Components/Base/button";
-import ModalShippingAddress from "../../../Components/Module/Modal/ShippingAddress/ShippingAddress";
+import ModalShippingAddress from "../../../Components/Module/Modal/ShippingAddressModal/ShippingAddressModal";
 import Navbar from "../../../Components/Module/Navbar/index";
 import { useState, useEffect } from "react";
 import "./checkout.css";
@@ -27,11 +27,11 @@ const Checkout = () => {
         <div className="container addressWrapper">
           <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
             <div className="col-lg-8">
-              <h5>{address && address.name_recipient}</h5>
+              <h5>{(address && address.name_recipient) || "-"}</h5>
               <p>
-                {address && address.street}, {address && address.city}
+                {address && address.street}, {(address && address.city) || "-"}
                 <br />
-                {address && address.postal_code}
+                {(address && address.postal_code) || "-"}
               </p>
 
               <Button className=" btn-outline-secondary" child="Choose another address" style={{ borderRadius: "50px", marginBottom: "20px" }} onClick={handleShow} />
