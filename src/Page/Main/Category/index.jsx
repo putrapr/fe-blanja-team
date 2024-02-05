@@ -12,11 +12,11 @@ const Category = () => {
           <h1>T-shirt</h1>
         </div>
         <div
-          className="content row mt-5 mb-5"
-          style={{ marginRight: "20%", width: 250 }}
-        >
-          <Card />
-        </div>
+            className="d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3"
+            style={{ height: "136px" }}
+          >
+            <Card />
+          </div>
       </div>
     </>
   );

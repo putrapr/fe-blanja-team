@@ -27,7 +27,7 @@ const LoginCustomer = () => {
     password: "",
   });
 
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("loginCustomer");
 
   //   const handleTabSubmit = (e) => {
   //     e.preventDefault();
@@ -83,6 +83,7 @@ const LoginCustomer = () => {
 
   return (
     <Container id="login">
+      {tab === "loginCustomer" && 
       <Row>
         <Col className="my-5">
           <Row>
@@ -100,7 +101,7 @@ const LoginCustomer = () => {
                 <div>
                   <ButtonGroup className="mt-4 mb-3">
                     <Buttons
-                      onClick={() => setTab("")}
+                      onClick={() => setTab("loginCustomer")}
                       style={{
                         backgroundColor: "#DB3022",
                         borderRadius: "4px 0px 0px 4px",
@@ -205,10 +206,11 @@ const LoginCustomer = () => {
                 </form>
               </Col>
             </Row>
-            {tab === "loginSeller" && <LoginSeller />}
           </Row>
         </Col>
       </Row>
+      }
+      {tab === "loginSeller" && <LoginSeller />}
     </Container>
   );
 };
