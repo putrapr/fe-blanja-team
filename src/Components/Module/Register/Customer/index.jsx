@@ -21,7 +21,7 @@ const RegisterCustomer = () => {
   const { loading } = useSelector((state) => state.customer);
   const dispatch = useDispatch();
 
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("registerCustomer");
 
   const [values, setValues] = useState({
     name: "",
@@ -67,6 +67,7 @@ const RegisterCustomer = () => {
 
   return (
     <Container id="register">
+    {tab === "registerCustomer" && 
       <Row style={{ height: "100vh" }}>
         <Col className="my-5">
           <Row>
@@ -81,7 +82,7 @@ const RegisterCustomer = () => {
                 <p className="mt-3 text-register">Please sign up with your account</p>
                 <div>
                   <ButtonGroup className="mt-4 mb-3">
-                    <Buttons onClick={() => setTab("")} style={{ backgroundColor: "#DB3022", borderRadius: "4px 0px 0px 4px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
+                    <Buttons onClick={() => setTab("registerCustomer")} style={{ backgroundColor: "#DB3022", borderRadius: "4px 0px 0px 4px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
                     <Buttons onClick={() => setTab("registerSeller")} style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "0px 4px 4px 0px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
                   </ButtonGroup>
                 </div>
@@ -114,10 +115,12 @@ const RegisterCustomer = () => {
                 </form>
               </Col>
             </Row>
-            {tab === "registerSeller" && <RegisterSeller/>}
+            
           </Row>
         </Col>
-      </Row>
+      </Row> 
+      }
+      {tab === "registerSeller" && <RegisterSeller/>}
     </Container>
   );
 };
