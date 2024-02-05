@@ -27,7 +27,7 @@ const LoginSeller = () => {
     password: "",
   });
 
-  const [tab, setTab] = useState("")
+  const [tab, setTab] = useState("loginSeller")
 
   const handleLogin = async () => {
     try {
@@ -72,6 +72,7 @@ const LoginSeller = () => {
 
   return (
     <Container id="login">
+      {tab === "loginSeller" && 
       <Row>
         <Col className="my-5">
           <Row>
@@ -89,7 +90,7 @@ const LoginSeller = () => {
                 <div>
                   <ButtonGroup className="mt-4 mb-3">
                     <Buttons onClick={() => setTab("loginCustomer")} style={{ backgroundColor: "#fff", color: "#9B9B9B", borderRadius: "4px 0px 0px 4px", width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Customer</Buttons>
-                    <Buttons onClick={() => setTab("")} style={{ backgroundColor: "#DB3022", borderRadius: "0px 4px 4px 0px",  width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
+                    <Buttons onClick={() => setTab("loginSeller")} style={{ backgroundColor: "#DB3022", borderRadius: "0px 4px 4px 0px",  width: "103px", height: "40px", fontSize: "12px", border: "1px solid #9B9B9B" }}>Seller</Buttons>
                   </ButtonGroup>
                 </div>
                 <form onSubmit={handleSubmit}>
@@ -121,10 +122,11 @@ const LoginSeller = () => {
                 </form>
               </Col>
             </Row>
-            {tab === "loginCustomer" && <LoginCustomer/>}
           </Row>
         </Col>
       </Row>
+      }
+      {tab === "loginCustomer" && <LoginCustomer/>}
     </Container>
   );
 };
