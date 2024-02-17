@@ -29,6 +29,7 @@ export const addAddress = (data) => async (dispatch) => {
       type: "ADD_ADDRESS_SUCCESS",
       payload: address,
     });
+    dispatch(myAddress());
   } catch (error) {
     dispatch({
       type: "ADD_ADDRESS_FAILURE",
@@ -49,6 +50,7 @@ export const changeAddress = (id, data) => async (dispatch) => {
       type: "CHANGE_ADDRESS_SUCCESS",
       payload: address,
     });
+    dispatch(selectedAddress());
   } catch (error) {
     dispatch({
       type: "CHANGE_ADDRESS_FAILURE",
@@ -86,6 +88,7 @@ export const deleteAddress = (id) => async (dispatch) => {
       type: "DELETE_ADDRESS_SUCCESS",
       payload: address,
     });
+    dispatch(changeAddress());
   } catch (error) {
     dispatch({
       type: "DELETE_ADDRESS_FAILURE",

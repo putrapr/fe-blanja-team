@@ -4,11 +4,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  changeAddress,
-  deleteAddress,
-  myAddress,
-} from "../../../../config/redux/action/AddressAction";
+import { changeAddress, deleteAddress, myAddress } from "../../../../config/redux/action/AddressAction";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -80,11 +76,8 @@ const ModalShippingAddress = (props) => {
               Add new address
             </p>
           </div>
-          <AddANewModal
-            showMe={showSecondModal}
-            onHideMe={handleCloseSecondModal}
-          />
-          {addressList.map((item) => (
+          <AddANewModal showMe={showSecondModal} onHideMe={handleCloseSecondModal} />
+          {addressList?.map((item) => (
             <div
               key={item.id}
               className="container"

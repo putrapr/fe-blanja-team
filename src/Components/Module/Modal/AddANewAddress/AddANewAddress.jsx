@@ -5,10 +5,10 @@ import Button from "../../../Base/button";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../../../config/redux/action/AddressAction";
-import { useNavigate } from "react-router-dom";
+
 const AddANewModal = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const { showMe, onHideMe } = props;
   const { loading } = useSelector((state) => state.address);
   const [values, setValues] = useState({
@@ -26,7 +26,7 @@ const AddANewModal = (props) => {
     try {
       const address = await dispatch(addAddress(values));
       console.log(address);
-      navigate("/checkout");
+      onHideMe();
     } catch (error) {
       console.log(error);
     }

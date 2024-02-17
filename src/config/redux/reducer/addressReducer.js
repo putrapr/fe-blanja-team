@@ -57,7 +57,6 @@ const addressReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-
     case "CHANGE_ADDRESS_REQUEST":
       return {
         ...state,

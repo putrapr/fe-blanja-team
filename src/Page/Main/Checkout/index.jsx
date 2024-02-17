@@ -27,31 +27,18 @@ const Checkout = () => {
         <div className="container addressWrapper">
           <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
             <div className="col-lg-8">
-              <h5>{address && address.name_recipient}</h5>
+              <h5>{(address && address.name_recipient) || "-"}</h5>
               <p>
-                {address && address.street}, {address && address.city}
+                {address && address.street}, {(address && address.city) || "-"}
                 <br />
-                {address && address.postal_code}
+                {(address && address.postal_code) || "-"}
               </p>
 
-              <Button
-                className=" btn-outline-secondary"
-                child="Choose another address"
-                style={{ borderRadius: "50px", marginBottom: "20px" }}
-                onClick={handleShow}
-              />
+              <Button className=" btn-outline-secondary" child="Choose another address" style={{ borderRadius: "50px", marginBottom: "20px" }} onClick={handleShow} />
               <ShippingAddressModal show={show} onHide={handleClose} />
               <div className="container">
-                <CheckoutCard
-                  title="Men's formal suit - Black"
-                  productDesc="Zalora Cloth"
-                  price="200.000"
-                />
-                <CheckoutCard
-                  title="Men's Jacket jeans"
-                  productDesc="Zalora Cloth"
-                  price="200.000"
-                />
+                <CheckoutCard title="Men's formal suit - Black" productDesc="Zalora Cloth" price="200.000" />
+                <CheckoutCard title="Men's Jacket jeans" productDesc="Zalora Cloth" price="200.000" />
               </div>
             </div>
             <div className="col-lg-4">
@@ -77,10 +64,7 @@ const Checkout = () => {
                     </h6>
                   </div>
                 </div>
-                <div
-                  className="row "
-                  style={{ marginTop: "10px", marginBottom: "15px" }}
-                >
+                <div className="row " style={{ marginTop: "10px", marginBottom: "15px" }}>
                   <div className="col-8">
                     <h5> Shopping Summary </h5>
                   </div>
