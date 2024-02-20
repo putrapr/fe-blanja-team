@@ -20,25 +20,6 @@ Blanja is an e-commerce web application that sells many items and users can sele
 
 ## Package dependencies
 
-bash
-		"axios": "^1.6.5",
-    "bootstrap": "^5.3.2",
-    "formik": "^2.4.5",
-    "jquery": "^3.7.1",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.10.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1",
-    "react-loader-spinner": "^6.1.6",
-    "react-redux": "^9.1.0",
-    "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.21.3",
-    "redux": "^5.0.1",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^3.1.0",
-    "sweetalert2": "^11.10.3",
-    "sweetalert2-react-content": "^5.0.7"
 
 
 ## Environment Variables
