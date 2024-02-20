@@ -189,7 +189,7 @@ const LoginCustomer = () => {
                   </p>
                   <Button
                     className="mt-2"
-                    child={loading ? "loading..." : "PRIMARY"}
+                    child={loading ? "loading..." : "Login"}
                     onClick={handleLogin}
                     style={{
                       backgroundColor: "#DB3022",
@@ -199,7 +199,7 @@ const LoginCustomer = () => {
                   ></Button>
                   <p className="mt-4">
                     <Link to="/register" className="acc">
-                      Don't have a Tokopedia account?
+                      Don't have a account?
                       <span style={{ color: "#DB3022" }}> Register</span>
                     </Link>
                   </p>
