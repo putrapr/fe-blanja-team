@@ -25,7 +25,7 @@ Blanja is an e-commerce web application that sells many items and users can sele
 ## Environment Variables
 
 bash
-REACT_APP_BACKEND_URL=
+VITE_API_URL=
 
 
 ## Installation
