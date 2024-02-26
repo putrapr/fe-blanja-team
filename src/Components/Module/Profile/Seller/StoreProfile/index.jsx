@@ -4,6 +4,7 @@ import defaultPhoto from "../../../../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { myProfileSeller } from "../../../../../config/redux/action/sellerAction";
+import Button from "../../../../Base/button";
 // import { useSelector } from "react-redux";
 
 const StoreProfile = () => {
@@ -112,6 +113,16 @@ const StoreProfile = () => {
                         </button>
                       </div>
                     </div> */}
+                    <Button
+                      child="Save"
+                      style={{
+                        backgroundColor: "#DB3022",
+                        color: "#FFFFFF",
+                        marginLeft: "13rem",
+                        marginTop: "1rem",
+                        width: "90px",
+                      }}
+                    />
                   </form>
                 </div>
 
