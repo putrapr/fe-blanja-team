@@ -47,7 +47,7 @@ const SidebarSeller = () => {
 
                 <div className="profile-edit p-3">
                   <p className="seller-name text-dark fw-bold mb-2">
-                    Fajar Adi Prasetio
+                    {seller?.name}
                   </p>
                   <p className="edit-text text-dark">
                     <FaPencilAlt size={14} /> Ubah profile

@@ -83,10 +83,9 @@ export const updateProduct = (id, data) => async (dispatch) => {
 export const createProduct = (data) => async (dispatch) => {
   try {
     dispatch({ type: "CREATE_PRODUCT_REQUEST" });
-    const response = await api.post(``, data);
+    const response = await api.post(`/product`, data);
     const product = response.data.data;
     dispatch({ type: "CREATE_PRODUCT_SUCCESS", payload: product });
-    return product;
   } catch (error) {
     dispatch({ type: "CREATE_PRODUCT_FAILURE", payload: error.response });
   }
