@@ -12,7 +12,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-
+      {/* <SidebarCustomer /> */}
       {role === "customer" ? <SidebarCustomer /> : <SidebarSeller />}
     </>
   );

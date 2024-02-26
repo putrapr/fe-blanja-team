@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import Input from "../../../Base/Input/Input";
+import Input from "../../../Base/Input/input";
 import PropTypes from "prop-types";
 import Button from "../../../Base/button";
 import { useState } from "react";
