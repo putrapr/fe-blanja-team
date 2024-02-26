@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./sellingProduct.css";
 import { createProduct } from "../../../../../config/redux/action/productAction";
+import { jwtDecode } from "jwt-decode";
 
 const SellingProduct = () => {
   const [data, setData] = useState("");
@@ -9,7 +10,13 @@ const SellingProduct = () => {
   const [showImage, setShowImage] = useState("");
 
   const dispatch = useDispatch();
-  const id = localStorage.getItem("id");
+
+  // const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
+
+  const id = decoded.id;
+  // console.log(id);
 
   const formData = new FormData();
   formData.append("name", data?.name);
@@ -37,6 +44,7 @@ const SellingProduct = () => {
     setSaveImage(e.target.files[0]);
   };
 
+  // console.log(formData);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -110,7 +118,7 @@ const SellingProduct = () => {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="condition"
                   id="new"
                   value="new"
                   onChange={handleChange}
@@ -124,7 +132,7 @@ const SellingProduct = () => {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="condition"
                   id="second"
                   value="second"
                   onChange={handleChange}

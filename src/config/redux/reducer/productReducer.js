@@ -40,6 +40,23 @@ const productReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case "CREATE_PRODUCT_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "CREATE_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        product: action.payload,
+      };
+    case "CREATE_PRODUCT_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case "UPDATE_PRODUCT_REQUEST":
       return {
         ...state,
@@ -74,23 +91,23 @@ const productReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-      case "GET_PRODUCT_BY_ID_CATEGORY":
-        return {
-          ...state,
-          loading: true,
-        };
-      case "GET_PRODUCT_BY_ID_CATEGORY_SUCCESS":
-        return {
-          ...state,
-          loading: false,
-          productList: action.payload,
-        };
-      case "GET_PRODUCT_BY_ID_CATEGORY_FAILURE":
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
+    case "GET_PRODUCT_BY_ID_CATEGORY":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_PRODUCT_BY_ID_CATEGORY_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        productList: action.payload,
+      };
+    case "GET_PRODUCT_BY_ID_CATEGORY_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;
