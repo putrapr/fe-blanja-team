@@ -33,32 +33,19 @@ const LoginSeller = () => {
     try {
       const seller = await dispatch(loginSeller(values));
       console.log("seller data ", seller);
-      const Toast = Swal.mixin({
+      Swal.fire({
         icon: "success",
-        title: "Login Success",
-        text: "Login Success",
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
+        title: "Login Successful",
       });
-      Toast.fire({
-        icon: "success",
-        title: "Sign in successfully"
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      navigate("/");
     } catch (error) {
       console.log(error);
       Swal.fire({
         icon: "error",
         title: "Login Failed",
-        text: "Login Failed"
-      })
+        text: error.data.message,
+      });
+      return;
     }
   };
 

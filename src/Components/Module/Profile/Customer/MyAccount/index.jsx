@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import defaultPhoto from "../../../../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { myProfileCustomer } from "../../../../../config/redux/action/customerAction";
+import Button from "../../../../Base/button";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
@@ -131,6 +132,16 @@ const MyAccount = () => {
                         />
                       </div>
                     </div>
+                    <Button
+                      child="Save"
+                      style={{
+                        backgroundColor: "#DB3022",
+                        color: "#FFFFFF",
+                        marginLeft: "13rem",
+                        marginTop: "1rem",
+                        width: "90px",
+                      }}
+                    />
                   </form>
                 </div>
                 <div className="col-lg-4 text-start">
