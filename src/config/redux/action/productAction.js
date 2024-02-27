@@ -1,4 +1,5 @@
 import api from "../../api";
+import axios from "axios";
 
 export const getAllProduct =
   ({ keyword, sort, page, pageSize }) =>
@@ -83,7 +84,15 @@ export const updateProduct = (id, data) => async (dispatch) => {
 export const createProduct = (data) => async (dispatch) => {
   try {
     dispatch({ type: "CREATE_PRODUCT_REQUEST" });
-    const response = await api.post(`/product`, data);
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/product`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     const product = response.data.data;
     dispatch({ type: "CREATE_PRODUCT_SUCCESS", payload: product });
   } catch (error) {

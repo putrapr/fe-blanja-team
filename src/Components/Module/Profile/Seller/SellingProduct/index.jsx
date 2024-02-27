@@ -45,16 +45,35 @@ const SellingProduct = () => {
   };
 
   // console.log(formData);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(
+  //       createProduct({
+  //         formData,
+  //       })
+  //     );
+  //   } catch (error) {
+  //     alert(error.data.message);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(
-        createProduct({
-          formData,
-        })
-      );
+      await dispatch(createProduct(formData));
+      // Reset form data after successful submission
+      setData({
+        name: "",
+        price: "",
+        stock: "",
+        condition: "",
+        description: "",
+      });
+      setSaveImage(null);
+      setShowImage("");
     } catch (error) {
-      alert(error.data.message);
+      alert(error.message || "Failed to create product");
     }
   };
 
