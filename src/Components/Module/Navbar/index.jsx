@@ -113,7 +113,7 @@ const Navbar = () => {
                         width: "100%",
                         height: "25px",
                         color: "#9B9B9B",
-                        marginLeft: "170px",
+                        marginLeft: "100px",
                       }}
                     />
                   </li>
@@ -123,7 +123,7 @@ const Navbar = () => {
                         width: "100%",
                         height: "25px",
                         color: "#9B9B9B",
-                        marginLeft: "90px",
+                        marginLeft: "65px",
                       }}
                     />
                   </li>
@@ -133,7 +133,7 @@ const Navbar = () => {
                         width: "100%",
                         height: "25px",
                         color: "#9B9B9B",
-                        marginLeft: "60px",
+                        marginLeft: "50px",
                       }}
                     />
                   </li>
@@ -142,7 +142,7 @@ const Navbar = () => {
                       onClick={handleProfileClick}
                       style={{
                         color: "#9B9B9B",
-                        marginLeft: "60px",
+                        marginLeft: "50px",
                         border: "none",
                         backgroundColor: "transparent",
                       }}
