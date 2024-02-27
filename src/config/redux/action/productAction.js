@@ -1,4 +1,5 @@
 import api from "../../api";
+import axios from "axios";
 
 export const getAllProduct =
   ({ keyword, sort, page, pageSize }) =>
@@ -80,27 +81,24 @@ export const updateProduct = (id, data) => async (dispatch) => {
   }
 };
 
-export const createProduct =
-  ({ id, data, saveImage }) =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: "CREATE_PRODUCT_REQUEST" });
-      const formData = new FormData();
-      formData.append("name", data?.name);
-      formData.append("price", data?.price);
-      formData.append("stock", data?.stock);
-      formData.append("condition", data?.condition);
-      formData.append("image", saveImage);
-      formData.append("description", data?.description);
-      formData.append("seller_id", id);
-
-      const response = await api.post(`/product`, data);
-      const product = response.data.data;
-      dispatch({ type: "CREATE_PRODUCT_SUCCESS", payload: product });
-    } catch (error) {
-      dispatch({ type: "CREATE_PRODUCT_FAILURE", payload: error.response });
-    }
-  };
+export const createProduct = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: "CREATE_PRODUCT_REQUEST" });
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/product`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    const product = response.data.data;
+    dispatch({ type: "CREATE_PRODUCT_SUCCESS", payload: product });
+  } catch (error) {
+    dispatch({ type: "CREATE_PRODUCT_FAILURE", payload: error.response });
+  }
+};
 
 export const getMyProduct = () => async (dispatch) => {
   try {

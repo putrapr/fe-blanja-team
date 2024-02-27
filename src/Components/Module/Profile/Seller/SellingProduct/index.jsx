@@ -18,6 +18,15 @@ const SellingProduct = () => {
   const id = decoded.id;
   // console.log(id);
 
+  const formData = new FormData();
+  formData.append("name", data?.name);
+  formData.append("price", data?.price);
+  formData.append("stock", data?.stock);
+  formData.append("condition", data?.condition);
+  formData.append("image", saveImage);
+  formData.append("description", data?.description);
+  formData.append("seller_id", id);
+
   const handleChange = (e) => {
     setData({
       ...data,
@@ -36,16 +45,34 @@ const SellingProduct = () => {
   };
 
   // console.log(formData);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(
+  //       createProduct({
+  //         formData,
+  //       })
+  //     );
+  //   } catch (error) {
+  //     alert(error.data.message);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(
-        createProduct({
-          formData,
-        })
-      );
+      await dispatch(createProduct(formData));
+      setData({
+        name: "",
+        price: "",
+        stock: "",
+        condition: "",
+        description: "",
+      });
+      setSaveImage(null);
+      setShowImage("");
     } catch (error) {
-      alert(error.data.message);
+      alert(error.message || "Failed to create product");
     }
   };
 
