@@ -1,15 +1,27 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./sellingProduct.css";
 import { createProduct } from "../../../../../config/redux/action/productAction";
+import { jwtDecode } from "jwt-decode";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const SellingProduct = () => {
   const [data, setData] = useState("");
   const [saveImage, setSaveImage] = useState("");
   const [showImage, setShowImage] = useState("");
+  const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
-  const id = localStorage.getItem("id");
+  const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.product);
+
+  // const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
+
+  const id = decoded.id;
+  // console.log(id);
 
   const formData = new FormData();
   formData.append("name", data?.name);
@@ -18,6 +30,7 @@ const SellingProduct = () => {
   formData.append("condition", data?.condition);
   formData.append("image", saveImage);
   formData.append("description", data?.description);
+  formData.append("category_id", category);
   formData.append("seller_id", id);
 
   const handleChange = (e) => {
@@ -37,16 +50,45 @@ const SellingProduct = () => {
     setSaveImage(e.target.files[0]);
   };
 
+  // console.log(formData);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(
+  //       createProduct({
+  //         formData,
+  //       })
+  //     );
+  //   } catch (error) {
+  //     alert(error.data.message);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(
-        createProduct({
-          formData,
-        })
-      );
+      await dispatch(createProduct(formData));
+      setData({
+        name: "",
+        price: "",
+        stock: "",
+        condition: "",
+        description: "",
+      });
+      setSaveImage(null);
+      setShowImage("");
+      Swal.fire({
+        title: "Success",
+        text: "Create Product Success",
+        icon: "success",
+      });
+      navigate("/");
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Create Product Failed",
+        icon: "error",
+      });
     }
   };
 
@@ -103,14 +145,14 @@ const SellingProduct = () => {
                 htmlFor="exampleFormControlInput1"
                 className="col-sm-3 col-form-label"
               >
-                Stock
+                Condition
               </label>
               <br />
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="condition"
                   id="new"
                   value="new"
                   onChange={handleChange}
@@ -124,7 +166,7 @@ const SellingProduct = () => {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="condition"
                   id="second"
                   value="second"
                   onChange={handleChange}
@@ -152,6 +194,45 @@ const SellingProduct = () => {
                 name="stock"
               />
             </div>
+            <div className="mb-3 py-2">
+              <label
+                htmlFor="exampleFormControlInput1"
+                className="col-sm-3 col-form-label"
+              >
+                Category
+              </label>
+              <select
+                className="form-select form-select-md"
+                aria-label="Default select example"
+                style={{ width: "20.5vw" }}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">-- Choose Category --</option>
+                <option value="3">Action Figure</option>
+                <option value="4">Baju</option>
+                <option value="5">Sepatu</option>
+                <option value="6">Celana</option>
+                <option value="7">Laptop</option>
+              </select>
+            </div>
+            {/* <div className="mb-3 py-2">
+              <label
+                htmlFor="exampleFormControlInput1"
+                className="col-sm-3 col-form-label"
+              >
+                Stock
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="input1"
+                style={{ width: "20.5vw" }}
+                value={data?.category}
+                onChange={handleChange}
+                name="category"
+              />
+            </div> */}
           </div>
           <div className="wrapper-card bg-white py-2 mt-4">
             <h5>Photo Of Goods</h5>
@@ -217,7 +298,7 @@ const SellingProduct = () => {
               type="button"
               onClick={handleSubmit}
             >
-              Jual
+              {loading ? "Loading..." : "Jual"}
             </button>
           </div>
         </div>

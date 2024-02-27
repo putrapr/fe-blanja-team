@@ -44,32 +44,19 @@ const LoginCustomer = () => {
     try {
       const customer = await dispatch(login(values));
       console.log("customer data ", customer);
-      const Toast = Swal.mixin({
+      Swal.fire({
         icon: "success",
-        title: "Login Success",
-        text: "Login Success",
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
+        title: "Login Successful",
       });
-      Toast.fire({
-        icon: "success",
-        title: "Log in successfully"
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
+      navigate("/");
     } catch (error) {
       console.log(error);
       Swal.fire({
         icon: "error",
         title: "Login Failed",
-        text: "Login Failed",
+        text: error.data.message,
       });
+      return;
     }
   };
 
@@ -83,52 +70,52 @@ const LoginCustomer = () => {
 
   return (
     <Container id="login">
-      {tab === "loginCustomer" && 
-      <Row>
-        <Col className="my-5">
-          <Row>
-            <Col className="mt-3">
-              <h4 className="d-flex justify-content-center logo-title">
-                <Image src={Logo} />
-                <span>Blanja</span>
-              </h4>
-            </Col>
-            <Row className="text-center">
-              <Col>
-                <p className="mt-3 text-login">
-                  Please login with your account
-                </p>
-                <div>
-                  <ButtonGroup className="mt-4 mb-3">
-                    <Buttons
-                      onClick={() => setTab("loginCustomer")}
-                      style={{
-                        backgroundColor: "#DB3022",
-                        borderRadius: "4px 0px 0px 4px",
-                        width: "103px",
-                        height: "40px",
-                        fontSize: "12px",
-                        border: "1px solid #9B9B9B",
-                      }}
-                    >
-                      Customer
-                    </Buttons>
-                    <Buttons
-                      onClick={() => setTab("loginSeller")}
-                      style={{
-                        backgroundColor: "#fff",
-                        color: "#9B9B9B",
-                        borderRadius: "0px 4px 4px 0px",
-                        width: "103px",
-                        height: "40px",
-                        fontSize: "12px",
-                        border: "1px solid #9B9B9B",
-                      }}
-                    >
-                      Seller
-                    </Buttons>
-                  </ButtonGroup>
-                  {/* <ButtonGroup className="mt-4 mb-3">
+      {tab === "loginCustomer" && (
+        <Row>
+          <Col className="my-5">
+            <Row>
+              <Col className="mt-3">
+                <h4 className="d-flex justify-content-center logo-title">
+                  <Image src={Logo} />
+                  <span>Blanja</span>
+                </h4>
+              </Col>
+              <Row className="text-center">
+                <Col>
+                  <p className="mt-3 text-login">
+                    Please login with your account
+                  </p>
+                  <div>
+                    <ButtonGroup className="mt-4 mb-3">
+                      <Buttons
+                        onClick={() => setTab("loginCustomer")}
+                        style={{
+                          backgroundColor: "#DB3022",
+                          borderRadius: "4px 0px 0px 4px",
+                          width: "103px",
+                          height: "40px",
+                          fontSize: "12px",
+                          border: "1px solid #9B9B9B",
+                        }}
+                      >
+                        Customer
+                      </Buttons>
+                      <Buttons
+                        onClick={() => setTab("loginSeller")}
+                        style={{
+                          backgroundColor: "#fff",
+                          color: "#9B9B9B",
+                          borderRadius: "0px 4px 4px 0px",
+                          width: "103px",
+                          height: "40px",
+                          fontSize: "12px",
+                          border: "1px solid #9B9B9B",
+                        }}
+                      >
+                        Seller
+                      </Buttons>
+                    </ButtonGroup>
+                    {/* <ButtonGroup className="mt-4 mb-3">
                     <Buttons
                       onClick={() => setTab("")}
                       style={{
@@ -156,60 +143,60 @@ const LoginCustomer = () => {
                     >
                       Seller
                     </Buttons> */}
-                  {/* </ButtonGroup> */}
-                  {/* <Tabs onClick={handleTabSubmit} onChange={handleTabChange} value={tab} /> */}
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="d-flex justify-content-center">
-                    <Input
-                      id="input"
-                      name="email"
-                      placeholder="Email"
-                      type="email"
-                      value={values.email}
-                      onChange={onChange}
-                      require={true}
-                    ></Input>
+                    {/* </ButtonGroup> */}
+                    {/* <Tabs onClick={handleTabSubmit} onChange={handleTabChange} value={tab} /> */}
                   </div>
-                  <div className="d-flex justify-content-center">
-                    <Input
-                      id="input"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      value={values.password}
-                      onChange={onChange}
-                      require={true}
-                    ></Input>
-                  </div>
-                  <p className="mt-3">
-                    <Link to="" className="forgot">
-                      Forgot password?
-                    </Link>
-                  </p>
-                  <Button
-                    className="mt-2"
-                    child={loading ? "loading..." : "Login"}
-                    onClick={handleLogin}
-                    style={{
-                      backgroundColor: "#DB3022",
-                      color: "#FFFFFF",
-                      width: "400px",
-                    }}
-                  ></Button>
-                  <p className="mt-4">
-                    <Link to="/register" className="acc">
-                      Don't have a account?
-                      <span style={{ color: "#DB3022" }}> Register</span>
-                    </Link>
-                  </p>
-                </form>
-              </Col>
+                  <form onSubmit={handleSubmit}>
+                    <div className="d-flex justify-content-center">
+                      <Input
+                        id="input"
+                        name="email"
+                        placeholder="Email"
+                        type="email"
+                        value={values.email}
+                        onChange={onChange}
+                        require={true}
+                      ></Input>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                      <Input
+                        id="input"
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        value={values.password}
+                        onChange={onChange}
+                        require={true}
+                      ></Input>
+                    </div>
+                    <p className="mt-3">
+                      <Link to="" className="forgot">
+                        Forgot password?
+                      </Link>
+                    </p>
+                    <Button
+                      className="mt-2"
+                      child={loading ? "loading..." : "Login"}
+                      onClick={handleLogin}
+                      style={{
+                        backgroundColor: "#DB3022",
+                        color: "#FFFFFF",
+                        width: "400px",
+                      }}
+                    ></Button>
+                    <p className="mt-4">
+                      <Link to="/register" className="acc">
+                        Don't have a account?
+                        <span style={{ color: "#DB3022" }}> Register</span>
+                      </Link>
+                    </p>
+                  </form>
+                </Col>
+              </Row>
             </Row>
-          </Row>
-        </Col>
-      </Row>
-      }
+          </Col>
+        </Row>
+      )}
       {tab === "loginSeller" && <LoginSeller />}
     </Container>
   );
