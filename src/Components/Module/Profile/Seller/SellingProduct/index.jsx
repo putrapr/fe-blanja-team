@@ -62,7 +62,6 @@ const SellingProduct = () => {
     e.preventDefault();
     try {
       await dispatch(createProduct(formData));
-      // Reset form data after successful submission
       setData({
         name: "",
         price: "",
