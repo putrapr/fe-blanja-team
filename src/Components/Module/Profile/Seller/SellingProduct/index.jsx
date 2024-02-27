@@ -18,15 +18,6 @@ const SellingProduct = () => {
   const id = decoded.id;
   // console.log(id);
 
-  const formData = new FormData();
-  formData.append("name", data?.name);
-  formData.append("price", data?.price);
-  formData.append("stock", data?.stock);
-  formData.append("condition", data?.condition);
-  formData.append("image", saveImage);
-  formData.append("description", data?.description);
-  formData.append("seller_id", id);
-
   const handleChange = (e) => {
     setData({
       ...data,
