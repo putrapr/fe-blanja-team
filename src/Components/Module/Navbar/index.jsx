@@ -103,19 +103,18 @@ const Navbar = () => {
               </li>
               {isLoggedIn ? (
                 <div className="d-flex">
-                  <li
-                    className="nav-item"
-                    style={{ marginLeft: "70px" }}
-                    onClick={handleMybagClick}
-                  >
-                    <FiShoppingCart
+                  <li className="nav-item">
+                    <button
+                      onClick={handleMybagClick}
                       style={{
-                        width: "100%",
-                        height: "25px",
                         color: "#9B9B9B",
                         marginLeft: "100px",
+                        border: "none",
+                        backgroundColor: "transparent",
                       }}
-                    />
+                    >
+                      <FiShoppingCart size={20} />
+                    </button>
                   </li>
                   <li className="nav-item">
                     <FaRegBell
@@ -123,7 +122,7 @@ const Navbar = () => {
                         width: "100%",
                         height: "25px",
                         color: "#9B9B9B",
-                        marginLeft: "65px",
+                        marginLeft: "35px",
                       }}
                     />
                   </li>
@@ -142,7 +141,7 @@ const Navbar = () => {
                       onClick={handleProfileClick}
                       style={{
                         color: "#9B9B9B",
-                        marginLeft: "50px",
+                        marginLeft: "60px",
                         border: "none",
                         backgroundColor: "transparent",
                       }}
