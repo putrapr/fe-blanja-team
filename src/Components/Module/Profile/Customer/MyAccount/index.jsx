@@ -1,18 +1,48 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import defaultPhoto from "../../../../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
-import { myProfileCustomer } from "../../../../../config/redux/action/customerAction";
+import { myProfileCustomer, updateProfile } from "../../../../../config/redux/action/customerAction";
 import Button from "../../../../Base/button";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
-
+  
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+    date_birth: "",
+  });
   const { loading, customer } = useSelector((state) => state.customer);
 
   useEffect(() => {
     dispatch(myProfileCustomer(customer));
   }, []);
-
+  
+  
+  const onChange = (e) => {
+    setValues({...values, [e.target.name] : e.target.value})
+  }
+  
+  const handleEdit = async(e) => {
+  try {
+    e.preventDefault()
+    await dispatch(updateProfile(values))
+    dispatch(myProfileCustomer())
+  } catch (error) {
+    console.log(error)
+  }
+  }
+  useEffect(() => {
+    setValues({
+      name : customer?.name || "",
+      email : customer?.email || "",
+      phone : customer?.phone || "",
+      gender : customer?. gender || "",
+      date_birth: customer?.date_birth || ""
+    })
+  }, [customer])
   return (
     <section id="main-content">
       <div className="main-content bg-grey">
@@ -36,12 +66,13 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="name"
                           type="name"
                           className="form-control"
                           placeholder="Name"
                           id="name"
-                          disabled
-                          value={customer?.user_name}
+                          value={values.name}
+                          onChange={onChange}
                         />
                       </div>
                     </div>
@@ -54,12 +85,14 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="email"
                           type="email"
                           className="form-control"
                           placeholder="Email"
                           id="email"
-                          disabled
-                          value={customer?.email}
+                     
+                          value={values.email}
+                          onChange={onChange}
                         />
                       </div>
                     </div>
@@ -72,12 +105,14 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="phone"
                           type="phone-number"
                           className="form-control"
                           placeholder="Phone Number"
                           id="phone-number"
-                          disabled
-                          value={customer?.phone}
+                       
+                          value={values.phone}
+                          onChange={onChange}
                         />
                       </div>
                     </div>
@@ -88,11 +123,13 @@ const MyAccount = () => {
                       <div className="col-sm-7 pt-1">
                         <div className="form-check form-check-inline">
                           <input
+                          name="gender"
                             className="form-check-input"
                             type="radio"
-                            name="inlineRadioOptions"
+                            
                             id="inlineRadio1"
-                            value="option1"
+                            value="laki-laki"
+                            onChange={onChange}
                           />
                           <label
                             className="form-check-label"
@@ -105,9 +142,10 @@ const MyAccount = () => {
                           <input
                             className="form-check-input"
                             type="radio"
-                            name="inlineRadioOptions"
+                            name="gender"
                             id="inlineRadio2"
-                            value="option2"
+                            value="perempuan"
+                            onChange={onChange}
                           />
                           <label
                             className="form-check-label"
@@ -124,11 +162,13 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="date_birth"
                           type="phone-number"
                           className="form-control"
                           id="phone-number"
-                          disabled
-                          value={customer?.date_birth}
+                          
+                          value={values.date_birth}
+                          onChange={onChange}
                         />
                       </div>
                     </div>
@@ -140,7 +180,9 @@ const MyAccount = () => {
                         marginLeft: "13rem",
                         marginTop: "1rem",
                         width: "90px",
+                        
                       }}
+                      onClick={handleEdit}
                     />
                   </form>
                 </div>
