@@ -21,10 +21,10 @@ const NewProduct = () => {
             <FidgetSpinner />
           </div>
         )}
-        <div className="d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3 ">
-          {productList.map((product) => (
+        <div className="d-flex flex-wrap row-gap-4 gap-3 mb-5 mt-3">
+          {productList.slice(0, 6).map((product) => (
             <div id="card" key={product.id}>
-              <div className="content " style={{ marginLeft: "6%" }}>
+              <div className="content" style={{ marginLeft: "6%" }}>
                 <div className="card h-100" style={{ width: "200px" }}>
                   <Link
                     to={`/product/${product.id}`}
