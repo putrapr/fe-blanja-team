@@ -30,3 +30,23 @@
 #login .logo-title span {
     padding-top: 11px;
 }
+
+#login .error-input {
+    border-color: #F01F0E;
+}
+
+#login .text-error {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 160px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}
+
+#login .text-error1 {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 150px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}
