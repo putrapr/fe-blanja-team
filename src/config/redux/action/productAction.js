@@ -132,8 +132,8 @@ export const getProductByCategoryId = (id) => async (dispatch) => {
     dispatch({
       type: "GET_PRODUCT_BY_ID_CATEGORY_REQUEST",
     });
-    const response = await api.get(`product/category/5${id}`);
-    const product = response.data;
+    const response = await api.get(`product/category/${id}`);
+    const product = response.data.data;
     dispatch({
       type: "GET_PRODUCT_BY_ID_CATEGORY_SUCCESS",
       payload: product,
