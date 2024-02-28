@@ -66,7 +66,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        productList: [...state.productList, action.payload],
+        product: action.payload,
       };
     case "UPDATE_PRODUCT_FAILURE":
       return {
