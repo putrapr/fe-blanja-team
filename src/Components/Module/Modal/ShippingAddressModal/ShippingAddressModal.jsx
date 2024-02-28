@@ -77,7 +77,8 @@ const ModalShippingAddress = (props) => {
             </p>
           </div>
           <AddANewModal showMe={showSecondModal} onHideMe={handleCloseSecondModal} />
-          {addressList?.map((item) => (
+          { 
+          addressList?.map((item) => (
             <div
               key={item.id}
               className="container"

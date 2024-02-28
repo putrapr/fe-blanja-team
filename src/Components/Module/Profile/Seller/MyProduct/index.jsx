@@ -23,7 +23,7 @@ const MyProduct = () => {
 
   useEffect(() => {
     dispatch(getMyProductBySellerId(seller_id));
-  }, []);
+  }, [dispatch, seller_id]);
   // const handleSearch = () => {};
 
   const handleDelete = async (id) => {
@@ -45,7 +45,7 @@ const MyProduct = () => {
         console.error("Error deleting product:", error);
       }
     }
-    navigate("/profile");
+    navigate("/");
   };
   return (
     <section id="myProduct">
@@ -157,7 +157,7 @@ const MyProduct = () => {
                                 <td className="text-center">{item.stock}</td>
 
                                 <td className="text-center">
-                                  <ModalUpdateProduct item={item.id} />
+                                  <ModalUpdateProduct productId={item.id} />
 
                                   <button
                                     type="button"

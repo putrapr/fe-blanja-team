@@ -6,42 +6,45 @@ import propTypes from "prop-types";
 import { FaPen } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../../../config/redux/action/productAction";
+import Swal from "sweetalert2";
 
-const ModalUpdateProduct = ({ item }) => {
+const ModalUpdateProduct = ({ productId }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [saveImage, setSaveImage] = useState("");
+  const { loading, product } = useSelector((state) => state.product);
+
   const [data, setData] = useState({
     name: "",
     price: "",
     color: "",
     size: "",
     stock: "",
-    // condition: "",
     description: "",
     image: saveImage,
     seller_id: "",
     category_id: "",
   });
-  // console.log(item);
-
-  const { loading } = useSelector((state) => state.product);
 
   // useEffect(() => {
-  //   setData({
-  //     name: product.name,
-  //     price: product.price,
-  //     color: product.color,
-  //     size: product.size,
-  //     stock: product.stock,
-  //     condition: product.condition,
-  //     description: product.description,
-  //     image: product,
-  //   });
-  // }, [product, saveImage]);
+  //   dispatch(getMyProductBySellerId(seller_id));
+  // }, [dispatch, seller_id]);
 
+  useEffect(() => {
+    setData({
+      name: product.name,
+      price: product.price,
+      color: product.color,
+      size: product.size,
+      stock: product.stock,
+      description: product.description,
+      image: product,
+      seller_id: product.seller_id,
+      category_id: product.category_id,
+    });
+  }, [product, saveImage]);
   const handleChange = (e) => {
     setData({
       ...data,
@@ -56,30 +59,32 @@ const ModalUpdateProduct = ({ item }) => {
     // console.log(uploader);
   };
 
+  const formData = new FormData();
+  formData.append("image", saveImage);
+  formData.append("name", data.name);
+  formData.append("price", data.price);
+  formData.append("color", data.color);
+  formData.append("size", data.size);
+  formData.append("stock", data.stock);
+  formData.append("description", data.description);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append("image", saveImage);
-    formData.append("name", data?.name);
-    formData.append("price", data?.price);
-    formData.append("color", data?.color);
-    formData.append("size", data?.size);
-    formData.append("stock", data?.stock);
-    // formData.append("condition", data?.condition);
-    formData.append("description", data?.description);
-
     try {
-      dispatch(
-        updateProduct({
-          id: item,
-          data: formData,
-        })
-      );
+      dispatch(updateProduct(productId, formData));
+      Swal.fire({
+        title: "Success",
+        text: "Update Product Success",
+        icon: "success",
+      });
       handleClose();
-      alert("Recipe Updated");
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Update Product Failed",
+        icon: "error",
+      });
     }
   };
   // console.log(item);
@@ -102,7 +107,7 @@ const ModalUpdateProduct = ({ item }) => {
 
           <Form.Control
             type="text"
-            placeholder="name recipes"
+            placeholder="Name Product"
             className="my-3"
             name="name"
             value={data?.name}
@@ -110,7 +115,7 @@ const ModalUpdateProduct = ({ item }) => {
           />
           <Form.Control
             type="text"
-            placeholder="price"
+            placeholder="Price"
             className="my-3"
             name="price"
             value={data?.price}
@@ -118,7 +123,7 @@ const ModalUpdateProduct = ({ item }) => {
           />
           <Form.Control
             type="text"
-            placeholder="color"
+            placeholder="Color"
             className="my-3"
             name="color"
             value={data?.color}
@@ -126,7 +131,7 @@ const ModalUpdateProduct = ({ item }) => {
           />
           <Form.Control
             type="text"
-            placeholder="size"
+            placeholder="Size"
             className="my-3"
             name="size"
             value={data?.size}
@@ -134,7 +139,7 @@ const ModalUpdateProduct = ({ item }) => {
           />
           <Form.Control
             type="text"
-            placeholder="stock"
+            placeholder="Stock"
             className="my-3"
             name="stock"
             value={data?.stock}
@@ -151,7 +156,7 @@ const ModalUpdateProduct = ({ item }) => {
           /> */}
           <Form.Control
             as="textarea"
-            placeholder="description"
+            placeholder="Description"
             style={{ height: "100px" }}
             name="description"
             value={data?.description}
@@ -162,7 +167,7 @@ const ModalUpdateProduct = ({ item }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="danger" onClick={handleSubmit}>
+          <Button variant="danger" onClick={handleSubmit} disabled={loading}>
             {loading ? "Loading.." : "Save Update Product"}
           </Button>
         </Modal.Footer>
@@ -172,6 +177,6 @@ const ModalUpdateProduct = ({ item }) => {
 };
 
 ModalUpdateProduct.propTypes = {
-  item: propTypes.any,
+  productId: propTypes.any,
 };
 export default ModalUpdateProduct;
