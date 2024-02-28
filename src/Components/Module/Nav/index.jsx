@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
+  const {state} = useLocation();
   return (
     <>
       <div className="container mt-5">
@@ -24,7 +25,7 @@ const Nav = () => {
               aria-current="page"
               style={{ color: "#9B9B9B" }}
             >
-              T-Shirt
+              {state.state}
             </li>
           </ol>
         </nav>
