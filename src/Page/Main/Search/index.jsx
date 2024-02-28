@@ -67,7 +67,9 @@ const Search = () => {
           <button
             className="form-select form-select-md"
             aria-label="Default select example"
-            onClick={handleSort}
+            onClick={() => {
+              handleSort();
+            }}
           >
             Sort by price
           </button>

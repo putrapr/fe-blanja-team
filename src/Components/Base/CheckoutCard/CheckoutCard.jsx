@@ -3,22 +3,22 @@ import PropTypes from "prop-types";
 const CheckoutCard = (props) => {
   const { title, productDesc, price, src } = props;
   return (
-    <div>
+<div>
       <div className="row " style={{ marginTop: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
-        <div className="col-2">
+        <div className="col-sm-2 col-md-2 col-lg-2 col-xl-2">
           <img src={dummyProductImage || src} style={{ height: "100%" }} />
         </div>
-        <div className="col-8 " style={{ position: "relative" }}>
-          <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)" }}>
+        <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6  " style={{ position: "relative" }}>
+          <div >
             <h6>{title}</h6>
             <p style={{ color: "#9B9B9B", paddingBottom: "0" }}>{productDesc}</p>
           </div>
         </div>
-        <div className="col-2">
-          <h6 style={{ height: "80px", lineHeight: "80px" }}>Rp.{price}</h6>
+        <div className="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <h6 >Rp.{price}</h6>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 CheckoutCard.propTypes = {

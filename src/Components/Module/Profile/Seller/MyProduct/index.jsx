@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
+// import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
 import "./myproduct.css";
-import { FaSearch, FaTrash } from "react-icons/fa";
+import {
+  FaSearch,
+  // FaTrash
+} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteProduct,
+  // deleteProduct,
   getMyProductBySellerId,
 } from "../../../../../config/redux/action/productAction";
 import { jwtDecode } from "jwt-decode";

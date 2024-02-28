@@ -3,7 +3,7 @@ import Button from "../../../Components/Base/button";
 import ShippingAddressModal from "../../../Components/Module/Modal/ShippingAddressModal/ShippingAddressModal";
 import Navbar from "../../../Components/Module/Navbar/index";
 import { useState, useEffect } from "react";
-import "./checkout.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectedAddress } from "../../../config/redux/action/AddressAction";
 import Payment from "../../../Components/Module/Modal/Payment";
@@ -33,12 +33,13 @@ const Checkout = () => {
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <h2 id="checkoutTitle">Checkout</h2>
-        <h5 id="shippingAddressTitle">Shipping Address</h5>
+      <div className="container pb-5">
+        
         <div className="container addressWrapper">
-          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
-            <div className="col-lg-8">
+          <div className="row row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+            <div className="col-sm-12 col-md-12 col-lg-8 col-xl-8  pt-4">
+            <h2 id="checkoutTitle">Checkout</h2>
+        <h5 id="shippingAddressTitle">Shipping Address</h5>
               <h5>{(address && address.name_recipient) || "-"}</h5>
               <p>
                 {address && address.street}, {(address && address.city) || "-"}
@@ -66,8 +67,8 @@ const Checkout = () => {
                 />
               </div>
             </div>
-            <div className="col-lg-4">
-              <div className="container">
+            <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4 py-3" style={{display:"flex", alignItems : "center", justifyContent:"center"}}>
+              <div className="container " >
                 <h5 style={{ marginBottom: "20PX" }}>Shopping Summary</h5>
                 <div className="row">
                   <div className="col-8">
