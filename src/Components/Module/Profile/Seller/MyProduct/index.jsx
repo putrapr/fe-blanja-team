@@ -7,6 +7,7 @@ import {
   deleteProduct,
   getMyProductBySellerId,
 } from "../../../../../config/redux/action/productAction";
+import { jwtDecode } from "jwt-decode";
 
 const MyProduct = () => {
   const dispatch = useDispatch();
@@ -14,20 +15,24 @@ const MyProduct = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { productList } = useSelector((state) => state.product);
+  const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
+
+  const id = decoded.id;
 
   useEffect(() => {
-    dispatch(getMyProductBySellerId(productList));
+    dispatch(getMyProductBySellerId(id));
   }, []);
+  // const handleSearch = () => {};
 
-  const handleSearch = () => {};
-
-  const handleDelete = async (id) => {
-    try {
-      dispatch(deleteProduct(id));
-    } catch (error) {
-      alert(error.data.message);
-    }
-  };
+  // const handleDelete = async () => {
+  //   // try {
+  //   //   dispatch(deleteProduct(id));
+  //   // } catch (error) {
+  //   //   alert(error.data.message);
+  //   // }
+  // };
+  console.log(productList);
   return (
     <section id="myProduct">
       <div className="main-content hv-50 bg-grey">
@@ -81,10 +86,7 @@ const MyProduct = () => {
               </li>
             </ul>
             <div className="search mb-3">
-              <div
-                className="icon py-2 px-4"
-                onClick={() => handleSearch(searchQuery)}
-              >
+              <div className="icon py-2 px-4">
                 <FaSearch />
               </div>
               <input
@@ -117,27 +119,25 @@ const MyProduct = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {productList?.map((item, index) => {
-                            return (
-                              <tr key={index}>
-                                <td className="text-center">{item?.name}</td>
-                                <td className="text-center">{item?.price}</td>
-                                <td className="text-center">{item?.stock}</td>
+                          {productList.map((item, index) => (
+                            <tr key={index}>
+                              <td className="text-center">{item.name}</td>
+                              <td className="text-center">{item.price}</td>
+                              <td className="text-center">{item.stock}</td>
 
-                                <td className="text-center">
-                                  <ModalUpdateProduct item={item} />
+                              {/* <td className="text-center">
+                                <ModalUpdateProduct item={item} />
 
-                                  <button
-                                    type="button"
-                                    onClick={() => handleDelete(item?.id)}
-                                    className="btn btn-danger"
-                                  >
-                                    <FaTrash />
-                                  </button>
-                                </td>
-                              </tr>
-                            );
-                          })}
+                                <button
+                                  type="button"
+                                  onClick={() => handleDelete(item.id)}
+                                  className="btn btn-danger"
+                                >
+                                  <FaTrash />
+                                </button>
+                              </td> */}
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
