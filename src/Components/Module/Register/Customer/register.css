@@ -30,3 +30,47 @@
 #register .logo-title span {
     padding-top: 11px;
 }
+
+#register .error-input {
+    border-color: #F01F0E;
+}
+
+#register .text-error1 {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 190px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}
+
+#register .text-error2 {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 160px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}
+
+#register .text-error3 {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 150px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}
+
+#register .text-error4 {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 240px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}
+
+#register .text-error5 {
+    color: #F01F0E;
+    font-size: 12px;
+    padding-right: 340px;
+    margin-bottom: 0;
+    /* z-index: -1; */
+}

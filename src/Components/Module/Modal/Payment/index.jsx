@@ -1,128 +1,106 @@
+import React from "react";
+import { Modal } from "react-bootstrap";
 import gopay from "../../../../assets/img/gopay.png";
 import pos from "../../../../assets/img/pos.png";
 import mastercard from "../../../../assets/img/mastercard.svg";
-import { useState } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
+import Button from "../../../Base/button";
 
-const Payment = ({show, onHide}) => {
-  const [showSecondModal, setShowSecondModal] = useState(false);
-
-  const handleShowSecondModal = () => setShowSecondModal(true);
-  const handleCloseSecondModal = () => setShowSecondModal(false);
-
+const Payment = ({ show, onHide }) => {
   return (
-    <div id="payment-modal" show={show} onHide={onHide}>
-      <div
-        className="modal fade"
-        id="payment"
-        aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel"
-        tabIndex="-1"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-body p-4 ">
-              <div className="d-flex flex-column ">
-                <div
-                  style={{ height: 40 }}
-                  className="d-flex align-items-center gap-3"
-                >
-                  <button
-                    type="button"
-                    className="btn-close fw-bold"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                  <h3 className="fw-bold mt-2">Payment</h3>
-                </div>
-                <hr />
-                <h5 style={{ fontWeight: 600, marginBottom: 20 }}>
-                  Payment method
-                </h5>
-                <div className="d-flex mb-4">
-                  <img
-                    src={gopay}
-                    alt="gopay"
-                    style={{ width: 80, height: 18 }}
-                  />
-                  <p style={{ marginLeft: "26%" }}>Gopay</p>
-                  <input
-                    type="checkbox"
-                    value="gopay"
-                    style={{ marginLeft: 200, marginBottom: 10 }}
-                  />
-                </div>
-                <div className="d-flex mb-4">
-                  <img src={pos} alt="pos" style={{ width: 58, height: 40 }} />
-                  <p style={{ marginLeft: "29%" }}>Pos Indonesia</p>
-                  <input
-                    type="checkbox"
-                    value="pos indonesia"
-                    style={{
-                      marginLeft: 145,
-                      marginBottom: 10,
-                    }}
-                  />
-                </div>
-                <div className="d-flex mb-4">
-                  <img
-                    src={mastercard}
-                    alt="mastercard"
-                    style={{ width: 53, height: 40 }}
-                  />
-                  <p style={{ marginLeft: "30%" }}>MasterCard</p>
-                  <input
-                    type="checkbox"
-                    value="mastercard"
-                    style={{ marginLeft: 160, marginBottom: 10 }}
-                  />
-                </div>
-              </div>
-              <hr />
-
-              <h6 style={{ fontWeight: 600 }}>Shopping summary</h6>
-              <div className="d-flex">
-                <p style={{ color: "#9B9B9B" }}>Order</p>
-                <p style={{ fontWeight: 600, marginLeft: "71%" }}>
-                  Rp. 10000000
-                </p>
-              </div>
-              <div className="d-flex">
-                <p style={{ color: "#9B9B9B" }}>Delivery</p>
-                <p style={{ fontWeight: 600, marginLeft: "70%" }}>$ 20.000</p>
-              </div>
-
-              <hr />
-
-              <div className="d-flex mt-3 ">
-                <div>
-                  <p style={{ fontWeight: 600 }}>Shopping summary</p>
-                  <p style={{ color: "#DB3022" }}>$ 1200000000</p>
-                </div>
-                <button
-                  style={{
-                    borderRadius: 15,
-                    backgroundColor: "#DB3022",
-                    width: 160,
-                    height: 36,
-                    marginTop: 15,
-                    marginLeft: "45%",
-                    color: "white",
-                  }}
-                >
-                  buy
-                </button>
-              </div>
+    <Modal show={show} onHide={onHide} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>Payment</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="container-fluid" style={{height : 220, width:"100%", border:"2px solid #F4F4F4", marginBottom:5}}>
+        <h5 style={{ fontWeight: 600, marginBottom: 20 }}>Payment method</h5>
+        <div className="container">
+          <div className="row " >
+            <div className="col-4 " style={{height : 50, display: "flex", alignItems: "center"}}>
+              <img src={gopay} alt="gopay" style={{ width: 80, height: 18,  }} />
+            </div>
+            <div className="col-7" style={{height : 50, display:"flex", alignItems: "center"}}>
+              <p style={{paddingTop: 18}} >Gopay</p>
+            </div>
+            <div className="col-1" style={{height : 50, display: "flex", verticalAlign: "center"}}>
+              <input type="checkbox" value="gopay" />
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div className="container">
+          <div className="row ">
+            <div className="col-4" style={{height : 50, display: "flex", alignItems: "center"}}>
+              <img
+                src={pos}
+                alt="pos indonesia"
+                style={{ Width: 58, Height: 38,  }}
+              />
+            </div>
+            <div className="col-7" style={{height : 50, display:"flex", alignItems: "center"}}>
+              <p style={{paddingTop: 15}}>Pos Indonesia</p>
+            </div>
+            <div className="col-1" style={{height : 50, display: "flex", verticalAlign: "center"}}>
+              <input type="checkbox" value="pos indonesia" />
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row "> 
+            <div className="col-4" style={{height : 50, display: "flex", alignItems: "center"}}>
+              <img
+                src={mastercard}
+                alt="mastercard"
+                style={{ width: 52.95, height: 40.89,  }}
+              />
+            </div>
+            <div className="col-7" tyle={{height : 50, display:"flex", alignItems: "center"}}>
+              <p style={{paddingTop: 12}}>MasterCard</p>
+            </div>
+            <div className="col-1" style={{height : 50, display: "flex", verticalAlign: "center"}}>
+              <input type="checkbox" value="masterCard" />
+            </div>
+          </div>
+        </div>
+        </div>
+        <div className="container-fluid" style={{height : 220, width:"100%", border:"2px solid #F4F4F4", marginBottom:5}}>
+        <h5 style={{ fontWeight: 600, marginBottom: 20 }}>Shopping summary</h5>
+        <div className="row ">
+          <div className="col-9"><p style={{ color: "#9B9B9B" }}>Order</p></div>
+          <div className="col-3"><p style={{ fontWeight: 600 }}>Rp.10000000</p></div>
+        </div>
+        <div className="row ">
+          <div className="col-9"><p style={{ color: "#9B9B9B" }}>Delivery</p></div>
+          <div className="col-3"><p style={{ fontWeight: 600 }}>Rp.10000</p></div>
+        </div>
+        </div>
+
+        <div className="container-fluid" style={{height : 70, width:"100%", border:"2px solid #F4F4F4"}}>
+          <div className="row">
+            <div className="col-7">
+            <h5 style={{ fontWeight: 600 }}>Shopping summary</h5>
+            <h6 style={{ color: "#DB3022" }}>$ 1200000000</h6>
+            </div>
+            <div className="col-5">
+            <Button
+            child = "buy"
+            style={{
+              borderRadius: 15,
+              backgroundColor: "#DB3022",
+              width: 160,
+              height: 36,
+              marginTop: 15,
+              color: "white",
+            }}
+          >
+          </Button>
+            </div>
+          </div>
+          
+          
+        </div>
+      </Modal.Body>
+    </Modal>
   );
 };
-Payment.propTypes = {
-  show: propTypes.func,
-  onHide: propTypes.func,
-};
-
 export default Payment;

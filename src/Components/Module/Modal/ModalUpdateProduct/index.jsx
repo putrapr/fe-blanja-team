@@ -5,44 +5,43 @@ import Form from "react-bootstrap/Form";
 import propTypes from "prop-types";
 import { FaPen } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getMyProduct,
-  updateProduct,
-} from "../../../../config/redux/action/productAction";
+import { updateProduct } from "../../../../config/redux/action/productAction";
 
 const ModalUpdateProduct = ({ item }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  //   console.log(item?.recipes_id);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [saveImage, setSaveImage] = useState("");
-
   const [data, setData] = useState({
-    name: item?.name,
-    price: item?.price,
-    color: item?.color,
-    size: item?.size,
-    stock: item?.stock,
-    rating: item?.rating,
-    condition: item?.condition,
-    description: item?.description,
+    name: "",
+    price: "",
+    color: "",
+    size: "",
+    stock: "",
+    // condition: "",
+    description: "",
     image: saveImage,
+    seller_id: "",
+    category_id: "",
   });
+  // console.log(item);
 
-  const { recipeList } = useSelector((state) => state.recipe);
+  const { loading } = useSelector((state) => state.product);
 
-  const getProduct = async () => {
-    try {
-      dispatch(getMyProduct(recipeList));
-    } catch (error) {
-      alert(error.data.message);
-    }
-  };
+  // useEffect(() => {
+  //   setData({
+  //     name: product.name,
+  //     price: product.price,
+  //     color: product.color,
+  //     size: product.size,
+  //     stock: product.stock,
+  //     condition: product.condition,
+  //     description: product.description,
+  //     image: product,
+  //   });
+  // }, [product, saveImage]);
 
-  useEffect(() => {
-    getProduct();
-  });
   const handleChange = (e) => {
     setData({
       ...data,
@@ -60,29 +59,30 @@ const ModalUpdateProduct = ({ item }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formDataToSend = new FormData();
-    formDataToSend.append("image", saveImage);
-    formDataToSend.append("name", data?.name);
-    formDataToSend.append("price", data?.price);
-    formDataToSend.append("color", data?.color);
-    formDataToSend.append("size", data?.size);
-    formDataToSend.append("stock", data?.stock);
-    formDataToSend.append("rating", data?.rating);
-    formDataToSend.append("condition", data?.condition);
-    formDataToSend.append("description", data?.description);
+    const formData = new FormData();
+    formData.append("image", saveImage);
+    formData.append("name", data?.name);
+    formData.append("price", data?.price);
+    formData.append("color", data?.color);
+    formData.append("size", data?.size);
+    formData.append("stock", data?.stock);
+    // formData.append("condition", data?.condition);
+    formData.append("description", data?.description);
 
     try {
-      updateProduct({
-        id: item.id,
-        data: formDataToSend,
-      });
-      getProduct();
-      setShow(false);
+      dispatch(
+        updateProduct({
+          id: item,
+          data: formData,
+        })
+      );
+      handleClose();
       alert("Recipe Updated");
     } catch (error) {
       alert(error.data.message);
     }
   };
+  // console.log(item);
   return (
     <>
       <button
@@ -99,6 +99,7 @@ const ModalUpdateProduct = ({ item }) => {
         </Modal.Header>
         <Modal.Body>
           <Form.Control type="file" onChange={handleUpload} name="image" />
+
           <Form.Control
             type="text"
             placeholder="name recipes"
@@ -139,22 +140,15 @@ const ModalUpdateProduct = ({ item }) => {
             value={data?.stock}
             onChange={handleChange}
           />
-          <Form.Control
-            type="text"
-            placeholder="rating"
-            className="my-3"
-            name="stock"
-            value={data?.rating}
-            onChange={handleChange}
-          />
-          <Form.Control
+
+          {/* <Form.Control
             type="text"
             placeholder="condition"
             className="my-3"
             name="stock"
             value={data?.condition}
             onChange={handleChange}
-          />
+          /> */}
           <Form.Control
             as="textarea"
             placeholder="description"
@@ -168,8 +162,8 @@ const ModalUpdateProduct = ({ item }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="warning" onClick={handleSubmit}>
-            Save Update Product
+          <Button variant="danger" onClick={handleSubmit}>
+            {loading ? "Loading.." : "Save Update Product"}
           </Button>
         </Modal.Footer>
       </Modal>

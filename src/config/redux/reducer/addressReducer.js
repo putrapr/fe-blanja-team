@@ -32,7 +32,7 @@ const addressReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        addressList: action.payload,
+        addressList: action.payload !== 'no data' ? action.payload : [],
       };
     case "GET_MY_ADDRESS_FAILURE":
       return {
@@ -49,7 +49,7 @@ const addressReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        address: action.payload,
+        
       };
     case "ADD_ADDRESS_FAILURE":
       return {
@@ -84,7 +84,7 @@ const addressReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        address: action.payload,
+        
       };
     case "DELETE_ADDRESS_FAILURE":
       return {

@@ -32,9 +32,7 @@ export const getMyProductBySellerId = (id) => async (dispatch) => {
     const product = response.data.data;
     dispatch({
       type: "GET_PRODUCT_BY_ID_SELLER_SUCCESS",
-      payload: {
-        productList: product,
-      },
+      payload: product,
     });
   } catch (error) {
     dispatch({
@@ -68,7 +66,16 @@ export const updateProduct = (id, data) => async (dispatch) => {
     dispatch({
       type: "UPDATE_PRODUCT_REQUEST",
     });
-    const response = await api.put(`${id}`, data);
+    // const response = await api.put(`/product/${id}`, data);
+    const response = await axios.put(
+      `${import.meta.env.VITE_API_URL}/product/${id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     const product = response.data.data;
     dispatch({
       type: "UPDATE_PRODUCT_SUCCESS",
@@ -121,7 +128,7 @@ export const getMyProduct = () => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETE_PRODUCT_REQUEST" });
-    const response = await api.delete(`${id}`);
+    const response = await api.delete(`/product/${id}`);
     const product = response.data.data;
     dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: product });
   } catch (error) {
