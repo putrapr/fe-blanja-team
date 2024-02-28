@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
+import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
 import "./myproduct.css";
 import { FaSearch, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -157,7 +157,7 @@ const MyProduct = () => {
                                 <td className="text-center">{item.stock}</td>
 
                                 <td className="text-center">
-                                  {/* <ModalUpdateProduct item={item} /> */}
+                                  <ModalUpdateProduct item={item.id} />
 
                                   <button
                                     type="button"

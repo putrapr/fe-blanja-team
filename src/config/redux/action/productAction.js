@@ -66,7 +66,16 @@ export const updateProduct = (id, data) => async (dispatch) => {
     dispatch({
       type: "UPDATE_PRODUCT_REQUEST",
     });
-    const response = await api.put(`${id}`, data);
+    // const response = await api.put(`/product/${id}`, data);
+    const response = await axios.put(
+      `${import.meta.env.VITE_API_URL}/product/${id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     const product = response.data.data;
     dispatch({
       type: "UPDATE_PRODUCT_SUCCESS",
