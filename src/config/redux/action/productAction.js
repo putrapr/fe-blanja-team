@@ -128,3 +128,19 @@ export const deleteProduct = (id) => async (dispatch) => {
     dispatch({ type: "DELETE_PRODUCT_FAILURE", payload: error.response });
   }
 };
+
+export const getProductByCategoryId = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_PRODUCT_BY_ID_CATEGORY_REQUEST",
+    });
+    const response = await api.get(`product/category/5${id}`);
+    const product = response.data;
+    dispatch({
+      type: "GET_PRODUCT_BY_ID_CATEGORY_SUCCESS",
+      payload: product,
+    });
+  } catch (error) {
+    dispatch({ type: "GET_PRODUCT_BY_ID_CATEGORY_FAILURE", payload: error.response });
+  }
+}

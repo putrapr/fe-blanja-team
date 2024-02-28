@@ -91,7 +91,7 @@ const productReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-    case "GET_PRODUCT_BY_ID_CATEGORY":
+    case "GET_PRODUCT_BY_ID_CATEGORY_REQUEST":
       return {
         ...state,
         loading: true,
