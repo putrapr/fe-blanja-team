@@ -15,11 +15,13 @@ import Buttons from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import LoginSeller from "../Seller";
 import Swal from "sweetalert2";
+// import { useFormik } from "formik";
+// import * as yup from "yup";
 // import Tabs from "../../../Base/Tabs";
 
 const LoginCustomer = () => {
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.customer);
+  const { loading, error } = useSelector((state) => state.customer);
   const dispatch = useDispatch();
 
   const [values, setValues] = useState({
@@ -27,46 +29,105 @@ const LoginCustomer = () => {
     password: "",
   });
 
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [tab, setTab] = useState("loginCustomer");
+  // const passwordRules =
+  //   /^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})/;
 
-  //   const handleTabSubmit = (e) => {
-  //     e.preventDefault();
-
-  //     tab === "loginSeller" && <LoginSeller/>
-  //     tab === "loginCustomer" && <LoginCustomer/>
+  // const handleLogin = async () => {
+  //   try {
+  //     const customer = await dispatch(login(values));
+  //     console.log("customer data ", customer);
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "Login Successful",
+  //     });
+  //     const ruleEmail = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
+  //     if (ruleEmail.test(values.email)) {
+  //       // return (true)
+  //       alert("Email Valid!");
+  //     } else {
+  //       alert("You have entered an invalid email address!");
+  //       return false;
+  //     }
+  //     console.log(error);
+  //     // navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Login Failed",
+  //       text: error,
+  //     });
+  //     return;
   //   }
+  // };
 
-  //   const handleTabChange = (e) => {
-  //     setTab({ ...values, [e.target.name]: e.target.value })
-  //   }
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: "",
+  //     password: "",
+  //   },
+  //   validationSchema: yup.object().shape({
+  //     email: yup
+  //       .string()
+  //       .email("Please enter a valid email")
+  //       .required("Email required"),
+  //     password: yup
+  //       .string()
+  //       .min(5, "must be at least 5 character long")
+  //       .matches(passwordRules, {
+  //         message:
+  //           "password must be have uppercase, lowercase, number & special character",
+  //       })
+  //       .required("Password required"),
+  //   }),
+  //   onSubmit: handleLogin,
+  // });
 
-  const handleLogin = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const customer = await dispatch(login(values));
-      console.log("customer data ", customer);
+      await dispatch(login(values));
       Swal.fire({
         icon: "success",
         title: "Login Successful",
       });
+      console.log(error);
       navigate("/");
     } catch (error) {
-      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Login Failed",
-        text: error.data.message,
+        text: "Please Try Again",
       });
       return;
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+
+    const ruleEmail = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
+    if (ruleEmail.test(values.email)) {
+      setIsEmailValid(true);
+    } else {
+      setIsEmailValid(false);
+    }
+
+    const rulePassword = /^.{5,}$/;
+    if (rulePassword.test(values.password)) {
+      setIsPasswordValid(true);
+    } else {
+      setIsPasswordValid(false);
+    }
   };
 
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
+  // const handleForm = (event) => {
+  //   const { target } = event;
+  //   formik.setFieldValue(target.name, target.value);
+  // };
 
   return (
     <Container id="login">
@@ -115,36 +176,6 @@ const LoginCustomer = () => {
                         Seller
                       </Buttons>
                     </ButtonGroup>
-                    {/* <ButtonGroup className="mt-4 mb-3">
-                    <Buttons
-                      onClick={() => setTab("")}
-                      style={{
-                        backgroundColor: "#fff",
-                        color: "#9B9B9B",
-                        borderRadius: "4px 0px 0px 4px",
-                        width: "103px",
-                        height: "40px",
-                        fontSize: "12px",
-                        border: "1px solid #9B9B9B",
-                      }}
-                    >
-                      Customer
-                    </Buttons>
-                    <Buttons
-                      onClick={() => setTab("loginSeller")}
-                      style={{
-                        backgroundColor: "#DB3022",
-                        borderRadius: "0px 4px 4px 0px",
-                        width: "103px",
-                        height: "40px",
-                        fontSize: "12px",
-                        border: "1px solid #9B9B9B",
-                      }}
-                    >
-                      Seller
-                    </Buttons> */}
-                    {/* </ButtonGroup> */}
-                    {/* <Tabs onClick={handleTabSubmit} onChange={handleTabChange} value={tab} /> */}
                   </div>
                   <form onSubmit={handleSubmit}>
                     <div className="d-flex justify-content-center">
@@ -154,10 +185,15 @@ const LoginCustomer = () => {
                         placeholder="Email"
                         type="email"
                         value={values.email}
-                        onChange={onChange}
-                        require={true}
+                        onChange={handleChange}
+                        className={isEmailValid === false ? "error-input" : ""}
                       ></Input>
                     </div>
+                    <p className="text-error">
+                      {isEmailValid === false
+                        ? "*You have entered an invalid email address!"
+                        : ""}
+                    </p>
                     <div className="d-flex justify-content-center">
                       <Input
                         id="input"
@@ -165,19 +201,25 @@ const LoginCustomer = () => {
                         placeholder="Password"
                         type="password"
                         value={values.password}
-                        onChange={onChange}
-                        require={true}
+                        onChange={handleChange}
+                        className={
+                          isPasswordValid === false ? "error-input" : ""
+                        }
                       ></Input>
                     </div>
+                    <p className="text-error1">
+                      {isPasswordValid === false ? "*Password must be at least 5 characters long" : ""}
+                    </p>
                     <p className="mt-3">
                       <Link to="" className="forgot">
                         Forgot password?
                       </Link>
                     </p>
                     <Button
+                      type="submit"
                       className="mt-2"
                       child={loading ? "loading..." : "Login"}
-                      onClick={handleLogin}
+                      // onClick={handleLogin}
                       style={{
                         backgroundColor: "#DB3022",
                         color: "#FFFFFF",

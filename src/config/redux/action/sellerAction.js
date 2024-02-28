@@ -17,8 +17,9 @@ export const loginSeller = (data) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "LOGIN_FAILURE",
-      payload: error.response,
+      payload: error.message,
     });
+    throw error.message;
   }
 };
 export const registerSeller = (data) => async (dispatch) => {
@@ -33,8 +34,9 @@ export const registerSeller = (data) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "REGISTER_FAILURE",
-      payload: error.response,
+      payload: error.message,
     });
+    throw error.message;
   }
 };
 export const myProfileSeller = (data) => async (dispatch) => {
