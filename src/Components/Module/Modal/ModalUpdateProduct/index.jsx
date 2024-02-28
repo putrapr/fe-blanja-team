@@ -40,9 +40,9 @@ const ModalUpdateProduct = ({ item }) => {
     }
   };
 
-  useEffect(() => {
-    getProduct();
-  });
+  // useEffect(() => {
+  //   getProduct();
+  // });
   const handleChange = (e) => {
     setData({
       ...data,

@@ -32,9 +32,7 @@ export const getMyProductBySellerId = (id) => async (dispatch) => {
     const product = response.data.data;
     dispatch({
       type: "GET_PRODUCT_BY_ID_SELLER_SUCCESS",
-      payload: {
-        productList: product,
-      },
+      payload: product,
     });
   } catch (error) {
     dispatch({
@@ -121,7 +119,7 @@ export const getMyProduct = () => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETE_PRODUCT_REQUEST" });
-    const response = await api.delete(`${id}`);
+    const response = await api.delete(`/product/${id}`);
     const product = response.data.data;
     dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: product });
   } catch (error) {
