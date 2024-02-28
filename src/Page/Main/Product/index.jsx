@@ -4,12 +4,13 @@ import Iconstar from "../../../assets/icons/icon-start.svg";
 import Nav from "../../../Components/Module/Nav";
 import CountButton from "../../../Components/Base/Count";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -96,6 +97,7 @@ const Product = () => {
                   </button>
                   <button
                     // onClick={() => handleAddToCart(data)}
+                    onClick={() => navigate('/mybag')}
                     type="button"
                     className="btn btn-outline-dark me-2 flex-grow-3"
                   >
@@ -103,6 +105,7 @@ const Product = () => {
                   </button>
                   <button
                     // onClick={() => handleCheckout(data)}
+                    onClick={() => navigate('/checkout')}
                     type="button"
                     className="btn btn-danger me-2 flex-grow-1"
                   >

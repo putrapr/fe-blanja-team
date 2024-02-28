@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { getAllCategory } from "../../../config/redux/action/categoryAction";
 import { FidgetSpinner } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import NewProduct from "../../../Components/Module/NewProduct";
 
 const Home = () => {
   const { loading, categoryList } = useSelector((state) => state.category);
@@ -189,7 +190,7 @@ const Home = () => {
           <p>You’ve never seen it before!</p>
         </div>
         <div className="d-flex flex-wrap row-gap-4 gap-3">
-          <Card />
+          <NewProduct />
         </div>
       </section>
 
