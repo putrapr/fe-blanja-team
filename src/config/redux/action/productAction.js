@@ -25,19 +25,20 @@ export const getAllProduct =
       });
     }
   };
-export const getMyProductBySellerId = () => async (dispatch) => {
+export const getMyProductBySellerId = (id) => async (dispatch) => {
   try {
-    dispatch({ type: "GET_MY_PRODUCT_REQUEST" });
-    const seller_id = localStorage.getItem("seller_id");
-    const response = await api.get(`/product/seller/${seller_id}`);
+    dispatch({ type: "GET_PRODUCT_BY_ID_SELLER" });
+    const response = await api.get(`/product/seller/${id}`);
     const product = response.data.data;
     dispatch({
-      type: "GET_MY_PRODUCT_SUCCESS",
-      payload: product,
+      type: "GET_PRODUCT_BY_ID_SELLER_SUCCESS",
+      payload: {
+        productList: product,
+      },
     });
   } catch (error) {
     dispatch({
-      type: "GET_MY_PRODUCT_FAILURE",
+      type: "GET_PRODUCT_BY_ID_SELLER_FAILURE",
       payload: error.response,
     });
   }
