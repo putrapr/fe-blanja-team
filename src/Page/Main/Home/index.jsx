@@ -156,7 +156,7 @@ const Home = () => {
           {Array.isArray(categoryList) &&
             categoryList.map((category) => (
               <div className="category d-flex mb-5 mt-3" key={category.id}>
-                <Link to={`/category`}>
+                <Link to={`/category/${category.id}`}>
                   <div
                     className=" d-flex rounded-3"
                     style={{
