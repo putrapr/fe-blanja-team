@@ -57,3 +57,34 @@ export const myProfileCustomer = (data) => async (dispatch) => {
     });
   }
 };
+
+export const updateProfile = (data) => async (dispatch) => {
+  try {
+    dispatch({ type : "UPDATE_PROFILE_REQUEST"})
+    const response = await api.put(`/customer/update` , data)
+    console.log (`customer data`, response.data)
+    dispatch({type: "UPDATE_PROFILE_SUCCESS",
+ })
+ dispatch(myProfileCustomer)
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_PROFILE_FAILURE",
+      payload : error.response.data.data
+    })
+  }
+}
+export const updateProfileImage = (data) => async (dispatch) => {
+  try {
+    dispatch({ type : "UPDATE_PROFILE_IMAGE_REQUEST"})
+    const response = await api.put(`/customer/updateImage` , data)
+    console.log (`customer data`, response.data)
+    dispatch({type: "UPDATE_PROFILE_IMAGE_SUCCESS",
+ })
+ dispatch(myProfileCustomer)
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_PROFILE_FAILURE",
+      payload : error.response.data.data
+    })
+  }
+}
