@@ -87,8 +87,9 @@ const LoginCustomer = () => {
   // });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
+      console.log("submit");
+      e.preventDefault();
       await dispatch(login(values));
       Swal.fire({
         icon: "success",
