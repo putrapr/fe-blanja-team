@@ -9,7 +9,7 @@ export const getAllProduct =
         type: "GET_ALL_PRODUCT_REQUEST",
       });
       const response = await api.get(
-        `/product?keyword=${keyword}&sort=${sort}&page=${page}&pageSize${pageSize}`
+        `/product?keyword=${keyword}&sort=${sort}&page=${page}&pageSize=${pageSize}`
       );
       const product = response.data;
       dispatch({
@@ -126,5 +126,26 @@ export const deleteProduct = (id) => async (dispatch) => {
     dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: product });
   } catch (error) {
     dispatch({ type: "DELETE_PRODUCT_FAILURE", payload: error.response });
+  }
+};
+
+export const getNewProduct = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_NEW_PRODUCT_REQUEST",
+    });
+    const response = await api.get(`/product/new`);
+    const product = response.data.data;
+    dispatch({
+      type: "GET_NEW_PRODUCT_SUCCESS",
+      payload: {
+        productList: product,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: "GET_NEW_PRODUCT_FAILURE",
+      payload: error.response,
+    });
   }
 };
