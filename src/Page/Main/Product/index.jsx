@@ -27,19 +27,21 @@ const Product = () => {
     fetchProduct();
   }, [id]);
 
-
-  
   return (
     <>
       <Navbar />
       <main id="product-page" key={product?.id}>
         <div className="container mt-5">
           <Nav />
-          <div className="product mt-5" >
+          <div className="product mt-5">
             <div className="row">
               <section className="col-lg-4">
                 <div className="model container ">
-                  <img src={product?.image} className="rounded img-fluid" alt={product?.name} />
+                  <img
+                    src={product?.image}
+                    className="rounded img-fluid"
+                    alt={product?.name}
+                  />
                 </div>
               </section>
               <section className="col-lg-6">
@@ -80,12 +82,11 @@ const Product = () => {
                     style={{ marginRight: "80px" }}
                   >
                     <p>Size</p>
-                    <CountButton/>
-                    
+                    <CountButton />
                   </div>
                   <div className="d-flex flex-column">
                     <p>Jumlah</p>
-                    <CountButton/>
+                    <CountButton />
                   </div>
                 </div>
                 <div className="button d-flex mt-4">
@@ -97,7 +98,7 @@ const Product = () => {
                   </button>
                   <button
                     // onClick={() => handleAddToCart(data)}
-                    onClick={() => navigate('/mybag')}
+                    onClick={() => navigate("/mybag")}
                     type="button"
                     className="btn btn-outline-dark me-2 flex-grow-3"
                   >
@@ -105,7 +106,7 @@ const Product = () => {
                   </button>
                   <button
                     // onClick={() => handleCheckout(data)}
-                    onClick={() => navigate('/checkout')}
+                    onClick={() => navigate("/checkout")}
                     type="button"
                     className="btn btn-danger me-2 flex-grow-1"
                   >
@@ -129,9 +130,7 @@ const Product = () => {
               </div>
               <div className="description mt-5">
                 <h2>Description</h2>
-                <p>
-                {product?.description}
-                </p>
+                <p>{product?.description}</p>
               </div>
               <div className="mt-5">
                 <h1>Product Review</h1>

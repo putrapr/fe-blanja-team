@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   address: addressReducer,
   product: productReducer,
   seller: sellerReducer,
-  category: categoryReducer
+  category: categoryReducer,
 });
 
 export default rootReducer;
