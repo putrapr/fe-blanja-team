@@ -1,41 +1,52 @@
 import { useEffect, useState } from "react";
 // import ModalUpdateProduct from "../../../Modal/ModalUpdateProduct";
 import "./myproduct.css";
-import {
-  FaSearch,
-  // FaTrash
-} from "react-icons/fa";
+import { FaSearch, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  // deleteProduct,
+  deleteProduct,
   getMyProductBySellerId,
 } from "../../../../../config/redux/action/productAction";
 import { jwtDecode } from "jwt-decode";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const MyProduct = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { productList } = useSelector((state) => state.product);
+  const { loading, productList } = useSelector((state) => state.product);
   const token = localStorage.getItem("token");
   const decoded = jwtDecode(token);
-
-  const id = decoded.id;
+  const seller_id = decoded.id;
 
   useEffect(() => {
-    dispatch(getMyProductBySellerId(id));
+    dispatch(getMyProductBySellerId(seller_id));
   }, []);
   // const handleSearch = () => {};
 
-  // const handleDelete = async () => {
-  //   // try {
-  //   //   dispatch(deleteProduct(id));
-  //   // } catch (error) {
-  //   //   alert(error.data.message);
-  //   // }
-  // };
-  console.log(productList);
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Delete Product",
+      text: "Are you sure you want to delete this product?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#dc3545",
+    });
+
+    if (result?.isConfirmed) {
+      try {
+        dispatch(deleteProduct(id));
+        Swal.fire("Deleted!", "Your product has been deleted.", "success");
+      } catch (error) {
+        console.error("Error deleting product:", error);
+      }
+    }
+    navigate("/profile");
+  };
   return (
     <section id="myProduct">
       <div className="main-content hv-50 bg-grey">
@@ -116,31 +127,53 @@ const MyProduct = () => {
                       <table className="table table-hover">
                         <thead className="table-light text-center ">
                           <tr>
+                            <th scope="col">Product</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Stock</th>
+                            <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {productList.map((item, index) => (
-                            <tr key={index}>
-                              <td className="text-center">{item.name}</td>
-                              <td className="text-center">{item.price}</td>
-                              <td className="text-center">{item.stock}</td>
+                          {loading ? (
+                            <td colSpan="3" className="text-center">
+                              Loading...
+                            </td>
+                          ) : productList.length > 0 ? (
+                            productList.map((item) => (
+                              <tr key={item.id}>
+                                <td className="text-center">
+                                  <img
+                                    crossOrigin="anonymous"
+                                    src={item.image}
+                                    className="img-thumbnail"
+                                    alt=""
+                                    width={100}
+                                    height={100}
+                                  />
+                                </td>
+                                <td className="text-center">{item.name}</td>
+                                <td className="text-center">{item.price}</td>
+                                <td className="text-center">{item.stock}</td>
 
-                              {/* <td className="text-center">
-                                <ModalUpdateProduct item={item} />
+                                <td className="text-center">
+                                  {/* <ModalUpdateProduct item={item} /> */}
 
-                                <button
-                                  type="button"
-                                  onClick={() => handleDelete(item.id)}
-                                  className="btn btn-danger"
-                                >
-                                  <FaTrash />
-                                </button>
-                              </td> */}
-                            </tr>
-                          ))}
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDelete(item.id)}
+                                    className="btn btn-danger"
+                                  >
+                                    <FaTrash />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))
+                          ) : (
+                            <td colSpan="3" className="text-center">
+                              No products.
+                            </td>
+                          )}
                         </tbody>
                       </table>
                     </div>
