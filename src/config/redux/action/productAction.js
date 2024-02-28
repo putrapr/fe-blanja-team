@@ -9,7 +9,7 @@ export const getAllProduct =
         type: "GET_ALL_PRODUCT_REQUEST",
       });
       const response = await api.get(
-        `/product?keyword=${keyword}&sort=${sort}&page=${page}&pageSize=${pageSize}`
+        `/product?keyword=${keyword}&sort=${sort}&page=${page}&pageSize${pageSize}`
       );
       const product = response.data;
       dispatch({

@@ -190,7 +190,7 @@ const Home = () => {
           <p>You’ve never seen it before!</p>
         </div>
         <div className="d-flex flex-wrap row-gap-4 gap-3">
-          <NewProduct />
+          <Card />
         </div>
       </section>
 
