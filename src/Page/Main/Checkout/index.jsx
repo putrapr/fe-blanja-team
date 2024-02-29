@@ -3,12 +3,12 @@ import Button from "../../../Components/Base/button";
 import ShippingAddressModal from "../../../Components/Module/Modal/ShippingAddressModal/ShippingAddressModal";
 import Navbar from "../../../Components/Module/Navbar/index";
 import { useState, useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectedAddress } from "../../../config/redux/action/AddressAction";
 import Payment from "../../../Components/Module/Modal/Payment";
 import { getByCustomerId } from "../../../config/redux/action/myBagAction";
 // import { Navigate } from "react-router-dom";
+
 const Checkout = () => {
   const dispatch = useDispatch();
   const { address } = useSelector((state) => state.address);
