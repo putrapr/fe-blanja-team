@@ -20,31 +20,48 @@ export const getMyBag = () => async (dispatch) => {
   }
 };
 
+// export const addMyBag = (data) => async (dispatch) => {
+//   try {
+//     console.log(data);
+//     dispatch({
+//       type: "ADD_MYBAG_REQUEST",
+//     });
+//     // const token = localStorage.getItem("token");
+//     const response = await api.post(`/mybag`, data);
+//     // const response = await axios.post(
+//     //   `${import.meta.env.VITE_API_URL}/mybag`,
+//     //   data,
+//     //   {
+//     //     headers: {
+//     //       "Content-Type": "multipart/form-data",
+//     //       //   Authorization: `Bearer ${token}`,
+//     //     },
+//     //   }
+//     // );
+//     const mybag = response.data.data;
+
+//     dispatch({
+//       type: "ADD_MYBAG_SUCCESS",
+//       payload: mybag,
+//     });
+//     //   dispatch(getMyBag());
+//   } catch (error) {
+//     dispatch({
+//       type: "ADD_MYBAG_FAILURE",
+//       payload: error.response,
+//     });
+//   }
+// };
+
 export const addMyBag = (data) => async (dispatch) => {
   try {
-    console.log(data);
     dispatch({
       type: "ADD_MYBAG_REQUEST",
     });
-    // const token = localStorage.getItem("token");
-    const response = await api.post(`/mybag`, data);
-    // const response = await axios.post(
-    //   `${import.meta.env.VITE_API_URL}/mybag`,
-    //   data,
-    //   {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //       //   Authorization: `Bearer ${token}`,
-    //     },
-    //   }
-    // );
-    const mybag = response.data.data;
-
+    await api.post(`/mybag`, data);
     dispatch({
       type: "ADD_MYBAG_SUCCESS",
-      payload: mybag,
     });
-    //   dispatch(getMyBag());
   } catch (error) {
     dispatch({
       type: "ADD_MYBAG_FAILURE",
@@ -52,3 +69,15 @@ export const addMyBag = (data) => async (dispatch) => {
     });
   }
 };
+
+// const response = await axios.post(
+//   `${import.meta.env.VITE_API_URL}/mybag`,
+//   data,
+//   {
+//     headers: {
+//       "Content-Type": "multipart/form-data",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }
+// );
+// const mybag = response.data.data;

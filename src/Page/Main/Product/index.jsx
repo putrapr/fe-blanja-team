@@ -12,16 +12,47 @@ import { addMyBag } from "../../../config/redux/action/myBagAction";
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const [data, setData] = useState({
-  //   product_id: id,
-  //   quantity: "",
+  //   name: "",
   //   price: "",
   // });
 
-  // const { loading, myBag } = useSelector((state) => state.myBag);
+  const handleAddToCart = (product) => {
+    const itemToAdd = {
+      id: product?.id,
+      name: product?.name,
+      price: product?.price,
+      quantity: quantity,
+    };
+    dispatch(addMyBag(itemToAdd));
+    navigate("/mybag");
+  };
+
+  const handleCheckout = (product) => {
+    const itemToAdd = {
+      id: product?.id,
+      name: product?.name,
+      price: product?.price,
+      quantity: quantity,
+    };
+    dispatch(addMyBag(itemToAdd));
+    navigate("/checkout");
+  };
+
+  const handlePlusQuantity = () => {
+    if (quantity < product?.stock) {
+      setQuantity((prev) => prev + 1);
+    }
+  };
+
+  const handleMinusQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -98,7 +129,24 @@ const Product = () => {
                   </div>
                   <div className="d-flex flex-column">
                     <p>Jumlah</p>
-                    <CountButton />
+                    {/* <CountButton /> */}
+                    <div>
+                      <button
+                        onClick={() => handleMinusQuantity()}
+                        type="button"
+                        className="btn btn-dark"
+                      >
+                        -
+                      </button>
+                      <span className="num px-2">{quantity}</span>
+                      <button
+                        onClick={() => handlePlusQuantity()}
+                        type="button"
+                        className="btn btn-outline-dark"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="button d-flex mt-4">
@@ -109,16 +157,14 @@ const Product = () => {
                     Chat
                   </button>
                   <button
-                    // onClick={() => handleAddToCart(data)}
-                    onClick={() => navigate("/mybag")}
+                    onClick={() => handleAddToCart(product)}
                     type="button"
                     className="btn btn-outline-dark me-2 flex-grow-3"
                   >
                     Add Bag
                   </button>
                   <button
-                    // onClick={() => handleCheckout(data)}
-                    onClick={() => navigate("/checkout")}
+                    onClick={() => handleCheckout(product)}
                     type="button"
                     className="btn btn-danger me-2 flex-grow-1"
                   >
