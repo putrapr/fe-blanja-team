@@ -100,20 +100,22 @@ const Mybag = () => {
             </div> */}
           </Col>
           <Col lg={4} className="mt-3">
-            <div className="ms-3 summary">
-              <p className="ms-3 pt-3 shop">Shopping summary</p>
-              <Row>
-                <Col lg={8}>
-                  <p className="price ms-3 pt-3">Total price</p>
-                </Col>
-                <Col lg={4}>
-                  <p className="prices pt-3">Rp 400.000</p>
-                </Col>
-                <div className="d-flex justify-content-center">
-                  <Button className="mt-2 btn-buy" child="Buy" />
-                </div>
-              </Row>
-            </div>
+            {myBagList.map((item) => (
+              <div className="ms-3 summary" key={item.id}>
+                <p className="ms-3 pt-3 shop">Shopping summary</p>
+                <Row>
+                  <Col lg={8}>
+                    <p className="price ms-3 pt-3">Total price</p>
+                  </Col>
+                  <Col lg={4}>
+                    <p className="prices pt-3">Rp {item.price}</p>
+                  </Col>
+                  <div className="d-flex justify-content-center">
+                    <Button className="mt-2 btn-buy" child="Buy" />
+                  </div>
+                </Row>
+              </div>
+            ))}
           </Col>
         </Row>
       </Container>
