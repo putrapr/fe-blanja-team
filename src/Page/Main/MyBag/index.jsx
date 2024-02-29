@@ -6,12 +6,25 @@ import Navbar from "../../../Components/Module/Navbar";
 import Button from "../../../Components/Base/button";
 // import MybagCard from "../../../Components/Base/MybagCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getByCustomerId } from "../../../config/redux/action/myBagAction";
 
 const Mybag = () => {
   const { myBagList } = useSelector((state) => state.myBag);
   const dispatch = useDispatch();
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    // Calculate total price whenever myBagList changes
+    const calculateTotalPrice = () => {
+      const total = myBagList.reduce((accumulator, item) => {
+        return accumulator + item.price;
+      }, 0);
+      setTotalPrice(total);
+    };
+
+    calculateTotalPrice();
+  }, [myBagList]);
 
   useEffect(() => {
     dispatch(getByCustomerId());
@@ -42,7 +55,11 @@ const Mybag = () => {
               </div>
             </div>
             {myBagList.map((item, index) => (
-              <div key={index} className="card mb-2 mt-3" style={{ width: "100%" }}>
+              <div
+                key={index}
+                className="card mb-2 mt-3"
+                style={{ width: "100%" }}
+              >
                 <div className="card-body d-flex flex-row justify-content-between align-items-center ">
                   <div className="d-flex flex-row ">
                     <div className="d-flex flex-row justify-content-between align-items-center">
@@ -100,22 +117,20 @@ const Mybag = () => {
             </div> */}
           </Col>
           <Col lg={4} className="mt-3">
-            {myBagList.map((item) => (
-              <div className="ms-3 summary" key={item.id}>
+              <div className="ms-3 summary">
                 <p className="ms-3 pt-3 shop">Shopping summary</p>
                 <Row>
                   <Col lg={8}>
                     <p className="price ms-3 pt-3">Total price</p>
                   </Col>
                   <Col lg={4}>
-                    <p className="prices pt-3">Rp {item.price}</p>
+                    <p className="prices pt-3">Rp {totalPrice}</p>
                   </Col>
                   <div className="d-flex justify-content-center">
                     <Button className="mt-2 btn-buy" child="Buy" />
                   </div>
                 </Row>
               </div>
-            ))}
           </Col>
         </Row>
       </Container>
