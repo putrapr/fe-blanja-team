@@ -1,5 +1,6 @@
 const initialState = {
   myBag: {},
+  myBagList: [],
   loading: false,
   error: "",
 };
@@ -39,6 +40,26 @@ const myBagReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case "GET_BY_CUSTOMER_ID_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_BY_CUSTOMER_ID_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        myBagList: action.payload,
+      };
+    case "GET_BY_CUSTOMER_ID_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
   }
 };
 

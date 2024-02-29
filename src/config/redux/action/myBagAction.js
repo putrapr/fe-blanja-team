@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import api from "../../api";
 
 export const getMyBag = () => async (dispatch) => {
@@ -48,6 +48,25 @@ export const addMyBag = (data) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "ADD_MYBAG_FAILURE",
+      payload: error.response,
+    });
+  }
+};
+
+export const getByCustomerId = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_BY_CUSTOMER_ID_REQUEST",
+    });
+    const response = await api.get(`/mybag/customer`);
+    const mybag = response.data.data;
+    dispatch({
+      type: "GET_BY_CUSTOMER_ID_SUCCESS",
+      payload: mybag,
+    });
+  } catch (error) {
+    dispatch({
+      type: "GET_BY_CUSTOMER_ID_FAILURE",
       payload: error.response,
     });
   }
