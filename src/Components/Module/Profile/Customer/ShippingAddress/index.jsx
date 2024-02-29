@@ -6,7 +6,9 @@ import {
   deleteAddress,
   myAddress,
 } from "../../../../../config/redux/action/AddressAction";
-import ShippingAddressModal from "../../../Modal/ShippingAddressModal/ShippingAddressModal";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+const MySwal = withReactContent(Swal);
 
 const ShippingAddress = () => {
   const [show, setShow] = useState(false);
@@ -15,14 +17,28 @@ const ShippingAddress = () => {
 
   const dispatch = useDispatch();
 
-  const { loading, address } = useSelector((state) => state.address);
+  const { addressList } = useSelector((state) => state.address);
 
   useEffect(() => {
-    dispatch(myAddress(address));
-  }, []);
+    dispatch(myAddress());
+  }, [dispatch]);
 
-  const handleDeleteAddres = async () => {
-    dispatch(deleteAddress(address.id));
+  const handleDeleteAddres = (id) => {
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this address!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteAddress(id));
+        MySwal.fire("Deleted!", "Your address has been deleted.", "success");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        MySwal.fire("Cancelled", "Your address is safe :)", "error");
+      }
+    });
   };
   return (
     <section id="shippingAddress">
@@ -35,46 +51,50 @@ const ShippingAddress = () => {
 
             <div className="row mt-5 d-grid">
               <button
-                className="btn btn-warning"
+                className="btn btn-danger"
                 type="button"
-                style={{ marginRight: 8 }}
+                style={{
+                  // width: "80%",
+                  border: "1px dashed grey",
+                  height: "40px",
+                  lineHeight: "20px",
+                  textAlign: "center",
+                  marginBottom: "40px",
+                }}
                 onClick={handleShow}
               >
+                <span>Add New Address</span>
                 <AddANewModal showMe={show} onHideMe={handleClose} />
               </button>
             </div>
             <div className="row mt-3">
               <div className="card">
-                {loading
-                  ? "Loading..."
-                  : address?.map((item, index) => (
-                      <div className="card-body" key={index}>
-                        <h5>{item?.recipients_name}</h5>
-                        <p>
-                          <span>{item?.addres} </span>
-                          <span>{item?.home_addres} </span>
-                          <span>{item?.city} </span>
-                          <span>{item?.postal_code}</span>
-                          <button
-                            style={{
-                              position: "absolute",
-                              right: 15,
-                              top: "40%",
-                            }}
-                            onClick={handleDeleteAddres}
-                          >
-                            {" "}
-                            <FaTrash size={15} />
-                          </button>
-                        </p>
-                        <a>
-                          <ShippingAddressModal
-                            showMe={show}
-                            onHideMe={handleClose}
-                          />
-                        </a>
+                {addressList?.map((item) => (
+                  <div className="card-body" key={item.id}>
+                    <h5>{item?.name_recipient}</h5>
+                    <p>
+                      <span>{`${item.street}, ${item.city}`} </span>
+                      <br />
+                      <span>{item?.postal_code}</span>
+                    </p>
+                    <div className="position-relative">
+                      <div className="position-absolute bottom-100 start-100 translate-middle">
+                        <button
+                          className="btn btn-danger"
+                          // style={{
+                          //   right: 25,
+                          //   top: "30%",
+                          // }}
+                          onClick={() => {
+                            handleDeleteAddres(item.id);
+                          }}
+                        >
+                          <FaTrash size={15} />
+                        </button>
                       </div>
-                    ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
