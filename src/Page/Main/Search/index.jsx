@@ -1,5 +1,4 @@
 import { AiOutlineSearch } from "react-icons/ai";
-import Nav from "../../../Components/Module/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../../../config/redux/action/productAction";
 import { useEffect, useState } from "react";
