@@ -47,7 +47,7 @@ const Checkout = () => {
   }
 
   const [totalPrice, setTotalPrice] = useState(0);
-  const [orderData, setOrderData] = useState({})
+  // const [orderData, setOrderData] = useState({})
   const [lastOrderId, setLastOrderId] = useState()
 
   useEffect(() => {
@@ -59,12 +59,12 @@ const Checkout = () => {
     };    
 
     calculateTotalPrice();    
-    setOrderData({
-      address_id: address.id,
-      seller_id: "6",
-      order_total: totalPrice,
-      payment_method: "gopay"
-    })  
+    // setOrderData({
+    //   address_id: address.id,
+    //   seller_id: "6",
+    //   order_total: totalPrice,
+    //   payment_method: "gopay"
+    // })  
   }, [myBagList]);
 
   
@@ -217,7 +217,7 @@ const Checkout = () => {
                   }}
                   onClick={handlePaymentClick}
                 />
-                <Payment show={showPaymentModal} onHide={handleCloseModal} address_id={address.id} totalPrice={totalPrice} orderData={orderData} myBagList={myBagList} lastOrderId={lastOrderId} />
+                <Payment show={showPaymentModal} onHide={handleCloseModal} address_id={address?.id} totalPrice={totalPrice} myBagList={myBagList} lastOrderId={lastOrderId} />
               </div>
             </div>
           </div>

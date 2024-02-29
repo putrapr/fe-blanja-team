@@ -10,7 +10,7 @@ import { AddOrderHeader, AddOrderItem } from '../../../../config/redux/action/Or
 import { useNavigate } from "react-router-dom";
 
 
-const Payment = ({ show, onHide, orderData={}, address_id, totalPrice, myBagList=[], lastOrderId }) => {
+const Payment = ({ show, onHide, address_id, totalPrice, myBagList=[], lastOrderId }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()  
 
@@ -35,7 +35,7 @@ const Payment = ({ show, onHide, orderData={}, address_id, totalPrice, myBagList
     setTimeout(() => {
       alert('Order Success !')
       navigate("/profile")
-    }, 3000)    
+    }, 5000)    
   }
 
   return (
