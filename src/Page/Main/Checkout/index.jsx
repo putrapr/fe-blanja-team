@@ -112,11 +112,13 @@ const Checkout = () => {
                   <div className="col-8">
                     <h5> Shopping Summary </h5>
                   </div>
-                  <div className="col-4">
-                    <h6 style={{ color: "#DB3022" }}>
-                      Rp.<span>450.000</span>
-                    </h6>
-                  </div>
+                  {myBagList.map((item) => (
+                    <div className="col-4" key={item.id}>
+                      <h6 style={{ color: "#DB3022" }}>
+                        Rp.<span>{item.price}</span>
+                      </h6>
+                    </div>
+                  ))}
                 </div>
                 <Button
                   className="mx-auto"

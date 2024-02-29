@@ -6,7 +6,7 @@ import CountButton from "../../../Components/Base/Count";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addMyBag } from "../../../config/redux/action/myBagAction";
 
 const Product = () => {
@@ -22,8 +22,8 @@ const Product = () => {
 
   const handleAddToCart = (product) => {
     const itemToAdd = {
-      id: product?.id,
-      name: product?.name,
+      product_id: product?.id,
+      // name: product?.name,
       price: product?.price,
       quantity: quantity,
     };
@@ -33,8 +33,8 @@ const Product = () => {
 
   const handleCheckout = (product) => {
     const itemToAdd = {
-      id: product?.id,
-      name: product?.name,
+      product_id: product?.id,
+      // name: product?.name,
       price: product?.price,
       quantity: quantity,
     };

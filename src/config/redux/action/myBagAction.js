@@ -58,7 +58,7 @@ export const addMyBag = (data) => async (dispatch) => {
     dispatch({
       type: "ADD_MYBAG_REQUEST",
     });
-    await api.post(`/mybag`, data);
+    await api.post("/mybag", data);
     dispatch({
       type: "ADD_MYBAG_SUCCESS",
     });
