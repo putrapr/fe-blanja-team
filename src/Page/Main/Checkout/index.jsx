@@ -29,6 +29,20 @@ const Checkout = () => {
     setShowPaymentModal(false);
   };
 
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    // Calculate total price whenever myBagList changes
+    const calculateTotalPrice = () => {
+      const total = myBagList.reduce((accumulator, item) => {
+        return accumulator + item.price;
+      }, 0);
+      setTotalPrice(total);
+    };
+    
+    calculateTotalPrice();
+  }, [myBagList]);
+
   useEffect(() => {
     dispatch(selectedAddress());
     dispatch(getByCustomerId());
@@ -104,7 +118,7 @@ const Checkout = () => {
                       </div>
 
                       <div>
-                        <div className="price ms-4 end-2">$ {item?.price}</div>
+                        <div className="price ms-4 end-2">Rp {item?.price}</div>
                       </div>
                     </div>
                   </div>
@@ -140,7 +154,7 @@ const Checkout = () => {
                   </div>
                   <div className="col-4">
                     <h6>
-                      Rp.<span>400.000</span>
+                      Rp.<span>{totalPrice}</span>
                     </h6>
                   </div>
                 </div>
@@ -150,7 +164,7 @@ const Checkout = () => {
                   </div>
                   <div className="col-4">
                     <h6>
-                      Rp.<span>50.000</span>
+                      Rp.<span>5000</span>
                     </h6>
                   </div>
                 </div>
@@ -161,13 +175,11 @@ const Checkout = () => {
                   <div className="col-8">
                     <h5> Shopping Summary </h5>
                   </div>
-                  {myBagList.map((item) => (
-                    <div className="col-4" key={item.id}>
+                    <div className="col-4">
                       <h6 style={{ color: "#DB3022" }}>
-                        Rp.<span>{item.price}</span>
+                        Rp.<span>{totalPrice + 5000}</span>
                       </h6>
                     </div>
-                  ))}
                 </div>
                 <Button
                   className="mx-auto"
