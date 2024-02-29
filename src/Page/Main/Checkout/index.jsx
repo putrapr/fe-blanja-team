@@ -1,4 +1,4 @@
-import CheckoutCard from "../../../Components/Base/CheckoutCard/CheckoutCard";
+// import CheckoutCard from "../../../Components/Base/CheckoutCard/CheckoutCard";
 import Button from "../../../Components/Base/button";
 import ShippingAddressModal from "../../../Components/Module/Modal/ShippingAddressModal/ShippingAddressModal";
 import Navbar from "../../../Components/Module/Navbar/index";
@@ -58,15 +58,64 @@ const Checkout = () => {
               />
               <ShippingAddressModal show={show} onHide={handleClose} />
               <div className="container">
-                {myBagList.map((item) => (
-                  <div key={item.id}>
-                    <CheckoutCard
-                      title={item.name}
-                      productDesc={item.size}
-                      price={item.price}
-                      // src={item.image}
-                    />
+                {myBagList.map((item, index) => (
+                  <div
+                    key={index}
+                    className="card mb-2 mt-3"
+                    style={{ width: "100%" }}
+                  >
+                    <div className="card-body d-flex flex-row justify-content-between align-items-center ">
+                      <div className="d-flex flex-row ">
+                        <div className="d-flex flex-row justify-content-between align-items-center">
+                          <input
+                            className="form-check-input checkBox d-flex align-items-center me-3"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckIndeterminate"
+                          />
+                        </div>
+
+                        <div className="d-flex flex-row justify-content-start align-items-center ItemMyOrder">
+                          <div>
+                            <img
+                              src={item?.image}
+                              alt=""
+                              className="contentCheckOut me-2 img-fluid"
+                              style={{
+                                cursor: "pointer",
+                                width: "90px",
+                                height: "69px",
+                              }}
+                            />
+                          </div>
+
+                          <div className="me-5">
+                            <h4
+                              className="navbar-brand ms-2  text-start text-wrap "
+                              style={{
+                                marginBottom: "2px",
+                                width: "100%",
+                              }}
+                            >
+                              {item?.name}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="price ms-4 end-2">$ {item?.price}</div>
+                      </div>
+                    </div>
                   </div>
+                  // <div key={item.id}>
+                  //   <CheckoutCard
+                  //     title={item.name}
+                  //     productDesc={item.size}
+                  //     price={item.price}
+                  //     src={item.image}
+                  //   />
+                  // </div>
                 ))}
                 {/* <CheckoutCard
                   title="Men's Jacket jeans"

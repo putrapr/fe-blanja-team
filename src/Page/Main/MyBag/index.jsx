@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import "./mybag.css";
 import Navbar from "../../../Components/Module/Navbar";
 import Button from "../../../Components/Base/button";
-import MybagCard from "../../../Components/Base/MybagCard";
+// import MybagCard from "../../../Components/Base/MybagCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getByCustomerId } from "../../../config/redux/action/myBagAction";
@@ -41,14 +41,59 @@ const Mybag = () => {
                 <button className=" delete">Delete</button>
               </div>
             </div>
-            {myBagList.map((item) => (
-              <div key={item.id}>
-                <MybagCard
-                  prodTitle={item.name}
-                  descProduct={item.size}
-                  cost={item.price}
-                />
+            {myBagList.map((item, index) => (
+              <div key={index} className="card mb-2 mt-3" style={{ width: "100%" }}>
+                <div className="card-body d-flex flex-row justify-content-between align-items-center ">
+                  <div className="d-flex flex-row ">
+                    <div className="d-flex flex-row justify-content-between align-items-center">
+                      <input
+                        className="form-check-input checkBox d-flex align-items-center me-3"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckIndeterminate"
+                      />
+                    </div>
+
+                    <div className="d-flex flex-row justify-content-start align-items-center ItemMyOrder">
+                      <div>
+                        <img
+                          src={item?.image}
+                          alt=""
+                          className="contentCheckOut me-2 img-fluid"
+                          style={{
+                            cursor: "pointer",
+                            width: "90px",
+                            height: "69px",
+                          }}
+                        />
+                      </div>
+
+                      <div className="me-5">
+                        <h4
+                          className="navbar-brand ms-2  text-start text-wrap "
+                          style={{
+                            marginBottom: "2px",
+                            width: "100%",
+                          }}
+                        >
+                          {item?.name}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="price ms-4 end-2">$ {item?.price}</div>
+                  </div>
+                </div>
               </div>
+              // <div key={item.id}>
+              //   <MybagCard
+              //     prodTitle={item.name}
+              //     descProduct={item.size}
+              //     cost={item.price}
+              //   />
+              // </div>
             ))}
             {/* <div>
               <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
