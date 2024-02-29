@@ -5,6 +5,7 @@ import Button from "../../../Base/button";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../../../config/redux/action/AddressAction";
+import Swal from "sweetalert2";
 
 const AddANewModal = (props) => {
   const dispatch = useDispatch();
@@ -26,6 +27,11 @@ const AddANewModal = (props) => {
     try {
       const address = await dispatch(addAddress(values));
       console.log(address);
+      Swal.fire({
+        title: "Add Address",
+        text: "Add Address Successfull",
+        icon: "success",
+      });
       onHideMe();
     } catch (error) {
       console.log(error);
