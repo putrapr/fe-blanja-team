@@ -3,9 +3,18 @@ import image from "../../../assets/gez-xavier-mansfield-b34E1vh1tYU-unsplash 2.s
 import PropTypes from "prop-types";
 import CountButton from "../Count";
 import "./myBagCard.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getByCustomerId } from "../../../config/redux/action/myBagAction";
 
 const MybagCard = (props) => {
   const { src, alt, prodTitle, descProduct, cost } = props;
+  const { myBagList } = useSelector((state) => state.myBag);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getByCustomerId())
+  }, [dispatch])
   return (
     <div>
       <div id="bag">
@@ -19,9 +28,11 @@ const MybagCard = (props) => {
             />
           </div>
             <div className="row d-flex align-items-center">
-              <div className="col-1 ms-3">
-                <img src={image || src} alt={alt} />
+              {myBagList.map((item)=>(
+              <div className="col-1 ms-3" key={item.id}>
+                <img src={item.image} alt={alt} style={{ width: "100%", height: "100%" }}/>
               </div>
+              ))}
               <div className="col-6 mt-3 wrapper">
                 <div className="container">
                   <p className="prod">{prodTitle}</p>

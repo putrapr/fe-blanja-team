@@ -5,8 +5,17 @@ import "./mybag.css";
 import Navbar from "../../../Components/Module/Navbar";
 import Button from "../../../Components/Base/button";
 import MybagCard from "../../../Components/Base/MybagCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getByCustomerId } from "../../../config/redux/action/myBagAction";
 
 const Mybag = () => {
+  const { myBagList } = useSelector((state) => state.myBag);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getByCustomerId());
+  }, [dispatch]);
   return (
     <>
       <Navbar />
@@ -32,30 +41,34 @@ const Mybag = () => {
                 <button className=" delete">Delete</button>
               </div>
             </div>
-            <div>
+            {myBagList.map((item) => (
+              <div key={item.id}>
+                <MybagCard
+                  prodTitle={item.name}
+                  descProduct={item.size}
+                  cost={item.price}
+                />
+              </div>
+            ))}
+            {/* <div>
               <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
-            </div>
-            <div>
-              <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
-            </div>
-            
+            </div> */}
           </Col>
           <Col lg={4} className="mt-3">
             <div className="ms-3 summary">
               <p className="ms-3 pt-3 shop">Shopping summary</p>
               <Row>
-              <Col lg={8}>
-                <p className="price ms-3 pt-3">Total price</p>
-              </Col>
-              <Col lg={4}>
-                <p className="prices pt-3">Rp 400.000</p>
-              </Col>
-              <div className="d-flex justify-content-center">
-              <Button className="mt-2 btn-buy" child="Buy"/>
-              </div>
-            </Row>
+                <Col lg={8}>
+                  <p className="price ms-3 pt-3">Total price</p>
+                </Col>
+                <Col lg={4}>
+                  <p className="prices pt-3">Rp 400.000</p>
+                </Col>
+                <div className="d-flex justify-content-center">
+                  <Button className="mt-2 btn-buy" child="Buy" />
+                </div>
+              </Row>
             </div>
-            
           </Col>
         </Row>
       </Container>
