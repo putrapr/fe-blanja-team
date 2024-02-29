@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import svgNoOrder from '../../../../../assets/img/no-order.svg'
 import "./my_order.css";
+import { useSelector, useDispatch } from 'react-redux'
+import { Orders } from '../../../../../config/redux/action/OrderAction.js'
+import moment from 'moment'
 
 const MyOrder = () => {
+  const dispatch = useDispatch()
+  const { order, product_id, loading, error } = useSelector((state) => state.order)
+
+  const getOrder = async () => {
+    try {
+      await dispatch(Orders())
+    } catch (err) { /* empty */ }
+  }
+
+  useEffect(() => {
+    getOrder()
+  }, [])
+
   return (
     <section id="my-order">
       <div className="main-content">
@@ -110,17 +126,17 @@ const MyOrder = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {dataOrderItems.length > 0 ? (
-                  dataOrderItems.map((item, index) => {
+                {order.length > 0 ? (
+                  order.map((item, index) => {
                     return (
                       <tr key={index} style={{ fontSize: 12 }}>
                         <td style={{ padding: 10 }}>
-                          {formatDateDDMMYY(item?.order_data)}
+                          {moment(item?.order_date).format("DD-MM-YYYY")}
                         </td>
-                        <td style={{ padding: 10 }}>{item?.product_name}</td>
-                        <td style={{ padding: 10 }}>{item?.quantity_unit}</td>
-                        <td style={{ padding: 10 }}>$ {item?.price_unit}</td>
-                        <td style={{ padding: 10 }}>{item?.order_id}</td>
+                        <td style={{ padding: 10 }}>{item?.id}</td>
+                        <td style={{ padding: 10 }}>{item?.id_product}</td>
+                        <td style={{ padding: 10 }}>{item?.quantity}</td>
+                        <td style={{ padding: 10 }}>$ {item?.price}</td>                        
                         <td style={{ padding: 10 }}>{item?.payment_method}</td>
                       </tr>
                     );
@@ -129,23 +145,19 @@ const MyOrder = () => {
                   <tr>
                     <td colSpan="6">
                       <div className="no-data">
-                        <img src={svgNoProduct} alt="no-order" />
+                        <img src={svgNoOrder} alt="no-order" />
                       </div>
                     </td>
                   </tr>
-                )} */}
-{/* display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 340px; */}
-                <tr>
+                )}
+
+                {/* <tr>
                   <td colSpan="6">
                     <div className="no-data">
                       <img src={svgNoOrder} alt="no-order" />
                     </div>
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>

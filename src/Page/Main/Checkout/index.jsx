@@ -13,8 +13,18 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const { address } = useSelector((state) => state.address);
   const { myBagList } = useSelector((state) => state.myBag);
-  console.log(address);
-  console.log(myBagList);
+  // Insert order
+  // console.log(address.id); Done
+  // seller.id = 6
+  // order_total = 150000
+  // payment_method = gopay
+
+  // Insert order_item
+  // getLastId Order
+  
+  // myBag id_product
+  // quantity
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
