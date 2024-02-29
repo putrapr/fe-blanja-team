@@ -8,6 +8,7 @@ import {
 } from "../../../../../config/redux/action/AddressAction";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import ModalUpdateAddress from "../../../Modal/ModalUpdateAddress";
 const MySwal = withReactContent(Swal);
 
 const ShippingAddress = () => {
@@ -72,27 +73,25 @@ const ShippingAddress = () => {
                 {addressList?.map((item) => (
                   <div className="card-body" key={item.id}>
                     <h5>{item?.name_recipient}</h5>
+
                     <p>
                       <span>{`${item.street}, ${item.city}`} </span>
                       <br />
+                      <div className="position-relative">
+                        <div className="position-absolute bottom-50 end-0">
+                          <ModalUpdateAddress addressId={item.id} />
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              handleDeleteAddres(item.id);
+                            }}
+                          >
+                            <FaTrash size={15} />
+                          </button>
+                        </div>
+                      </div>
                       <span>{item?.postal_code}</span>
                     </p>
-                    <div className="position-relative">
-                      <div className="position-absolute bottom-100 start-100 translate-middle">
-                        <button
-                          className="btn btn-danger"
-                          // style={{
-                          //   right: 25,
-                          //   top: "30%",
-                          // }}
-                          onClick={() => {
-                            handleDeleteAddres(item.id);
-                          }}
-                        >
-                          <FaTrash size={15} />
-                        </button>
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>
