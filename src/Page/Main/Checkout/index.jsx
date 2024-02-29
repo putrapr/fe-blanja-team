@@ -6,12 +6,15 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedAddress } from "../../../config/redux/action/AddressAction";
 import Payment from "../../../Components/Module/Modal/Payment";
+import { getByCustomerId } from "../../../config/redux/action/myBagAction";
 // import { Navigate } from "react-router-dom";
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const { address } = useSelector((state) => state.address);
+  const { myBagList } = useSelector((state) => state.myBag);
   console.log(address);
+  console.log(myBagList);
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -28,6 +31,7 @@ const Checkout = () => {
 
   useEffect(() => {
     dispatch(selectedAddress());
+    dispatch(getByCustomerId());
   }, [dispatch]);
 
   return (
@@ -54,16 +58,21 @@ const Checkout = () => {
               />
               <ShippingAddressModal show={show} onHide={handleClose} />
               <div className="container">
-                <CheckoutCard
-                  title="Men's formal suit - Black"
-                  productDesc="Zalora Cloth"
-                  price="200.000"
-                />
-                <CheckoutCard
+                {myBagList.map((item) => (
+                  <div key={item.id}>
+                    <CheckoutCard
+                      title={item.name}
+                      productDesc={item.size}
+                      price={item.price}
+                      // src={item.image}
+                    />
+                  </div>
+                ))}
+                {/* <CheckoutCard
                   title="Men's Jacket jeans"
                   productDesc="Zalora Cloth"
                   price="200.000"
-                />
+                /> */}
               </div>
             </div>
             <div

@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import api from "../../api";
 
 export const getMyBag = () => async (dispatch) => {
@@ -70,14 +70,21 @@ export const addMyBag = (data) => async (dispatch) => {
   }
 };
 
-// const response = await axios.post(
-//   `${import.meta.env.VITE_API_URL}/mybag`,
-//   data,
-//   {
-//     headers: {
-//       "Content-Type": "multipart/form-data",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   }
-// );
-// const mybag = response.data.data;
+export const getByCustomerId = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_BY_CUSTOMER_ID_REQUEST",
+    });
+    const response = await api.get(`/mybag/customer`);
+    const mybag = response.data.data;
+    dispatch({
+      type: "GET_BY_CUSTOMER_ID_SUCCESS",
+      payload: mybag,
+    });
+  } catch (error) {
+    dispatch({
+      type: "GET_BY_CUSTOMER_ID_FAILURE",
+      payload: error.response,
+    });
+  }
+};
