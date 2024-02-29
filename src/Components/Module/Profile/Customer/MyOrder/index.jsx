@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import svgNoOrder from '../../../../../assets/img/no-order.svg'
 import "./my_order.css";
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,15 +7,19 @@ import moment from 'moment'
 
 const MyOrder = () => {
   const dispatch = useDispatch()
-  const { order, product_id, loading, error } = useSelector((state) => state.order)
+  const { order } = useSelector((state) => state.order)
 
+  const [isLoading, setIsLoading] = useState(true)
+  
   const getOrder = async () => {
     try {
+      // setIsLoading(true)
       await dispatch(Orders())
+      setIsLoading(false)
     } catch (err) { /* empty */ }
   }
 
-  useEffect(() => {
+  useEffect(() => {    
     getOrder()
   }, [])
 
@@ -114,7 +118,7 @@ const MyOrder = () => {
             </ul> */}
             <table
               className="table"
-              style={{ height: 400, border: "1px solid #D4D4D4" }}>
+              style={{ border: "1px solid #D4D4D4" }}>
               <thead>
                 <tr style={{ width: "100%", height: 60 }}>
                   <th className="th">Tanggal</th>
@@ -126,21 +130,29 @@ const MyOrder = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.length > 0 ? (
-                  order.map((item, index) => {
-                    return (
-                      <tr key={index} style={{ fontSize: 12 }}>
-                        <td style={{ padding: 10 }}>
-                          {moment(item?.order_date).format("DD-MM-YYYY")}
-                        </td>
-                        <td style={{ padding: 10 }}>{item?.id}</td>
-                        <td style={{ padding: 10 }}>{item?.id_product}</td>
-                        <td style={{ padding: 10 }}>{item?.quantity}</td>
-                        <td style={{ padding: 10 }}>$ {item?.price}</td>                        
-                        <td style={{ padding: 10 }}>{item?.payment_method}</td>
-                      </tr>
-                    );
-                  })
+                {!isLoading ? (
+                  order.length > 0 ?
+                    order.map((item, index) => {
+                      return (
+                        <tr key={index} style={{ fontSize: 12 }}>
+                          <td style={{ padding: 10 }}>
+                            {moment(item?.order_date).format("DD-MM-YYYY")}
+                          </td>
+                          <td style={{ padding: 10 }}>{item?.id}</td>
+                          <td style={{ padding: 10 }}>{item?.id_product}</td>
+                          <td style={{ padding: 10 }}>{item?.quantity}</td>
+                          <td style={{ padding: 10 }}>$ {item?.price}</td>                        
+                          <td style={{ padding: 10 }}>{item?.payment_method}</td>
+                        </tr>
+                      );
+                    }) :
+                    <tr>
+                      <td colSpan="6">
+                        <div className="no-data">
+                          <img src={svgNoOrder} alt="no-order" />
+                        </div>
+                      </td>
+                    </tr>
                 ) : (
                   <tr>
                     <td colSpan="6">

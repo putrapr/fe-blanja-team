@@ -5,8 +5,39 @@ import pos from "../../../../assets/img/pos.png";
 import mastercard from "../../../../assets/img/mastercard.svg";
 import PropTypes from "prop-types";
 import Button from "../../../Base/button";
+import { useDispatch } from 'react-redux'
+import { AddOrderHeader, AddOrderItem } from '../../../../config/redux/action/OrderAction.js'
+import { useNavigate } from "react-router-dom";
 
-const Payment = ({ show, onHide }) => {
+
+const Payment = ({ show, onHide, orderData={}, address_id, totalPrice, myBagList=[], lastOrderId }) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()  
+
+  const insertOrder = async () => {
+    const orderData = {
+      address_id: address_id,
+      seller_id: "6",
+      order_total: totalPrice,
+      payment_method: "gopay"
+    } 
+    dispatch(AddOrderHeader(orderData))
+    let orderItem = []
+    myBagList.forEach((item, index) => {
+      orderItem[index] = {
+        id_order: lastOrderId,
+        id_product: item.id_product,
+        quantity: item.quantity,
+        price: item.price
+      } 
+    })
+    await dispatch(AddOrderItem(orderItem))
+    setTimeout(() => {
+      alert('Order Success !')
+      navigate("/profile")
+    }, 3000)    
+  }
+
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
@@ -54,7 +85,7 @@ const Payment = ({ show, onHide }) => {
                 style={{ width: 52.95, height: 40.89,  }}
               />
             </div>
-            <div className="col-7" tyle={{height : 50, display:"flex", alignItems: "center"}}>
+            <div className="col-7" style={{height : 50, display:"flex", alignItems: "center"}}>
               <p style={{paddingTop: 12}}>MasterCard</p>
             </div>
             <div className="col-1" style={{height : 50, display: "flex", verticalAlign: "center"}}>
@@ -92,6 +123,7 @@ const Payment = ({ show, onHide }) => {
               marginTop: 15,
               color: "white",
             }}
+            onClick={() => insertOrder()}
           >
           </Button>
             </div>

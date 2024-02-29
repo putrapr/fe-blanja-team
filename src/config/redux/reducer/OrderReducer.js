@@ -1,6 +1,8 @@
 const initialState = {
+  add_order:{},
+  add_order_item:{},
   order: {},
-  product_id: [],
+  id_product: [],
   loading: false,
   error: "",
 };
@@ -23,24 +25,51 @@ const OrderReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-      
-    // case "ADD_ORDER_REQUEST":
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //   };
-    // case "ADD_ORDER_SUCCESS":
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     ORDER: action.payload,
-    //   };
-    // case "ADD_MYBAG_FAILURE":
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: action.payload,
-    //   };
+
+    case "GET_LASTORDER_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_LASTORDER_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        order: action.payload,
+      };
+    case "GET_LASTORDER_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    
+
+    case "SET_ORDER":
+      return {
+        ...state,
+        loading: false,
+        add_order: action.payload,
+      };
+
+    case "ADD_ORDER_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "ADD_ORDER_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        // ORDER: action.payload,
+      };
+    case "ADD_ORDER_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     // case "GET_BY_CUSTOMER_ID_REQUEST":
     //   return {

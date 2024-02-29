@@ -22,7 +22,7 @@ const Product = () => {
 
   const handleAddToCart = (product) => {
     const itemToAdd = {
-      product_id: product?.id,
+      id_product: product?.id,
       // name: product?.name,
       price: product?.price,
       quantity: quantity,
@@ -33,7 +33,7 @@ const Product = () => {
 
   const handleCheckout = (product) => {
     const itemToAdd = {
-      product_id: product?.id,
+      id_product: product?.id,
       // name: product?.name,
       price: product?.price,
       quantity: quantity,

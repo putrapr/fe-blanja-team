@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectedAddress } from "../../../config/redux/action/AddressAction";
 import Payment from "../../../Components/Module/Modal/Payment";
 import { getByCustomerId } from "../../../config/redux/action/myBagAction";
-// import { Navigate } from "react-router-dom";
+import { GetLastOrderId } from "../../../config/redux/action/OrderAction.js";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,9 @@ const Checkout = () => {
   // myBag id_product
   // quantity
 
+  
+
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -39,22 +42,36 @@ const Checkout = () => {
     setShowPaymentModal(false);
   };
 
+  const setLastOrder = async () =>  {
+    setLastOrderId(await dispatch(GetLastOrderId()));
+  }
+
   const [totalPrice, setTotalPrice] = useState(0);
+  const [orderData, setOrderData] = useState({})
+  const [lastOrderId, setLastOrderId] = useState()
 
   useEffect(() => {
     const calculateTotalPrice = () => {
       const total = myBagList.reduce((accumulator, item) => {
         return accumulator + item.price;
       }, 0);
-      setTotalPrice(total);
-    };
-    
-    calculateTotalPrice();
+      setTotalPrice(total);      
+    };    
+
+    calculateTotalPrice();    
+    setOrderData({
+      address_id: address.id,
+      seller_id: "6",
+      order_total: totalPrice,
+      payment_method: "gopay"
+    })  
   }, [myBagList]);
 
+  
   useEffect(() => {
     dispatch(selectedAddress());
     dispatch(getByCustomerId());
+    setLastOrder();
   }, [dispatch]);
 
   return (
@@ -200,7 +217,7 @@ const Checkout = () => {
                   }}
                   onClick={handlePaymentClick}
                 />
-                <Payment show={showPaymentModal} onHide={handleCloseModal} />
+                <Payment show={showPaymentModal} onHide={handleCloseModal} address_id={address.id} totalPrice={totalPrice} orderData={orderData} myBagList={myBagList} lastOrderId={lastOrderId} />
               </div>
             </div>
           </div>
