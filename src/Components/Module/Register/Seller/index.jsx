@@ -51,6 +51,7 @@ const RegisterSeller = () => {
         showConfirmButton: false,
         timer: 1000,
       });
+      navigate("/login");
     } catch (error) {
       console.log(error);
       Swal.fire({
