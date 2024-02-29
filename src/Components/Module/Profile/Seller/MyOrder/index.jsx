@@ -1,12 +1,15 @@
 import "./myOrder.css";
 
 const MyOrder = () => {
-  const order = "";
-  const paidOrders = order.filter((item) => item.status === "paid");
-  const onDeliveryOrders = order?.filter(
-    (item) => item.status === "on delivery"
-  );
-  const deliveredOrders = order.filter((item) => item.status === "delivered");
+  // const order = "";
+  const paidOrders = "";
+  // const paidOrders = order.filter((item) => item.status === "paid");
+  // const onDeliveryOrders = order?.filter(
+  //   (item) => item.status === "on delivery"
+  // );
+  const onDeliveryOrders = "";
+  const deliveredOrders = "";
+  // const deliveredOrders = order.filter((item) => item.status === "delivered");
 
   return (
     <section id="my-order">
@@ -180,7 +183,7 @@ const MyOrder = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {paidOrders?.map((item, index) => {
+                          {/* {paidOrders?.map((item, index) => {
                             return (
                               <>
                                 <tr className="text-center" key={index}>
@@ -196,7 +199,7 @@ const MyOrder = () => {
                                 </tr>
                               </>
                             );
-                          })}
+                          })} */}
                         </tbody>
                       </table>
                     </div>
@@ -226,7 +229,7 @@ const MyOrder = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {onDeliveryOrders?.map((item, i) => {
+                          {/* {onDeliveryOrders?.map((item, i) => {
                             return (
                               <>
                                 <tr className="text-center" key={i}>
@@ -240,7 +243,7 @@ const MyOrder = () => {
                                 </tr>
                               </>
                             );
-                          })}
+                          })} */}
                         </tbody>
                       </table>
                     </div>
@@ -297,7 +300,7 @@ const MyOrder = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {deliveredOrders?.map((item, index) => {
+                          {/* {deliveredOrders?.map((item, index) => {
                             return (
                               <>
                                 <tr className="text-center" key={index}>
@@ -309,7 +312,7 @@ const MyOrder = () => {
                                 </tr>
                               </>
                             );
-                          })}
+                          })} */}
                         </tbody>
                       </table>
                     </div>

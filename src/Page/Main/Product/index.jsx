@@ -1,15 +1,28 @@
 import Navbar from "../../../Components/Module/Navbar";
 import Card from "../../../Components/Module/Card";
 import Iconstar from "../../../assets/icons/icon-start.svg";
+import Nav from "../../../Components/Module/Nav";
 import CountButton from "../../../Components/Base/Count";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addMyBag } from "../../../config/redux/action/myBagAction";
+import CountButton from "../../../Components/Base/Count";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [data, setData] = useState({
+  //   product_id: id,
+  //   quantity: "",
+  //   price: "",
+  // });
+
+  // const { loading, myBag } = useSelector((state) => state.myBag);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -31,13 +44,13 @@ const Product = () => {
       <Navbar />
       <main id="product-page" key={product?.id}>
         <div className="container mt-5">
+          <Nav />
           <div className="product mt-5">
             <div className="row">
               <section className="col-lg-4">
                 <div className="model container ">
                   <img
                     src={product?.image}
-                    style={{ width: 1000 }}
                     className="rounded img-fluid"
                     alt={product?.name}
                   />

@@ -66,6 +66,10 @@ const MyProduct = () => {
                   role="tab"
                   aria-controls="pills-home"
                   aria-selected="true"
+                  style={{
+                    color: "white",
+                    backgroundColor: "rgba(220, 53, 69,1)",
+                  }}
                 >
                   All Items
                 </button>
@@ -80,6 +84,10 @@ const MyProduct = () => {
                   role="tab"
                   aria-controls="pills-profile"
                   aria-selected="false"
+                  style={{
+                    color: "white",
+                    backgroundColor: "rgba(220, 53, 69,1)",
+                  }}
                 >
                   Sold Out
                 </button>
@@ -94,6 +102,10 @@ const MyProduct = () => {
                   role="tab"
                   aria-controls="pills-contact"
                   aria-selected="false"
+                  style={{
+                    color: "white",
+                    backgroundColor: "rgba(220, 53, 69,1)",
+                  }}
                 >
                   Archived
                 </button>
@@ -148,8 +160,8 @@ const MyProduct = () => {
                                     src={item.image}
                                     className="img-thumbnail"
                                     alt=""
-                                    width={100}
-                                    height={100}
+                                    width={70}
+                                    height={70}
                                   />
                                 </td>
                                 <td className="text-center">{item.name}</td>
