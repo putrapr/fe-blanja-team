@@ -18,7 +18,6 @@ const MybagCard = (props) => {
               id="flexCheckDefault"
             />
           </div>
-          <div className="container">
             <div className="row d-flex align-items-center">
               <div className="col-1 ms-3">
                 <img src={image || src} alt={alt} />
@@ -36,7 +35,6 @@ const MybagCard = (props) => {
                 <p>Rp{cost}</p>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 #mybag .select-all {
-    width: 850px;
-    height: 64px;
+    width: auto;
+    height: auto;
+    /* width: 850px; */
+    /* height: 64px; */
     background-color: #fff;
     box-shadow: 0px 0px 8px 0px rgba(115, 115, 115, 0.25);
     border-radius: 4px;
@@ -28,8 +30,11 @@
 }
 
 #mybag .summary {
-    width: 370px;
-    height: 180px;
+    width: auto;
+    height: auto;
+    padding-bottom: 25px;
+    /* width: 370px;
+    height: 180px; */
     background-color: #fff;
     box-shadow: 0px 0px 8px 0px rgba(115, 115, 115, 0.25);
     border-radius: 4px;
@@ -52,3 +57,27 @@
     font-weight: 600;
     font-size: 17px;
 }
+
+#mybag .btn-buy {
+    background-color: #DB3022;
+    color: #FFFFFF;
+    width: auto;
+    padding-left: 170px;
+    padding-right: 170px;
+}
+
+@media screen and (min-width : 1366px) {
+    #mybag .btn-buy {
+        padding-left: 130px;
+        padding-right: 130px;
+    }
+}
+
+@media screen and (max-width : 1366px) {
+    #mybag .btn-buy {
+        padding-left: 130px;
+        padding-right: 130px;
+    }
+}
+
+
