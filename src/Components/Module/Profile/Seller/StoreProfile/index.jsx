@@ -2,19 +2,50 @@ import propTypes from "prop-types";
 import "./storeProfile.css";
 import defaultPhoto from "../../../../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { myProfileSeller } from "../../../../../config/redux/action/sellerAction";
 import Button from "../../../../Base/button";
 // import { useSelector } from "react-redux";
-
+import { updateProfileSeller } from "../../../../../config/redux/action/sellerAction";
 const StoreProfile = () => {
   const dispatch = useDispatch();
-
+  
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    store_name: "",
+    store_description: "",
+  });
   const { loading, seller } = useSelector((state) => state.seller);
 
   useEffect(() => {
-    dispatch(myProfileSeller(seller));
+    dispatch(myProfileSeller());
   }, []);
+  
+  
+  const onChange = (e) => {
+    setValues({...values, [e.target.name] : e.target.value})
+  }
+  
+  const handleEdit = async(e) => {
+  try {
+    e.preventDefault()
+    await dispatch(updateProfileSeller(values))
+    dispatch(myProfileSeller())
+  } catch (error) {
+    console.log(error)
+  }
+  }
+  useEffect(() => {
+    setValues({
+      name : seller?.name || "",
+      email : seller?.email || "",
+      phone : seller?.phone || "",
+      store_name : seller?. store_name || "",
+      store_description: seller?.store_description || ""
+    })
+  }, [seller])
 
   return (
     <section id="main-content">
@@ -35,16 +66,39 @@ const StoreProfile = () => {
                         htmlFor="name"
                         className="col-sm-3 col-form-label text-end"
                       >
-                        Store Name
+                        Name
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="name"
                           type="name"
                           className="form-control"
                           placeholder="Store Name"
                           id="name"
-                          disabled
-                          value={seller?.store_name}
+                         
+                          value={values.name}
+                          onChange={onChange}
+                          // onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="row mb-3 ">
+                      <label
+                        htmlFor="name"
+                        className="col-sm-3 col-form-label text-end"
+                      >
+                        Store Name
+                      </label>
+                      <div className="col-sm-7">
+                        <input
+                        name="store_name"
+                          type="name"
+                          className="form-control"
+                          placeholder="Store Name"
+                          id="name"
+                       
+                          value={values.store_name}
+                          onChange={onChange}
                           // onChange={handleChange}
                         />
                       </div>
@@ -58,13 +112,14 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="email"
                           type="email"
                           className="form-control"
                           placeholder="Email"
                           id="email"
-                          disabled
-                          // onChange={handleChange}
-                          value={seller?.email}
+                      
+                          onChange={onChange}
+                          value={values.email}
                         />
                       </div>
                     </div>
@@ -77,13 +132,14 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
+                        name="phone"
                           type="phone-number"
                           className="form-control"
                           placeholder="Phone Number"
                           id="phone-number"
-                          disabled
-                          // onChange={handleChange}
-                          value={seller?.phone}
+                       
+                          onChange={onChange}
+                          value={values.phone}
                         />
                       </div>
                     </div>
@@ -93,13 +149,14 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <textarea
+                        name="store_description"
                           className="form-control"
                           placeholder="Store Description"
                           id="floatingTextarea2"
                           style={{ height: 200 }}
-                          disabled
-                          // onChange={handleChange}
-                          value={seller?.store_description}
+                        
+                          onChange={onChange}
+                          value={values.store_description}
                         />
                       </div>
                     </div>
@@ -122,6 +179,7 @@ const StoreProfile = () => {
                         marginTop: "1rem",
                         width: "90px",
                       }}
+                      onClick={handleEdit}
                     />
                   </form>
                 </div>
