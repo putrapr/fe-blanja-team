@@ -8,7 +8,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addMyBag } from "../../../config/redux/action/myBagAction";
-import CountButton from "../../../Components/Base/Count";
 
 const Product = () => {
   const { id } = useParams();
@@ -50,6 +49,7 @@ const Product = () => {
               <section className="col-lg-4">
                 <div className="model container ">
                   <img
+                    style={{ width: 1000 }}
                     src={product?.image}
                     className="rounded img-fluid"
                     alt={product?.name}
