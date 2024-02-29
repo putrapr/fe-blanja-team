@@ -1,6 +1,12 @@
 #count .decrement {
     border: none;
     border-radius: 30px;
+    width: auto;
+    height: auto;
+    /* padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px; */
     width: 36px;
     height: 36px;
     font-weight: 700;
@@ -10,6 +16,8 @@
 #count .increment {
     border: none;
     border-radius: 30px;
+    /* width: auto;
+    height: auto; */
     width: 36px;
     height: 36px;
     font-weight: 700;

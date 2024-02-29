@@ -33,7 +33,7 @@ const Mybag = () => {
               </div>
             </div>
             <div>
-            <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
+              <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
             </div>
             <div>
               <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
@@ -51,7 +51,7 @@ const Mybag = () => {
                 <p className="prices pt-3">Rp 400.000</p>
               </Col>
               <div className="d-flex justify-content-center">
-              <Button style={{ backgroundColor: "#DB3022", color: "#FFFFFF", width: "322px" }} className="mt-2" child="Buy"/>
+              <Button className="mt-2 btn-buy" child="Buy"/>
               </div>
             </Row>
             </div>
