@@ -25,7 +25,7 @@ const Nav = () => {
               aria-current="page"
               style={{ color: "#9B9B9B" }}
             >
-              {state.state}
+              {/* {state.state} */}
             </li>
           </ol>
         </nav>

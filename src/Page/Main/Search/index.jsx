@@ -47,7 +47,25 @@ const Search = () => {
 
   return (
     <>
-      <Nav />
+      <div className="container mt-5">
+        <nav>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/" style={{ textDecoration: "none", color: "#9B9B9B" }}>
+                Home
+              </Link>
+            </li>
+
+            <li
+              className="breadcrumb-item active"
+              aria-current="page"
+              style={{ color: "#9B9B9B" }}
+            >
+              search
+            </li>
+          </ol>
+        </nav>
+      </div>
       <div className="container mt-5 d-flex justify-content-between">
         <div className="input-group flex-grow-1 me-2 w-50">
           <input
