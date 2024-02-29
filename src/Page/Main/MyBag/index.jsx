@@ -15,7 +15,6 @@ const Mybag = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    // Calculate total price whenever myBagList changes
     const calculateTotalPrice = () => {
       const total = myBagList.reduce((accumulator, item) => {
         return accumulator + item.price;
