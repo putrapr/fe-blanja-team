@@ -141,7 +141,7 @@ const MyOrder = () => {
                           <td style={{ padding: 10 }}>{item?.id}</td>
                           <td style={{ padding: 10 }}>{item?.id_product}</td>
                           <td style={{ padding: 10 }}>{item?.quantity}</td>
-                          <td style={{ padding: 10 }}>$ {item?.price}</td>                        
+                          <td style={{ padding: 10 }}>Rp {item?.price}</td>                        
                           <td style={{ padding: 10 }}>{item?.payment_method}</td>
                         </tr>
                       );
