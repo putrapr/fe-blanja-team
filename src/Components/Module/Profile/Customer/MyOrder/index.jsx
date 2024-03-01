@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from "react";
-import svgNoOrder from '../../../../../assets/img/no-order.svg'
+import svgNoOrder from "../../../../../assets/img/no-order.svg";
 import "./my_order.css";
-import { useSelector, useDispatch } from 'react-redux'
-import { Orders } from '../../../../../config/redux/action/OrderAction.js'
-import moment from 'moment'
+import { useSelector, useDispatch } from "react-redux";
+import { Orders } from "../../../../../config/redux/action/OrderAction.js";
+import moment from "moment";
 
 const MyOrder = () => {
-  const dispatch = useDispatch()
-  const { order } = useSelector((state) => state.order)
+  const dispatch = useDispatch();
+  const { order } = useSelector((state) => state.order);
 
-  const [isLoading, setIsLoading] = useState(true)
-  
+  const [isLoading, setIsLoading] = useState(true);
+
   const getOrder = async () => {
     try {
       // setIsLoading(true)
-      await dispatch(Orders())
-      setIsLoading(false)
-    } catch (err) { /* empty */ }
-  }
+      await dispatch(Orders());
+      setIsLoading(false);
+    } catch (err) {
+      /* empty */
+    }
+  };
 
-  useEffect(() => {    
-    getOrder()
-  }, [])
+  useEffect(() => {
+    getOrder();
+  }, []);
 
   return (
     <section id="my-order">
-      <div className="main-content">
+      <div className="main-content w-75">
         <div className="container">
           <div className="wrapper-card bg-white">
             <h3 className="title mb-0">My Order</h3>
@@ -116,9 +118,7 @@ const MyOrder = () => {
                 </button>
               </li>
             </ul> */}
-            <table
-              className="table"
-              style={{ border: "1px solid #D4D4D4" }}>
+            <table className="table" style={{ border: "1px solid #D4D4D4" }}>
               <thead>
                 <tr style={{ width: "100%", height: 60 }}>
                   <th className="th">Tanggal</th>
@@ -131,7 +131,7 @@ const MyOrder = () => {
               </thead>
               <tbody>
                 {!isLoading ? (
-                  order.length > 0 ?
+                  order.length > 0 ? (
                     order.map((item, index) => {
                       return (
                         <tr key={index} style={{ fontSize: 12 }}>
@@ -139,13 +139,16 @@ const MyOrder = () => {
                             {moment(item?.order_date).format("DD-MM-YYYY")}
                           </td>
                           <td style={{ padding: 10 }}>{item?.id}</td>
-                          <td style={{ padding: 10 }}>{item?.id_product}</td>
+                          <td style={{ padding: 10 }}>{item?.name}</td>
                           <td style={{ padding: 10 }}>{item?.quantity}</td>
-                          <td style={{ padding: 10 }}>Rp {item?.price}</td>                        
-                          <td style={{ padding: 10 }}>{item?.payment_method}</td>
+                          <td style={{ padding: 10 }}>Rp {item?.price}</td>
+                          <td style={{ padding: 10 }}>
+                            {item?.payment_method}
+                          </td>
                         </tr>
                       );
-                    }) :
+                    })
+                  ) : (
                     <tr>
                       <td colSpan="6">
                         <div className="no-data">
@@ -153,6 +156,7 @@ const MyOrder = () => {
                         </div>
                       </td>
                     </tr>
+                  )
                 ) : (
                   <tr>
                     <td colSpan="6">

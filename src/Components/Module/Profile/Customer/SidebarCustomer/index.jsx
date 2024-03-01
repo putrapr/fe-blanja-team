@@ -15,49 +15,61 @@ import { MdDriveFolderUpload } from "react-icons/md";
 import Input from "../../../../Base/Input/input";
 import Button from "react-bootstrap/Button";
 import { updateProfileImage } from "../../../../../config/redux/action/customerAction";
-
+import "../SidebarCustomer/sideBarCustomer.module.css";
 const SidebarCustomer = () => {
   const dispatch = useDispatch();
-  const [saveImage, setSaveImage] = useState(null)
-  const [image, setImage] = useState("")
+  const [saveImage, setSaveImage] = useState(null);
+  const [image, setImage] = useState("");
   const [openTab, setOpenTab] = useState("myAccount");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const {loading,  customer } = useSelector((state) => state.customer);
+  const { loading, customer } = useSelector((state) => state.customer);
   const handleUploadChange = (e) => {
     let uploaded = e.target.files[0];
     setImage(URL.createObjectURL(uploaded));
     setSaveImage(uploaded);
   };
-  const handleEditImage = async(e) => {
+  const handleEditImage = async (e) => {
     try {
-      e.preventDefault()
-      const form = new FormData()
-      form.append("image", saveImage)
-      await dispatch(updateProfileImage(form))
-      dispatch(myProfileCustomer())
-      handleClose()
+      e.preventDefault();
+      const form = new FormData();
+      form.append("image", saveImage);
+      await dispatch(updateProfileImage(form));
+      dispatch(myProfileCustomer());
+      handleClose();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   useEffect(() => {
     dispatch(myProfileCustomer(customer));
   }, []);
 
   return (
     <>
-    <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>update Your Image</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {loading && <h3>loading....</h3>}
           <div className={`container `}>
-            <form  onClick={() => document.querySelector(".image").click()}>
-              {image ? <img src={image} style={{ width: "100%", height: "100%" }} /> : <MdDriveFolderUpload />}
-              <Input className="image" name="image" type="file" placeholder="upload an Image" required={true} onChange={handleUploadChange} hidden />
+            <form onClick={() => document.querySelector(".image").click()}>
+              {image ? (
+                <img src={image} style={{ width: "100%", height: "100%" }} />
+              ) : (
+                <MdDriveFolderUpload />
+              )}
+              <Input
+                className="image"
+                name="image"
+                type="file"
+                placeholder="upload an Image"
+                required={true}
+                onChange={handleUploadChange}
+                hidden
+              />
             </form>
           </div>
         </Modal.Body>
@@ -75,13 +87,13 @@ const SidebarCustomer = () => {
           <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 mt-4 bg-white">
             <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-hv-100">
               <div className="profile-head d-flex align-items-center">
-                <div className="position-relative" style={{width: 50}}>
+                <div className="position-relative" style={{ width: 50 }}>
                   {customer.image ? (
                     <img
                       src={customer.image}
                       alt=""
                       className="picture rounded-circle"
-                      style={{width:"100%"}}
+                      style={{ width: "100%" }}
                     />
                   ) : (
                     <img

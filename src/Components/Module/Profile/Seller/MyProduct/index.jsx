@@ -49,7 +49,7 @@ const MyProduct = () => {
   };
   return (
     <section id="myProduct">
-      <div className="main-content hv-50 bg-grey">
+      <div className="main-content w-75 bg-grey">
         <div className="container bg-white">
           <div className="wrapper-card">
             <h3 className="title mb-0">My Product</h3>
