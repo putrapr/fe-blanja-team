@@ -88,3 +88,14 @@ export const getByCustomerId = () => async (dispatch) => {
     });
   }
 };
+
+export const deleteMyBag = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DELETE_MYBAG_REQUEST" });
+    const response = await api.delete(`/mybag/${id}`);
+    const mybag = response.data;
+    dispatch({ type: "DELETE_MYBAG_SUCCESS", payload: mybag });
+  } catch (error) {
+    dispatch({ type: "DELETE_MYBAG_FAILURE", payload: error.response });
+  }
+};
