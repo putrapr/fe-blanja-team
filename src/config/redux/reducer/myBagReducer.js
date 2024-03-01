@@ -57,6 +57,23 @@ const myBagReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+      case "DELETE_MYBAG_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "DELETE_MYBAG_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        myBagList: action.payload,
+      };
+    case "DELETE_MYBAG_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

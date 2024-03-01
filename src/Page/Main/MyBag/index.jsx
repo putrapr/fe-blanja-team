@@ -7,7 +7,9 @@ import Button from "../../../Components/Base/button";
 // import MybagCard from "../../../Components/Base/MybagCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getByCustomerId } from "../../../config/redux/action/myBagAction";
+import { deleteMyBag, getByCustomerId } from "../../../config/redux/action/myBagAction";
+import {  FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Mybag = () => {
   const { myBagList } = useSelector((state) => state.myBag);
@@ -28,6 +30,28 @@ const Mybag = () => {
   useEffect(() => {
     dispatch(getByCustomerId());
   }, [dispatch]);
+
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Delete Product",
+      text: "Are you sure you want to delete this product?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#dc3545",
+    });
+
+    if (result?.isConfirmed)
+    try {
+      dispatch(deleteMyBag(id))
+      Swal.fire("Deleted!", "Your product has been deleted.", "success");
+      // alert("Delete Success")
+    } catch (error) {
+      console.log(error.response);
+      // alert("Delete Failed")
+    }
+  }
   return (
     <>
       <Navbar />
@@ -100,6 +124,12 @@ const Mybag = () => {
 
                   <div>
                     <div className="price ms-4 end-2">$ {item?.price}</div>
+                  </div>
+
+                  <div>
+                    <button onClick={() => handleDelete(item?.id)} className="btn btn-danger">
+                      <FaTrash />
+                    </button>
                   </div>
                 </div>
               </div>
