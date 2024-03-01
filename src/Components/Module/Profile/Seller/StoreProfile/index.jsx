@@ -9,7 +9,7 @@ import Button from "../../../../Base/button";
 import { updateProfileSeller } from "../../../../../config/redux/action/sellerAction";
 const StoreProfile = () => {
   const dispatch = useDispatch();
-  
+
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -22,34 +22,33 @@ const StoreProfile = () => {
   useEffect(() => {
     dispatch(myProfileSeller());
   }, []);
-  
-  
+
   const onChange = (e) => {
-    setValues({...values, [e.target.name] : e.target.value})
-  }
-  
-  const handleEdit = async(e) => {
-  try {
-    e.preventDefault()
-    await dispatch(updateProfileSeller(values))
-    dispatch(myProfileSeller())
-  } catch (error) {
-    console.log(error)
-  }
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleEdit = async (e) => {
+    try {
+      e.preventDefault();
+      await dispatch(updateProfileSeller(values));
+      dispatch(myProfileSeller());
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     setValues({
-      name : seller?.name || "",
-      email : seller?.email || "",
-      phone : seller?.phone || "",
-      store_name : seller?. store_name || "",
-      store_description: seller?.store_description || ""
-    })
-  }, [seller])
+      name: seller?.name || "",
+      email: seller?.email || "",
+      phone: seller?.phone || "",
+      store_name: seller?.store_name || "",
+      store_description: seller?.store_description || "",
+    });
+  }, [seller]);
 
   return (
     <section id="main-content">
-      <div className="main-content hv-50 bg-grey">
+      <div className="main-content w-75 bg-grey">
         <div className="container bg-white">
           <div className="wrapper-card">
             <h3 className="title mb-0">My Store Profile</h3>
@@ -70,12 +69,11 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="name"
+                          name="name"
                           type="name"
                           className="form-control"
                           placeholder="Store Name"
                           id="name"
-                         
                           value={values.name}
                           onChange={onChange}
                           // onChange={handleChange}
@@ -91,12 +89,11 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="store_name"
+                          name="store_name"
                           type="name"
                           className="form-control"
                           placeholder="Store Name"
                           id="name"
-                       
                           value={values.store_name}
                           onChange={onChange}
                           // onChange={handleChange}
@@ -112,12 +109,11 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="email"
+                          name="email"
                           type="email"
                           className="form-control"
                           placeholder="Email"
                           id="email"
-                      
                           onChange={onChange}
                           value={values.email}
                         />
@@ -132,12 +128,11 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="phone"
+                          name="phone"
                           type="phone-number"
                           className="form-control"
                           placeholder="Phone Number"
                           id="phone-number"
-                       
                           onChange={onChange}
                           value={values.phone}
                         />
@@ -149,12 +144,11 @@ const StoreProfile = () => {
                       </label>
                       <div className="col-sm-7">
                         <textarea
-                        name="store_description"
+                          name="store_description"
                           className="form-control"
                           placeholder="Store Description"
                           id="floatingTextarea2"
                           style={{ height: 200 }}
-                        
                           onChange={onChange}
                           value={values.store_description}
                         />

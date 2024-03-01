@@ -13,7 +13,7 @@ const MyOrder = () => {
 
   return (
     <section id="my-order">
-      <div className="main-content">
+      <div className="main-content w-75">
         <div className="container">
           <div className="wrapper-card">
             <h3 className="title mb-0">My Order</h3>

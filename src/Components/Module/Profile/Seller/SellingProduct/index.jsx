@@ -94,7 +94,7 @@ const SellingProduct = () => {
 
   return (
     <section id="selling-product">
-      <div className="main-content vh-50 bg-grey">
+      <div className="main-content w-75 bg-grey">
         <div className="container">
           <div className="wrapper-card bg-white py-4">
             <h5>Inventory</h5>

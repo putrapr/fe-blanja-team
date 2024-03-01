@@ -42,14 +42,13 @@ const ShippingAddress = () => {
     });
   };
   return (
-    <section id="shippingAddress">
-      <div className="main-content hv-100 bg-light">
-        <div className="container mt-5">
+    <section className="bg-light" id="shippingAddress">
+      <div className="main-content mt-5 w-75">
+        <div className="container bg-white px-5 py-5">
           <div className="wrapper-card ">
             <h3 className="title mb-0">Choose Another Address</h3>
             <span className="sub-title">Manage your Shipping Address</span>
             <hr className="mb-4" />
-
             <div className="row mt-5 d-grid">
               <button
                 className="btn btn-danger"

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import defaultPhoto from "../../../../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
-import { myProfileCustomer, updateProfile } from "../../../../../config/redux/action/customerAction";
+import {
+  myProfileCustomer,
+  updateProfile,
+} from "../../../../../config/redux/action/customerAction";
 import Button from "../../../../Base/button";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
-  
+
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -19,33 +22,32 @@ const MyAccount = () => {
   useEffect(() => {
     dispatch(myProfileCustomer(customer));
   }, []);
-  
-  
+
   const onChange = (e) => {
-    setValues({...values, [e.target.name] : e.target.value})
-  }
-  
-  const handleEdit = async(e) => {
-  try {
-    e.preventDefault()
-    await dispatch(updateProfile(values))
-    dispatch(myProfileCustomer())
-  } catch (error) {
-    console.log(error)
-  }
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleEdit = async (e) => {
+    try {
+      e.preventDefault();
+      await dispatch(updateProfile(values));
+      dispatch(myProfileCustomer());
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     setValues({
-      name : customer?.name || "",
-      email : customer?.email || "",
-      phone : customer?.phone || "",
-      gender : customer?. gender || "",
-      date_birth: customer?.date_birth || ""
-    })
-  }, [customer])
+      name: customer?.name || "",
+      email: customer?.email || "",
+      phone: customer?.phone || "",
+      gender: customer?.gender || "",
+      date_birth: customer?.date_birth || "",
+    });
+  }, [customer]);
   return (
     <section id="main-content">
-      <div className="main-content bg-grey">
+      <div className="main-content w-75 bg-grey">
         <div className="container bg-white">
           <div className="wrapper-card">
             <h3 className="title mb-0">My Profile</h3>
@@ -66,7 +68,7 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="name"
+                          name="name"
                           type="name"
                           className="form-control"
                           placeholder="Name"
@@ -85,12 +87,11 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="email"
+                          name="email"
                           type="email"
                           className="form-control"
                           placeholder="Email"
                           id="email"
-                     
                           value={values.email}
                           onChange={onChange}
                         />
@@ -105,12 +106,11 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="phone"
+                          name="phone"
                           type="phone-number"
                           className="form-control"
                           placeholder="Phone Number"
                           id="phone-number"
-                       
                           value={values.phone}
                           onChange={onChange}
                         />
@@ -123,10 +123,9 @@ const MyAccount = () => {
                       <div className="col-sm-7 pt-1">
                         <div className="form-check form-check-inline">
                           <input
-                          name="gender"
+                            name="gender"
                             className="form-check-input"
                             type="radio"
-                            
                             id="inlineRadio1"
                             value="laki-laki"
                             onChange={onChange}
@@ -162,11 +161,10 @@ const MyAccount = () => {
                       </label>
                       <div className="col-sm-7">
                         <input
-                        name="date_birth"
+                          name="date_birth"
                           type="phone-number"
                           className="form-control"
                           id="phone-number"
-                          
                           value={values.date_birth}
                           onChange={onChange}
                         />
@@ -180,7 +178,6 @@ const MyAccount = () => {
                         marginLeft: "13rem",
                         marginTop: "1rem",
                         width: "90px",
-                        
                       }}
                       onClick={handleEdit}
                     />
