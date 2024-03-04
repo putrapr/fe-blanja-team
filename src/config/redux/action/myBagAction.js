@@ -92,9 +92,10 @@ export const getByCustomerId = () => async (dispatch) => {
 export const deleteMyBag = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETE_MYBAG_REQUEST" });
-    const response = await api.delete(`/mybag/${id}`);
-    const mybag = response.data;
-    dispatch({ type: "DELETE_MYBAG_SUCCESS", payload: mybag });
+    await api.delete(`/mybag/${id}`);
+    // const response = await api.delete(`/mybag/${id}`);
+    // const mybag = response.data;
+    dispatch({ type: "DELETE_MYBAG_SUCCESS", payload: id });
   } catch (error) {
     dispatch({ type: "DELETE_MYBAG_FAILURE", payload: error.response });
   }

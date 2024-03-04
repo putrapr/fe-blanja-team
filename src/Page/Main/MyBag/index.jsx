@@ -10,18 +10,25 @@ import { useEffect, useState } from "react";
 import { deleteMyBag, getByCustomerId } from "../../../config/redux/action/myBagAction";
 import {  FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 const Mybag = () => {
   const { myBagList } = useSelector((state) => state.myBag);
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const calculateTotalPrice = () => {
-      const total = myBagList.reduce((accumulator, item) => {
-        return accumulator + item.price;
-      }, 0);
-      setTotalPrice(total);
+      if (Array.isArray(myBagList)) {
+        const total = myBagList.reduce((accumulator, item) => {
+          return accumulator + item.price;
+        }, 0);
+        setTotalPrice(total);
+      } else {
+        setTotalPrice(0);
+      }
     };
 
     calculateTotalPrice();
@@ -30,6 +37,10 @@ const Mybag = () => {
   useEffect(() => {
     dispatch(getByCustomerId());
   }, [dispatch]);
+
+  const handleNavigateCheckout = () => {
+    navigate("/checkout")
+  }
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
@@ -46,10 +57,8 @@ const Mybag = () => {
     try {
       dispatch(deleteMyBag(id))
       Swal.fire("Deleted!", "Your product has been deleted.", "success");
-      // alert("Delete Success")
     } catch (error) {
       console.log(error.response);
-      // alert("Delete Failed")
     }
   }
   return (
@@ -140,7 +149,8 @@ const Mybag = () => {
               //     cost={item.price}
               //   />
               // </div>
-            ))}
+            ))
+          }
             {/* <div>
               <MybagCard prodTitle="Men's formal suit - Black" descProduct="Zalora Cloth" cost="200.000"/>
             </div> */}
@@ -156,7 +166,7 @@ const Mybag = () => {
                     <p className="prices pt-3">Rp {totalPrice}</p>
                   </Col>
                   <div className="d-flex justify-content-center">
-                    <Button className="mt-2 btn-buy" child="Buy" />
+                    <Button onClick={handleNavigateCheckout} className="mt-2 btn-buy" child="Buy" />
                   </div>
                 </Row>
               </div>
