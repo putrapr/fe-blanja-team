@@ -11,6 +11,8 @@ const SellingProduct = () => {
   const [saveImage, setSaveImage] = useState("");
   const [showImage, setShowImage] = useState("");
   const [category, setCategory] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,6 +43,9 @@ const SellingProduct = () => {
   };
 
   const handleUpload = (e) => {
+    const MIN_FILE_SIZE = 1024; // 1MB
+    const MAX_FILE_SIZE = 5120; // 5MB
+
     const uploader = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
@@ -48,21 +53,32 @@ const SellingProduct = () => {
     };
     reader.readAsDataURL(uploader);
     setSaveImage(e.target.files[0]);
-  };
 
-  // console.log(formData);
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     dispatch(
-  //       createProduct({
-  //         formData,
-  //       })
-  //     );
-  //   } catch (error) {
-  //     alert(error.data.message);
-  //   }
-  // };
+    if (!saveImage) {
+      setErrorMsg("Please choose a file");
+      return;
+    }
+
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (!allowedTypes.includes(uploader?.type)) {
+      setIsError(true);
+      setErrorMsg("Only JPEG, PNG, and GIF images are allowed.");
+      return;
+    }
+
+    const fileSizeKiloBytes = saveImage.size / 1024;
+
+    if (fileSizeKiloBytes < MIN_FILE_SIZE) {
+      setErrorMsg("File size is less than minimum limit");
+      return;
+    }
+    if (fileSizeKiloBytes > MAX_FILE_SIZE) {
+      setErrorMsg("File size is greater than maximum limit");
+      return;
+    }
+
+    setIsError(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,12 +93,20 @@ const SellingProduct = () => {
       });
       setSaveImage(null);
       setShowImage("");
-      Swal.fire({
-        title: "Success",
-        text: "Create Product Success",
-        icon: "success",
-      });
-      navigate("/");
+
+      if (!saveImage) {
+        setIsError(true);
+        setErrorMsg("Please select a file.");
+      } else {
+        Swal.fire({
+          title: "Success",
+          text: "Create Product Success",
+          icon: "success",
+        });
+        // navigate("/");
+        // clear all input
+      }
+      setIsError(false);
     } catch (error) {
       Swal.fire({
         title: "Failed",
@@ -251,6 +275,7 @@ const SellingProduct = () => {
                       name="image"
                       onChange={handleUpload}
                     />
+                    {isError && <div className="error-text">{errorMsg}</div>}
                     {showImage && (
                       <img
                         src={showImage}

@@ -44,7 +44,6 @@ export const myProfileSeller = (data) => async (dispatch) => {
     dispatch({ type: "GET_MY_PROFILE_REQUEST" });
     const response = await api.get(`/seller/single`, data);
     const seller = response.data.data;
-    console.log("seller data : ", seller);
     dispatch({
       type: "GET_MY_PROFILE_SUCCESS",
       payload: seller,

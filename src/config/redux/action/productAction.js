@@ -30,6 +30,7 @@ export const getMyProductBySellerId = (id) => async (dispatch) => {
     dispatch({ type: "GET_PRODUCT_BY_ID_SELLER" });
     const response = await api.get(`/product/seller/${id}`);
     const product = response.data.data;
+    console.log(product)
     dispatch({
       type: "GET_PRODUCT_BY_ID_SELLER_SUCCESS",
       payload: product,

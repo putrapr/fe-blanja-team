@@ -9,17 +9,18 @@ import {
 } from "../../../../../config/redux/action/productAction";
 import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const MyProduct = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const { loading, productList } = useSelector((state) => state.product);
   const token = localStorage.getItem("token");
   const decoded = jwtDecode(token);
   const seller_id = decoded.id;
+
 
   useEffect(() => {
     dispatch(getMyProductBySellerId(seller_id));
@@ -39,13 +40,14 @@ const MyProduct = () => {
 
     if (result?.isConfirmed) {
       try {
-        dispatch(deleteProduct(id));
+        await dispatch(deleteProduct(id));
         Swal.fire("Deleted!", "Your product has been deleted.", "success");
       } catch (error) {
         console.error("Error deleting product:", error);
       }
     }
-    navigate("/");
+    // navigate("/");
+    dispatch(getMyProductBySellerId(seller_id));
   };
   return (
     <section id="myProduct">
@@ -151,7 +153,7 @@ const MyProduct = () => {
                             <td colSpan="3" className="text-center">
                               Loading...
                             </td>
-                          ) : productList.length > 0 ? (
+                          ) : productList?.length > 0 ? (
                             productList.map((item) => (
                               <tr key={item.id}>
                                 <td className="text-center">
@@ -181,11 +183,13 @@ const MyProduct = () => {
                                 </td>
                               </tr>
                             ))
-                          ) : (
+                          ) 
+                          : (
                             <td colSpan="3" className="text-center">
                               No products.
                             </td>
-                          )}
+                          )
+                          }
                         </tbody>
                       </table>
                     </div>
