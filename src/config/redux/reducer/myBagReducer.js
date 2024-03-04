@@ -66,7 +66,8 @@ const myBagReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        myBagList: action.payload,
+        myBagList: state.myBagList.filter(item => item.id !== action.payload)
+        // myBagList: action.payload,
       };
     case "DELETE_MYBAG_FAILURE":
       return {
