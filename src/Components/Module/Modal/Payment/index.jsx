@@ -6,37 +6,29 @@ import mastercard from "../../../../assets/img/mastercard.svg";
 import PropTypes from "prop-types";
 import Button from "../../../Base/button";
 import { useDispatch } from 'react-redux'
-import { AddOrderHeader, AddOrderItem } from '../../../../config/redux/action/OrderAction.js'
+import { AddOrder } from '../../../../config/redux/action/OrderAction.js'
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
-const Payment = ({ show, onHide, address_id, totalPrice, myBagList=[], lastOrderId }) => {
+const Payment = ({ show, onHide, addressId, totalPrice, myBagList=[] }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()  
 
   const insertOrder = async () => {
     const orderData = {
-      address_id: address_id,
+      address_id: addressId,
       seller_id: "6",
       order_total: totalPrice,
       payment_method: "gopay",
       order_item: myBagList
     } 
-    dispatch(AddOrderHeader(orderData))
-    // let orderItem = []
-    // myBagList.forEach((item, index) => {
-    //   orderItem[index] = {
-    //     // id_order: lastOrderId+1,
-    //     id_product: item.id_product,
-    //     quantity: item.quantity,
-    //     price: item.price
-    //   } 
-    // })
-    // await dispatch(AddOrderItem(orderItem))
-    setTimeout(() => {
-      alert('Order Success !')
-      navigate("/profile")
-    }, 5000)    
+    await dispatch(AddOrder(orderData))
+    Swal.fire({
+      icon: "success",
+      title: "Order Success !",
+    });
+    navigate("/profile")  
   }
 
   return (
