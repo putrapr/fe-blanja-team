@@ -19,19 +19,20 @@ const Payment = ({ show, onHide, address_id, totalPrice, myBagList=[], lastOrder
       address_id: address_id,
       seller_id: "6",
       order_total: totalPrice,
-      payment_method: "gopay"
+      payment_method: "gopay",
+      order_item: myBagList
     } 
     dispatch(AddOrderHeader(orderData))
-    let orderItem = []
-    myBagList.forEach((item, index) => {
-      orderItem[index] = {
-        id_order: lastOrderId,
-        id_product: item.id_product,
-        quantity: item.quantity,
-        price: item.price
-      } 
-    })
-    await dispatch(AddOrderItem(orderItem))
+    // let orderItem = []
+    // myBagList.forEach((item, index) => {
+    //   orderItem[index] = {
+    //     // id_order: lastOrderId+1,
+    //     id_product: item.id_product,
+    //     quantity: item.quantity,
+    //     price: item.price
+    //   } 
+    // })
+    // await dispatch(AddOrderItem(orderItem))
     setTimeout(() => {
       alert('Order Success !')
       navigate("/profile")

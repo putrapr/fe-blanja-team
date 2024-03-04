@@ -103,7 +103,8 @@ const SellingProduct = () => {
           text: "Create Product Success",
           icon: "success",
         });
-        navigate("/");
+        // navigate("/");
+        // clear all input
       }
       setIsError(false);
     } catch (error) {
