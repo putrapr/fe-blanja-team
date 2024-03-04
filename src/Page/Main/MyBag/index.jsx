@@ -123,7 +123,7 @@ const Mybag = () => {
                   </div>
 
                   <div>
-                    <div className="price ms-4 end-2">$ {item?.price}</div>
+                    <div className="price ms-4 end-2">Rp. {item?.price}</div>
                   </div>
 
                   <div>
