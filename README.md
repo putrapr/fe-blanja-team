@@ -72,7 +72,7 @@ bash
 
 | Checkout Page | Payment Page |
 |------------|------------|
-|![Checkout Page](https://drive.google.com/uc?export=view&id=1VpTYxDB6Dz8NoX2bOmnjtxchwkmJ97ys) | ![Payment Page](https://drive.google.com/uc?export=view&id=1qgDY-crZDooMCYSDzPq_AiFDzpUXWRvG) | 
+|![Checkout Page](https://drive.google.com/uc?export=view&id=1VpTYxDB6Dz8NoX2bOmnjtxchwkmJ97ys) | ![Payment Page](https://drive.google.com/uc?export=view&id=1l7l72KYyVfl_ccCToCUO56MSClQr_PcT) | 
 
 | Add Address Page | Shipping Address Page |
 |------------|---------------|
